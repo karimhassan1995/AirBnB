@@ -16,3 +16,58 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+.big {
+    padding: 20px 50px;
+}
+
+.centercategories {
+    display: flex;
+    justify-content: space-around;
+}
+
+.photos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/*.carousel {
+    margin: 10 , 10 ;
+}*/
+
+.we {
+    margin: 10px 10px;
+}
+
+.propertyinfo {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.properties-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.words {
+    color: white !important;
+}
+
+.icons {
+    width: 50px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    align-content: center;
+}
+
+.bluewords {
+    color: blue;
+}
