@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home-Page-2</title>
+
+    <!-- normalize Css file to render elements -->
+    <link rel="stylesheet" href="CSS/normalize.css">
+    <!-- fonts awesome icons library -->
+    <link rel="stylesheet" href="CSS/all.min.css">
+    <!-- main css file -->
+    <link rel="stylesheet" href="CSS/temp3.css">
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Fraunces:opsz,wght@9..144,700&family=Montserrat:wght@500;700&family=Open+Sans:wght@300;400;500;600;700;800&family=Work+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Start header -->
+    <div class="header" id="header">
+        <div class="container">
+          <i class="fa-brands fa-airbnb"id="logo"></i>
+            <ul class="main-nav">
+                <li><a href="#articles">City</a></li>
+                <li><a href="#gallery">Area</a></li>
+                <li><a href="#features">Property</a></li>
+                <li>
+                    <a href="#">Categoray</a>
+                    <!-- Start Mega-Menu -->
+                    <div class="mega-menu">
+                        <div class="image">
+                            <img src="imgs/Categoray2.png" alt="">
+                        </div>
+                        <ul class="links">
+                            <li>
+                              <a href="#"><i class="far fa-comments fa-fw"></i>Beachfront</a>
+                            </li>
+                            <li>
+                              <a href="#team"><i class="far fa-user fa-fw"></i>Tropical</a>
+                            </li>
+                            <li>
+                              <a href="#services"><i class="far fa-building fa-fw"></i>Tiny homes</a>
+                            </li>
+                            <li>
+                              <a href="#our-skills"><i class="far fa-check-circle fa-fw"></i>Private rooms</a>
+                            </li>
+                            <li>
+                              <a href="#work-steps"><i class="far fa-clipboard fa-fw"></i>Creative Spaces</a>
+                            </li>
+                          </ul>
+                        <ul class="links">
+                            <li>
+                              <a href="#events"><i class="far fa-calendar-alt fa-fw"></i>Farms</a>
+                            </li>
+                            <li>
+                              <a href="#pricing"><i class="fas fa-server fa-fw"></i>Island</a>
+                            </li>
+                            <li>
+                              <a href="#video"><i class="far fa-play-circle fa-fw"></i>Desert</a>
+                            </li>
+                            <li>
+                              <a href="#stats"><i class="far fa-chart-bar fa-fw"></i>Arctic</a>
+                            </li>
+                            <li>
+                              <a href="#discount"><i class="fas fa-percent fa-fw"></i>New</a>
+                            </li>
+                          </ul>
+                    </div>
+                    <!-- End Mega-Menu -->
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- End header -->
+
+    <!-- Start Landing -->
+    <div class="landing">
+        <div class="container">
+            <div class="text">
+                <h3>Welcome, Search For Your Destination...</h3>
+                <form method="" action="">
+                  <input list="CId" name="City">
+                  <datalist id="CId">
+                      <option value="Alexandria">
+                      <option value="Aswan">
+                      <option value="Cairo">
+                      <option value="Sharm">
+                      <option value="Gouna">
+                  </datalist>
+              </form>
+            </div>
+            <div class="image">
+                <img src="imgs/Airplane.png" alt="">
+            </div>
+        </div>
+        <a href="#Details" class="go-down">
+            <i class="fas fa-angle-double-down fa-2x"></i>
+        </a>
+    </div>
+    <!-- End Landing -->
+
+    <!-- Start Details -->
+    <div class="Details" id="Details">
+      <div class="container">
+          <div class="main-heading">
+              <h2>More Details</h2>
+          </div>
+      </div>
+      <div class="imgs-container">
+          <div class="box">
+              <img src="imgs/alexandria.jpg" alt="">
+              <div class="caption">
+                  <h4>Alexandria</h4>
+                  <p>Details.......</p>
+              </div>
+          </div>
+          <div class="box">
+              <img src="imgs/cairo.jpg" alt="">
+              <div class="caption">
+                  <h4>Cairo</h4>
+                  <p>Details......</p>
+              </div>
+          </div>
+          <div class="box">
+              <img src="imgs/aswan.jpg" alt="">
+              <div class="caption">
+                  <h4>Aswan</h4>
+                  <p>Details.....</p>
+              </div>
+          </div>
+          <div class="box">
+              <img src="imgs/gouna.jpg" alt="">
+              <div class="caption">
+                  <h4>Gouna</h4>
+                  <p>Details......</p>
+              </div>
+          </div>
+          <div class="box">
+              <img src="imgs/sharm-el-sheikh.jpg" alt="">
+              <div class="caption">
+                  <h4>Sharm-Elsheikh</h4>
+                  <p>Details......</p>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- End Details-->
+
+  <!-- Start Footer  -->
+  <div class="footer">
+    <div class="container">
+      <i class="fa-brands fa-airbnb"id="logo"></i>
+        <p>ITI Graduation Project</p>
+        <div class="social">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fas fa-home"></i>
+            <i class="fab fa-linkedin"></i>
+        </div>
+        <p class="copyright">
+            &copy; 2023 <span>AirBnB</span> All Right Reserved
+        </p>
+    </div>
+</div>
+<!-- End Footer -->
+</body>
+</html>

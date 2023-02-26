@@ -1,0 +1,81 @@
+﻿@model AirBnB.Models.Property
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Property</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger" ></div>
+            <div class="form-group">
+                <label asp-for="PropertyTitle" class="control-label"></label>
+                <input asp-for="PropertyTitle" class="form-control" />
+                <span asp-validation-for="PropertyTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertyDescription" class="control-label"></label>
+                <input asp-for="PropertyDescription" class="form-control" />
+                <span asp-validation-for="PropertyDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertyCapacity" class="control-label"></label>
+                <input asp-for="PropertyCapacity" class="form-control" />
+                <span asp-validation-for="PropertyCapacity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertyBedsNum" class="control-label"></label>
+                <input asp-for="PropertyBedsNum" class="form-control" />
+                <span asp-validation-for="PropertyBedsNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertyBedRooms" class="control-label"></label>
+                <input asp-for="PropertyBedRooms" class="form-control" />
+                <span asp-validation-for="PropertyBedRooms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertyBath" class="control-label"></label>
+                <input asp-for="PropertyBath" class="form-control" />
+                <span asp-validation-for="PropertyBath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertyPricePerNight" class="control-label"></label>
+                <input asp-for="PropertyPricePerNight" class="form-control" />
+                <span asp-validation-for="PropertyPricePerNight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertyHostInfo" class="control-label"></label>
+                <input asp-for="PropertyHostInfo" class="form-control" />
+                <span asp-validation-for="PropertyHostInfo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AppUserId" class="control-label"></label>
+                <select asp-for="AppUserId" class ="form-control" asp-items="ViewBag.AppUserId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AreaId" class="control-label"></label>
+                <select asp-for="AreaId" class ="form-control" asp-items="ViewBag.AreaId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategorayId" class="control-label"></label>
+                <select asp-for="CategorayId" class ="form-control" asp-items="ViewBag.CategorayId"></select>
+            </div>
+            <input type="file" name="propImg" multiple />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

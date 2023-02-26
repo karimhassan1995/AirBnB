@@ -9,18 +9,19 @@ namespace AirBnB.Models
         public int PropertyId { get; set; }
         [Required, MaxLength(200), MinLength(5)]
         public string PropertyTitle { get; set; }
-
+        [MaxLength(450)]
         public string PropertyDescription { get; set; }
-        [Required, MinLength(1)]
+        [Required]
         public int PropertyCapacity { get; set; }
-        [Required, MinLength(1)]
+        [Required]
         public int PropertyBedsNum { get; set; }
-        [Required, MinLength(1)]
+        [Required]
         public int PropertyBedRooms { get; set; }
-        [Required, MinLength(1)]
+        [Required]
         public int PropertyBath { get; set; }
         [Required]
         public int PropertyPricePerNight { get; set; }
+        [MaxLength(450)]
         public string PropertyHostInfo { get; set; }
         [ForeignKey("AppUser")]
         [Required]

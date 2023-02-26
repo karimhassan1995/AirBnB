@@ -12,5 +12,7 @@ namespace AirBnB.Models
         //NP
         public ICollection<Property> Properties { get; set; } = new HashSet<Property>();
 
+        public string Categoryphotosrc { get; set; }
+
     }
 }
