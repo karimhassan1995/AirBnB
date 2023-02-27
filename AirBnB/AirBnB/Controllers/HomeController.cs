@@ -4,6 +4,8 @@ using System.Diagnostics;
 
 namespace AirBnB.Controllers
 {
+
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
