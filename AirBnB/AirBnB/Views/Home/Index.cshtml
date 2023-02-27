@@ -1,4 +1,75 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<!-- Start Landing -->
+<div class="landing">
+    <div class="container">
+        <div class="text">
+            <h3>Welcome, Search For Your Destination...</h3>
+            <form method="" action="">
+                <input list="CId" name="City">
+                <datalist id="CId">
+                    <option value="Alexandria"></option>
+                    <option value="Aswan"></option>
+                    <option value="Cairo"></option>
+                    <option value="Sharm"></option>
+                    <option value="Gouna"></option>
+                </datalist>
+            </form>
+        </div>
+        <div class="image">
+            <img src="~/CityImgs/Airplane.png" alt="">
+        </div>
+    </div>
+    <a href="#Details" class="go-down">
+        <i class="fas fa-angle-double-down fa-2x"></i>
+    </a>
+</div>
+<!-- End Landing -->
 
+<!-- Start Details -->
+<div class="Details" id="Details">
+    <div class="container">
+        <div class="main-heading">
+            <h2>More Details</h2>
+        </div>
+    </div>
+    <div class="imgs-container">
+        <div class="box">
+            <img src="~/CityImgs/alexandria.jpg" alt="">
+            <div class="caption">
+                <h4>Alexandria</h4>
+                <p>Details.......</p>
+            </div>
+        </div>
+        <div class="box">
+            <img src="~/CityImgs/cairo.jpg" alt="">
+            <div class="caption">
+                <h4>Cairo</h4>
+                <p>Details......</p>
+            </div>
+        </div>
+        <div class="box">
+            <img src="~/CityImgs/aswan.jpg" alt="">
+            <div class="caption">
+                <h4>Aswan</h4>
+                <p>Details.....</p>
+            </div>
+        </div>
+        <div class="box">
+            <img src="~/CityImgs/gouna.jpg" alt="">
+            <div class="caption">
+                <h4>Gouna</h4>
+                <p>Details......</p>
+            </div>
+        </div>
+        <div class="box">
+            <img src="~/CityImgs/sharm-el-sheikh.jpg" alt="">
+            <div class="caption">
+                <h4>Sharm-Elsheikh</h4>
+                <p>Details......</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Details-->
