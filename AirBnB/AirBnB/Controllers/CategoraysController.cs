@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AirBnB.Data;
 using AirBnB.Models;
 
+
 namespace AirBnB.Controllers
 {
     public class CategoraysController : Controller
