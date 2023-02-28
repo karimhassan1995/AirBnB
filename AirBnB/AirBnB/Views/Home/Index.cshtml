@@ -1,20 +1,20 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model List<City>
 <!-- Start Landing -->
 <div class="landing">
     <div class="container">
         <div class="text">
             <h3>Welcome, Search For Your Destination...</h3>
-            <form method="" action="">
-                <input list="CId" name="City">
-                <datalist id="CId">
-                    <option value="Alexandria"></option>
-                    <option value="Aswan"></option>
-                    <option value="Cairo"></option>
-                    <option value="Sharm"></option>
-                    <option value="Gouna"></option>
-                </datalist>
+            <form asp-action="ShowArea" method="post" >
+                <select name="cityid">
+                @foreach (var item in Model)
+                {
+                   <option  value="@item.CityId">@item.CityName</option> 
+                }
+            </select>
+            <input type="submit" value="confirm"/>
             </form>
         </div>
         <div class="image">
@@ -35,41 +35,16 @@
         </div>
     </div>
     <div class="imgs-container">
-        <div class="box">
-            <img src="~/CityImgs/alexandria.jpg" alt="">
-            <div class="caption">
-                <h4>Alexandria</h4>
-                <p>Details.......</p>
+        @foreach (var item in Model)
+        {
+            <div class="box">
+                <img src="~/CityImgs/@item.CityImg" alt="">
+                <div class="caption">
+                    <h4>@item.CityName</h4>
+                    <p><a asp-action="ShowAreaGet" asp-route-id="@item.CityId">Areas...</a></p>
+                </div>
             </div>
-        </div>
-        <div class="box">
-            <img src="~/CityImgs/cairo.jpg" alt="">
-            <div class="caption">
-                <h4>Cairo</h4>
-                <p>Details......</p>
-            </div>
-        </div>
-        <div class="box">
-            <img src="~/CityImgs/aswan.jpg" alt="">
-            <div class="caption">
-                <h4>Aswan</h4>
-                <p>Details.....</p>
-            </div>
-        </div>
-        <div class="box">
-            <img src="~/CityImgs/gouna.jpg" alt="">
-            <div class="caption">
-                <h4>Gouna</h4>
-                <p>Details......</p>
-            </div>
-        </div>
-        <div class="box">
-            <img src="~/CityImgs/sharm-el-sheikh.jpg" alt="">
-            <div class="caption">
-                <h4>Sharm-Elsheikh</h4>
-                <p>Details......</p>
-            </div>
-        </div>
+        }
     </div>
 </div>
 <!-- End Details-->
