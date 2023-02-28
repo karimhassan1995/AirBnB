@@ -10,6 +10,8 @@ namespace AirBnB.Models
         public int AreaId { get; set; }
         [Required]
         public string AreaName { get; set; }
+        public string AreaImg { get;set; }
+
         [ForeignKey("City")]
         public int CityId { get; set; }
         //NP
