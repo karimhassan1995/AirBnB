@@ -73,7 +73,7 @@ namespace AirBnB.Controllers
             }
             if (propImg == null)
             {
-                ModelState.AddModelError("", "no emage uploaded , plz upload image");
+                ModelState.AddModelError("", "no image uploaded , plz upload image");
             }
             else
             {
