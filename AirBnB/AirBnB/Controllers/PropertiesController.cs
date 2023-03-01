@@ -222,6 +222,11 @@ namespace AirBnB.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult ShowProp(int id)
+        {
+            var Props = _context.Properties.Select(a => a).Where(a=>a.AreaId==id);
+            return RedirectToAction("index",Props);
+        }
         private bool PropertyExists(int id)
         {
           return _context.Properties.Any(e => e.PropertyId == id);
