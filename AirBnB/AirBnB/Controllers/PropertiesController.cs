@@ -22,10 +22,11 @@ namespace AirBnB.Controllers
         // GET: Properties
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Properties.Include(z => z.AppUser).Include(z => z.Area).ThenInclude(z => z.City).Include(z => z.Categoray).Include(z => z.PropertyImgs);
-            var categories = _context.Categoraies;
-            ViewBag.cat = categories;
-            return View(await applicationDbContext.ToListAsync());
+            var PropList = _context.Properties.Include(z => z.AppUser).Include(z => z.Area).ThenInclude(z => z.City).Include(z => z.Categoray).Include(z => z.PropertyImgs);
+         
+            //var categories = _context.Categoraies;
+            //ViewBag.cat = categories;
+            return View(await PropList.ToListAsync());
         }
 
         // GET: Properties/Details/5
