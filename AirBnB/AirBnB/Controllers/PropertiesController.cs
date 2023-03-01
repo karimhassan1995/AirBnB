@@ -52,6 +52,7 @@ namespace AirBnB.Controllers
         // GET: Properties/Create
         public IActionResult Create()
         {
+            ViewBag.cat = _context.Categoraies;
             ViewData["AppUserId"] = new SelectList(_context.Users, "Id", "Id");
             ViewData["AreaId"] = new SelectList(_context.Areas, "AreaId", "AreaName");
             ViewData["CategorayId"] = new SelectList(_context.Categoraies, "CategorayId", "CategorayName");

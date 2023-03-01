@@ -19,7 +19,7 @@ namespace AirBnB.Controllers
 
         public IActionResult Index()
         {
-           List<City>Cities=_context.Cities.ToList();
+           List<City> Cities=_context.Cities.ToList();
             return View(Cities);
         }
 
