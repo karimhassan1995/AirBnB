@@ -53,6 +53,7 @@ namespace AirBnB.Controllers
         // GET: Properties/Create
         public IActionResult Create()
         {
+            ViewBag.cat = _context.Categoraies;
             ViewData["AppUserId"] = new SelectList(_context.Users, "Id", "Id");
             ViewData["AreaId"] = new SelectList(_context.Areas, "AreaId", "AreaName");
             ViewData["CategorayId"] = new SelectList(_context.Categoraies, "CategorayId", "CategorayName");
@@ -221,6 +222,11 @@ namespace AirBnB.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult ShowProp(int id)
+        {
+            var Props = _context.Properties.Select(a => a).Where(a=>a.AreaId==id);
+            return RedirectToAction("index",Props);
+        }
         private bool PropertyExists(int id)
         {
           return _context.Properties.Any(e => e.PropertyId == id);
