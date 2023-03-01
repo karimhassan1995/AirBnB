@@ -15,7 +15,7 @@
                 <img src="~/AreaImgs/@item.AreaImg" alt="@item.AreaName" class="h-100">
                 <div class="caption">
                     <h4>@item.AreaName</h4>
-                    <p><a asp-action="" asp-route-id="">Properties...</a></p>
+                    <p><a asp-controller="Properties" asp-action="ShowProp" asp-route-id="@item.AreaId">Properties...</a></p>
                 </div>
             </div>
         }
