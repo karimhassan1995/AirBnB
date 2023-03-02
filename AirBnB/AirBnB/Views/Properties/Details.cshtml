@@ -4,9 +4,943 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
 
-<div>
+<section class="head"></section>
+<section class="first mb-5 ">
+    <div class="container ">
+        <h2 class="heading ">
+            Stunning @Model.PropertyBedRooms APT Beach front Panoramic View @Model.Area.City.CityName
+        </h2>
+        <div class="row justify-content-between mb-3 w-100">
+            <div class="col-8">
+                <i class="fa-solid fa-star"></i>
+                <span>4.81 ·</span>
+                <a class="mx-2 text-dark" href="#">21 reviews ·</a>
+                <a href="#" class="text-dark">@Model.Area.AreaName, @Model.Area.City.CityName, Egypt</a>
+
+            </div>
+
+            <div class="col-2  d-flex justify-content-end y ">
+                <a href="#" class="text-dark"><i class="fa-sharp fa-solid fa-arrow-up-from-bracket "></i> Share</a>
+                <a href="#" class="ms-3 text-dark"><i class="fa-regular fa-heart"></i> Save</a>
+            </div>
+
+        </div>
+
+
+        <div class="row ">
+            <div class="col-6 image ">
+                <img src="./imgs/Image.png" class="img-fluid rounded w-100 h-100 shadow-1" alt="...">
+
+            </div>
+            <div class="col-3  x">
+                <img src="./imgs/Image (1).png" class="img-fluid rounded w-100 h-50 p-1 shadow-1 " alt="...">
+                <img src="./imgs/Image (2).png" class="img-fluid rounded w-100 h-50 p-1 shadow-1" alt="...">
+            </div>
+            <div class="col-3  ">
+
+                <img src="./imgs/Image (3).png" class="img-fluid rounded w-100 h-50 p-1 shadow-1 " alt="...">
+                <img src="./imgs/Image (4).png" class="img-fluid rounded w-100 h-50 p-1 shadow-1 " alt="...">
+            </div>
+
+        </div>
+     
+
+
+
+    </div>
+</section>
+<section class="second">
+    <div class="container">
+        <div class="row ">
+            <div class="col-8 border-bottom border-danger ">
+                <div class=" border-bottom ">
+                    <h3>@Model.PropertyTitle by @Model.AppUser.Email</h3>
+                    <div class="mb-4">
+                        <span>@Model.PropertyCapacity guests</span>
+                        <span>@Model.PropertyBedRooms rooms</span>
+                        <span>@Model.PropertyBedsNum beds</span>
+                        <span>@Model.PropertyBath baths</span>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-1  d-flex justify-content-center align-items-center fs-3">
+                        <i class="fa-sharp fa-solid fa-key"></i>
+                    </div>
+                    <div class="card col-11 border-0  ">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Great check-in experience</h5>
+                            <p class="card-text">94% of recent guests gave the check-in process a 5-star rating.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-1  d-flex justify-content-center align-items-center fs-3">
+                        <i class="fa-solid fa-square-parking"></i>
+                    </div>
+                    <div class="card col-11 border-0 ">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Park for free</h5>
+                            <p class="card-text">This is one of the few places in the area with free parking.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="row border-bottom ">
+                    <div class="col-1  d-flex justify-content-center align-items-center fs-3">
+                        <i class="fa-regular fa-message"></i>
+                    </div>
+                    <div class="card col-11 border-0  ">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Great communication</h5>
+                            <p class="card-text">90% of recent guests rated Dina 5-star in communication.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-4 border border-bottom-0 border rounded  shadow-lg  bg-white ">
+
+                <form class="container mt-3 ">
+                    <div class="row  justify-content-between">
+                        <div class="col">
+                            <h4>$85 night</h4>
+                        </div>
+                        <div class="col">
+                            <i class="fa-solid fa-star"></i>
+                            <span>4.81 ·</span>
+                            <a class="mx-2 text-dark" href="#">21 reviews </a>
+                        </div>
+                    </div>
+
+
+
+                    <div class="input-group-prepend" style=" font-size: small;">
+                        <label>CHECK IN</label> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+                        <label>CHECK OUT</label><br>
+                    </div>
+                    <div class="input-group">
+                        <input class="form-control" type="date" placeholder="dd-mm-yyyy" name="checkin" />
+                        <input class="form-control" type="date" placeholder="dd-mm-yyyy" name="checkout" />
+                    </div>
+                    <br>
+                    <div class="form-group ">
+                        <label>GUESTS</label><br>
+                        <select class="custom-select w-100  ">
+                            <option selected>1 guest</option>
+                            <option value="Adults">Adults</option>
+                            <option value="Children">Children</option>
+                            <option value="Infants">Infant</option>
+                            <option value="pets">Pets</option>
+                        </select><br>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-danger btn-lg mt-3 w-100">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- property details section -->
+
+<section class="propdetails mt-5 mb-5">
+    <div class="container ">
+        <div class="row  ">
+            <div class="col-8 ">
+                <div class=" border-bottom">
+                    <div class="text mb-3  ">
+                        Apartement located in the Central of @Model.Area.City.CityName 
+
+                        ......
+                    </div>
+                    <h6>
+                        <a class="text-dark " href="#">see more ></a>
+                    </h6>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+<!-- Amenities -->
+
+<section class="Amenities">
+    <div class="container">
+        <div class="row  ">
+            <div class="col-8 mb-4 border-bottom">
+                <div class="heading h2 mb-4 mx-3">
+                    What this place offers
+                </div>
+                <div class="row justify-content-between">
+                    <div class="col-4">
+                        <div class="d-flex ">
+                            <i class="fa-solid fa-umbrella-beach mx-3 "></i>
+                            <p>Beach View</p>
+                        </div>
+                        <div class="d-flex ">
+                            <i class="fa-solid fa-wifi mx-3"></i>
+                            <p>Wifi</p>
+                        </div>
+                        <div class="d-flex ">
+                            <i class="fa-solid fa-tv mx-3"></i>
+                            <p>55" HDTV with standard cable</p>
+                        </div>
+                        <div class="d-flex ">
+                            <i class="fa-solid fa-bath mx-3"></i>
+                            <p>Bathtub</p>
+                        </div>
+                        <div class="d-flex ">
+                            <i class="fa-regular fa-bell mx-3 "></i>
+                            <del>Carbon monoxide alarm</del>
+                        </div>
+
+                    </div>
+                    <div class="col-4 ">
+                        <div class="d-flex ">
+                            <i class="fa-solid fa-utensils mx-3"></i>
+                            <p>Kitchen</p>
+                        </div>
+                        <div class="d-flex ">
+                            <i class="fa-solid fa-car mx-3"></i>
+                            <p>Free parking on premises</p>
+                        </div>
+                        <div class="d-flex ">
+                            <i class="fa-solid fa-soap mx-3"></i>
+                            <p>Washer</p>
+                        </div>
+                        <div class="d-flex ">
+                            <i class="fa-solid fa-temperature-three-quarters mx-3"></i>
+                            <p>Portable heater </p>
+                        </div>
+                        <div class="d-flex ">
+                            <i class="fa-solid fa-fire mx-3"></i> <del>Smoke alarm </del>
+                        </div>
+
+                    </div>
+
+                </div>
+                <button class="btn btn-white border border-dark px-3 fs-5  mt-3 mx-3  mb-5 p-2">
+                    Show All
+                    Amenties
+                </button>
+
+
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- celender -->
+<section class="celender mb-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="text  col-8 ">
+                <div class="heading h2">
+                    1 night in Sidi Gabir
+
+                </div>
+                <div class="dates">
+                    Feb 17, 2023 - Feb 18, 2023
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+
+                <table class="table-condensed table-bordered table-striped ">
+                    <thead>
+                        <tr>
+                            <th colspan="7 " class="p-2 h3 text-center bg-dark-subtle">
+                                February 2023
+
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="p-2">Sun</th>
+                            <th class="p-2">Mon</th>
+                            <th class="p-2">Tue</th>
+                            <th class="p-2">Wed</th>
+                            <th class="p-2">Thu</th>
+                            <th class="p-2">Fri</th>
+                            <th class="p-2">Sat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="muted p-2">29</td>
+                            <td class="muted p-2">30</td>
+                            <td class="muted p-2">31</td>
+                            <td class="p-2">1</td>
+                            <td class="p-2">2</td>
+                            <td class="p-2">3</td>
+                            <td class="p-2">4</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2">5</td>
+                            <td class="p-2">6</td>
+                            <td class="p-2">7</td>
+                            <td class="p-2">8</td>
+                            <td class="p-2">9</td>
+                            <td class="p-2">10</td>
+                            <td class="p-2">11</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2">12</td>
+                            <td class="p-2">13</td>
+                            <td class="p-2">14</td>
+                            <td class="p-2">15</td>
+                            <td class="p-2">16</td>
+                            <td class="p-2">17</td>
+                            <td class="p-2">18</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2">19</td>
+                            <td class="p-2"><strong>20</strong></td>
+                            <td class="p-2">21</td>
+                            <td class="p-2">22</td>
+                            <td class="p-2">23</td>
+                            <td class="p-2">24</td>
+                            <td class="p-2">25</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2">26</td>
+                            <td class="p-2">27</td>
+                            <td class="p-2">28</td>
+                            <td class="p-2">29</td>
+                            <td class="muted p-2">1</td>
+                            <td class="muted p-2">2</td>
+                            <td class="muted p-2">3</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="col-4">
+                <table class="table-condensed table-bordered table-striped ">
+                    <thead>
+                        <tr>
+                            <th colspan="7 " class="p-2 h3 text-center bg-dark-subtle">
+                                March 2023
+
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="p-2">Sun</th>
+                            <th class="p-2">Mon</th>
+                            <th class="p-2">Tue</th>
+                            <th class="p-2">Wed</th>
+                            <th class="p-2">Thu</th>
+                            <th class="p-2">Fri</th>
+                            <th class="p-2">Sat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="muted p-2">29</td>
+                            <td class="muted p-2">30</td>
+                            <td class="muted p-2">31</td>
+                            <td class="p-2">1</td>
+                            <td class="p-2">2</td>
+                            <td class="p-2">3</td>
+                            <td class="p-2">4</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2">5</td>
+                            <td class="p-2">6</td>
+                            <td class="p-2">7</td>
+                            <td class="p-2">8</td>
+                            <td class="p-2">9</td>
+                            <td class="p-2">10</td>
+                            <td class="p-2">11</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2">12</td>
+                            <td class="p-2">13</td>
+                            <td class="p-2">14</td>
+                            <td class="p-2">15</td>
+                            <td class="p-2">16</td>
+                            <td class="p-2">17</td>
+                            <td class="p-2">18</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2">19</td>
+                            <td class="p-2">20</td>
+                            <td class="p-2">21</td>
+                            <td class="p-2">22</td>
+                            <td class="p-2">23</td>
+                            <td class="p-2">24</td>
+                            <td class="p-2">25</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2">26</td>
+                            <td class="p-2">27</td>
+                            <td class="p-2">28</td>
+                            <td class="p-2">29</td>
+                            <td class="muted p-2">1</td>
+                            <td class="muted p-2">2</td>
+                            <td class="muted p-2">3</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+
+
+</section>
+<!-- Reviews -->
+<section class="reviews  ">
+    <div class="container ">
+        <div class="row mx-3">
+            <div class="col-12 ">
+                <i class="fa-solid fa-star h4"></i>
+                <span class="h4">4.81 ·</span>
+                <a class="mx-2 text-dark " href="#">21 reviews </a>
+
+                <!-- horizontal bars -->
+                <div class="row ">
+                    <div class="col-6 ">
+
+                        <div class="row rates ">
+                            <div class="col-3 ">Cleanliness</div>
+                            <div class="col-3 align-self-center">
+                                <div class="progress " style="height: 15px;" aria-valuenow="75" role="progressbar"
+                                     aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar w-75 bg-secondary ">4.6</div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-6 ">
+
+                        <div class="row rates">
+                            <div class="col-3">Accuracy</div>
+                            <div class="col-3 align-self-center">
+                                <div class="progress " style="height: 15px;" aria-valuenow="100" role="progressbar"
+                                     aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar w-100 bg-secondary ">5</div>
+
+
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- horizontal bars -->
+                <div class="row">
+                    <div class="col-6 ">
+
+                        <div class="row rates">
+                            <div class="col-3">Communication</div>
+                            <div class="col-3 align-self-center">
+                                <div class="progress " style="height: 15px;" aria-valuenow="25" role="progressbar"
+                                     aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar w-75 bg-secondary ">4.9</div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-6 ">
+
+                        <div class="row rates">
+                            <div class="col-3">Location</div>
+                            <div class="col-3 align-self-center">
+                                <div class="progress " style="height: 15px;" aria-valuenow="25" role="progressbar"
+                                     aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar w-75 bg-secondary ">4.7</div>
+
+
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- horizontal bars -->
+                <div class="row">
+                    <div class="col-6 ">
+
+                        <div class="row rates">
+                            <div class="col-3">Check-in </div>
+                            <div class="col-3 align-self-center">
+                                <div class="progress " style="height: 15px;" aria-valuenow="25" role="progressbar"
+                                     aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar w-75 bg-secondary ">4.8</div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-6 ">
+
+                        <div class="row rates">
+                            <div class="col-3">Value</div>
+                            <div class="col-3 align-self-center">
+                                <div class="progress " style="height: 15px;" aria-valuenow="25" role="progressbar"
+                                     aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar w-75 bg-secondary ">4.9</div>
+
+
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!-- comments -->
+
+                <div class="row mt-5">
+                    <!-- one comment -->
+                    <div class="col-6 gx-1 ">
+                        <div class="card border-0 ">
+                            <div class="card-body">
+                                <div class="info d-flex mb-3">
+                                    <img src="./imgs/Screenshot (90).png" alt="">
+
+                                    <div class="name date mx-3">
+                                        <h5 class="card-title">Nermeen </h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">December 2022 </h6>
+                                    </div>
+                                </div>
+                                <p class="card-text">
+                                    Thank you for hosting us. The hosts were very responsive.
+                                    Check-in and check-out processes were very smooth. The apartment has a great sea
+                                    view and well furnished with
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="card border-0">
+                            <div class="card-body">
+                                <div class="info d-flex mb-3">
+                                    <img src="./imgs/Screenshot (90).png" alt="">
+
+                                    <div class="name date mx-3">
+                                        <h5 class="card-title">Malvika </h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">
+                                            October 2022 . Last minute trip
+                                        </h6>
+                                    </div>
+                                </div>
+                                <p class="card-text">
+                                    It was an amazing stay 🥰 perfect area and apartment, the host
+                                    was
+                                    wonderful
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="card border-0">
+                            <div class="card-body">
+                                <div class="info d-flex mb-3">
+                                    <img src="./imgs/Screenshot (90).png" alt="">
+
+                                    <div class="name date mx-3">
+                                        <h5 class="card-title">Mohamed </h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">December 2022 </h6>
+                                    </div>
+                                </div>
+                                <p class="card-text">
+                                    Beautiful apartment, clean rooms and bathroom. Amazing view and
+                                    very
+                                    good communication with Eslam. perfect place for families.
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- one comment -->
+                    <div class="col-6 gx-1 ">
+                        <div class="card border-0">
+                            <div class="card-body">
+                                <div class="info d-flex mb-3">
+                                    <img src="./imgs/Screenshot (90).png" alt="">
+
+                                    <div class="name date mx-3">
+                                        <h5 class="card-title">Wael </h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">
+                                            December 2022 . Last minute trip
+                                        </h6>
+                                    </div>
+                                </div>
+                                <p class="card-text">Thank you </p>
+
+                            </div>
+                        </div>
+                        <div class="card border-0">
+                            <div class="card-body">
+                                <div class="info d-flex mb-3">
+                                    <img src="./imgs/Screenshot (90).png" alt="">
+
+                                    <div class="name date mx-3">
+                                        <h5 class="card-title">Hesham</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">Septmeber 2022 </h6>
+                                    </div>
+                                </div>
+                                <p class="card-text">
+                                    Perfect view thru panoramic windows .. apartment is equipped
+                                    with
+                                    every you might need .. Mona is the perfect host you might meet in Egypt.
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="card border-0">
+                            <div class="card-body">
+                                <div class="info d-flex mb-3">
+                                    <img src="./imgs/Screenshot (90).png" alt="">
+
+                                    <div class="name date mx-3">
+                                        <h5 class="card-title">Alaa </h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">May 2022 . Last minute trip </h6>
+                                    </div>
+                                </div>
+                                <p class="card-text">
+                                    The host was very helpful and very easy to reach. The place was
+                                    amazing, exactly like the photos and everything was just perfect. I am looking
+                                    forward
+                                    to come back in the near future.
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- see more butoon  -->
+
+            <div class="row mx-3 ">
+                <div class="col-4">
+                    <button class="btn btn-white border border-dark px-3 fs-5 ">See All Reviews</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+</section>
+
+<!-- map -->
+<section class="map mt-5 mx-5 mb-5">
+    <div class="container">
+        <div class="row">
+            <div class=" col-12 heading h2 mb-5">
+                Where you’ll be
+
+            </div>
+            <div class="col-12">
+                <img src="./imgs/Screenshot (92).png" alt="">
+            </div>
+
+            <div class="col-6">
+                <h5>
+                    Sidi Gabir, Alexandria Governorate, Egypt
+                </h5>
+                <div class="text">
+                    Alexandria bibliotheca 10 min walk
+                    Italian consulate .<br> And a lot more are close by
+                </div>
+            </div>
+            <h6>
+                <a class="text-dark " href="#">see more ></a>
+            </h6>
+
+
+
+        </div>
+    </div>
+
+
+</section>
+
+<!-- host-info -->
+<section class="host mb-5">
+    <div class="container">
+
+        <div class="row">
+            <div class="card border-0">
+                <div class="card-body">
+                    <div class="info d-flex mb-3">
+                        <img src="./imgs/Screenshot (90).png" alt="">
+
+                        <div class="name date mx-3">
+                            <h5 class="card-title">
+                                Hosted by Dina
+                            </h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Joined in October 2020
+                            </h6>
+                        </div>
+                    </div>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item  border-0 ">
+
+                            <i class="fa-solid fa-star"></i>
+                            <span class="p-2">84 Reviews </span>
+
+
+                            <i class="fa-regular fa-circle-check p"></i>
+                            <span>Identity verified</span>
+
+
+
+
+                        </li>
+                        <li class="list-group-item  border-0 h6">
+                            During your stay
+
+                        </li>
+
+
+
+                        <li class="list-group-item border-0">
+                            I will be always available through messages and calls till 22:00
+                        </li>
+                        <li class="list-group-item  border-0">
+                            Response rate: 100%
+                        </li>
+                        <li class="list-group-item border-0">A third item</li>
+                    </ul>
+                    <a href="#" class="btn btn-white border border-dark px-3 fs-5  mt-3 mx-3  mb-1 p-2">
+                        Contact Host
+                    </a>
+                    <div class="card-footert ">
+                        <div class="row">
+                        </div>
+
+                        <div class="col-3 d-flex">
+                            <i class="fa-solid fa-shield  mx-3 align-self-center"></i>
+
+
+                            <p>
+                                To protect your payment, never transfer money or communicate outside of the Airbnb website or app.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+</section>
+
+<!-- house rules -->
+<section class="rules">
+    <div class="container">
+        <div class="row">
+            <div class="heading">
+                Things to know
+
+            </div>
+            <!-- first col -->
+            <div class="col-4">
+                <div class="card border-0">
+                    <div class="card-header border-0 h5">
+                        House rules
+
+                    </div>
+                    <ul class="list-group list-group-flush border-0">
+                        <li class="list-group-item border-0">
+                            Check-in after 3:00 PM
+                        </li>
+                        <li class="list-group-item border-0">
+                            Checkout before 11:00 AM
+                        </li>
+                        <li class="list-group-item border-0">
+                            4 guests maximum
+
+                        </li>
+                    </ul>
+                    <a href="#" class="card-link text-dark border-0 mx-3">Show more ></a>
+
+                </div>
+            </div>
+            <!-- second col -->
+            <div class="col-4">
+                <div class="card border-0">
+                    <div class="card-header border-0 h5">
+                        Safety & property
+
+
+                    </div>
+                    <ul class="list-group list-group-flush border-0">
+                        <li class="list-group-item border-0">No carbon monoxide alarm </li>
+                        <li class="list-group-item border-0">No smoke alarm </li>
+
+                    </ul>
+                    <a href="#" class="card-link text-dark border-0 mx-3">Show more ></a>
+
+                </div>
+            </div>
+            <!-- third col -->
+            <div class="col-4">
+                <div class="card border-0">
+                    <div class="card-header border-0 h5 ">
+                        Cancellation policy
+
+
+                    </div>
+                    <p class="card-text mx-3">Review the Host’s full cancellation policy which applies even if you cancel for illness or disruptions caused by COVID-19.</p>
+
+
+                    <a href="#" class="card-link text-dark border-0 mx-3">Show more ></a>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</section>
+<!-- footer -->
+<section class="footer mt-5 bg-light">
+    <div class="container">
+        <!-- first sec -->
+        <div class="row">
+            <div class="heading mb-3">
+                Explore other options in and around Sidi Gabir
+
+
+            </div>
+            <!-- first col -->
+            <div class="col-3 ">
+                <ul class="list-group list-group-flush border-0 ">
+                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none ">El-Agamy</a></li>
+                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">San Stifano</a></li>
+                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Sidi bishr</a></li>
+
+                </ul>
+
+            </div>
+            <!-- second col -->
+            <div class="col-3">
+                <ul class="list-group list-group-flush border-0">
+                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none ">Bahary</a></li>
+                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Roshdy</a></li>
+                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Asafra</a></li>
+
+                </ul>
+
+            </div>
+            <!-- third col -->
+            <div class="col-3">
+                <ul class="list-group list-group-flush border-0">
+                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none ">Kafr Abdu</a></li>
+                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Glim</a></li>
+                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Louran</a></li>
+
+                </ul>
+
+            </div>
+            <!-- fourth col -->
+            <div class="col-3">
+                <ul class="list-group list-group-flush border-0">
+                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none ">Zezenia</a></li>
+                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Mahatet El Raml</a></li>
+                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Smouha</a></li>
+
+                </ul>
+
+            </div>
+            <!-- links -->
+
+            <div class="col mt-3 mx-3">
+                <a href="#" class="text-dark text-decoration-none ">Airbnb  ></a>
+                <a href="#" class="text-dark text-decoration-none ">Egypt  ></a>
+                <a href="#" class="text-dark text-decoration-none ">Alexandria Governorate  ></a>
+                <a href="#" class="text-dark text-decoration-none ">Alexandria  ></a>
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</section>
+
+
+@*<div>
     <h4>Property</h4>
     <hr />
     <dl class="row">
@@ -82,3 +1016,4 @@
     <a asp-action="Edit" asp-route-id="@Model?.PropertyId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+*@
