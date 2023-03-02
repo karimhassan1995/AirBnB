@@ -361,18 +361,3 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-
-# App settings
-.\AirBnB\appsettings.json
-./AirBnB/appsettings.json
-
-AirBnB\appsettings.json
-AirBnB/appsettings.json
-
-AirBn/AirBnB/appsettings.json
-appsettings.json
-./AirBn/AirBnB/appsettings.json
-./appsettings.json
-AirBn\AirBnB\appsettings.json
-.\AirBn\AirBnB\appsettings.json
-.\appsettings.json

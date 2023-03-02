@@ -39,8 +39,9 @@ namespace AirBnB.Controllers
 
             var @property = await _context.Properties
                 .Include(z => z.AppUser)
-                .Include(z => z.Area)
                 .Include(z => z.Categoray)
+                .Include(z => z.Area)
+                .ThenInclude(z => z.City)
                 .FirstOrDefaultAsync(m => m.PropertyId == id);
             if (@property == null)
             {
@@ -57,6 +58,8 @@ namespace AirBnB.Controllers
             ViewData["AppUserId"] = new SelectList(_context.Users, "Id", "Id");
             ViewData["AreaId"] = new SelectList(_context.Areas, "AreaId", "AreaName");
             ViewData["CategorayId"] = new SelectList(_context.Categoraies, "CategorayId", "CategorayName");
+            /*ViewData["AmenityId"] = new SelectList(_context.Amenities, "AmenityId", "AmenityId");*/
+            ViewBag.Amenity = _context.Amenities.ToList();
             return View();
         }
 
