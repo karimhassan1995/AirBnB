@@ -87,102 +87,68 @@ body {
 html {
     scroll-behavior: smooth;
 }
-/**DOHAAAAAAAAAAAAAAAAAA*/
-.image {
+body {
+    font-family: 'Inter', sans-serif;
+    ;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+/* .container {
+  width: 80%;
+   margin-left: auto;
+   margin-right: auto;
+} */
+
+/* a{
+   text-decoration: none;
+} */
+
+.head {
+    height: 15vh;
+}
+
+.heading {
+    font-size: 30px;
+    color: var(--main-color-alt);
+}
+
+
+
+.x {
+    margin: 0 -15px !important;
+}
+
+.y {
+    margin-left: -30px !important;
+}
+
+.custom-select {
+    height: 40px !important;
+}
+
+/*Amiraaaaaaaaaaaaaaaaaaa*/
+
+/*karimmmmmmmmmmmmmmm*/
+.backgroundimg{
+    background-image: url("/backgroundimg/14.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 100px 200px
+}
+.formbackground {
+    background-color: rgb(238, 236, 236 , 0.5);
+}
+
+imagedetails {
     margin-bottom: 8px;
-    width: 50px;
     cursor: pointer;
     padding-left: 15px;
 }
 
-.head {
-    margin-bottom: 30px;
-    margin-top: 30px;
-}
-
-.headers {
-    margin-bottom: 35px;
-    margin-top: 30px;
-}
-
-.img {
-    width: 30px;
-    float: right;
-    margin-top: 20px;
-}
-
-/* #map {
-    height: 100%;
-} */
-
-.btns:focus {
-    background-color: rgb(238, 236, 236) !important;
-    border: 2px solid black;
-}
-
-.btns:hover {
-    border: 2px solid black;
-}
-
-.btns {
-    border: 1px solid rgb(233, 231, 231);
-}
-
-.textarea {
-    border: 1px solid black;
-}
-
-.highlightimg {
-    width: 25px;
-}
-
-.checkbox {
-    opacity: 0;
-}
-
-.pictures {
-    height: 350px;
-    border: 1px dashed rgb(194, 194, 194);
-    position: relative;
-}
-.imgbtn{
-    position: absolute;
-    top:30px;
-}
-
-.photo {
-    margin-bottom: 8px;
-    width: 65px;
-}
-
-.photostexts {
-    margin-top: 15%;
-}
-
-.pointer {
-    cursor: pointer;
-}
-.pointer:focus {
-        background-color: rgb(238, 236, 236) !important;
-        border: 2px solid black;
-}
-.select-loc {
-    height: 50px;
-    border: 1px solid black;
-    font-size:large;
-}
-.inputs {
-    border: 1px solid black;
-}
-.texts {
-    /*font-weight: bold;*/
-    font-size: large;
-    margin-bottom: 7px;
-    margin-top: 10px;
-}
-.submitbtn {
-    border: 2px solid;
-}
 
 body {
     font-family: 'Inter', sans-serif;
@@ -226,3 +192,125 @@ ul {
 .custom-select {
     height: 40px !important;
 }
+
+/*karimmmmmmmmmmmmmmmmmmmm*/
+
+
+
+
+
+/*dohaaaaaaaaaaaaaaaaaaaaaa*/
+.image {
+    margin-bottom: 8px;
+    width: 50px;
+    cursor: pointer;
+    padding-left: 15px;
+}
+
+
+
+.head {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.headers {
+    margin-bottom: 35px;
+    margin-top: 30px;
+}
+
+.img {
+    width: 30px;
+    float: right;
+    margin-top: 20px;
+}
+
+/* #map {
+    height: 100%;
+} */
+
+/*.btns:focus {
+    background-color: rgb(238, 236, 236) !important;
+    border: 2px solid black;
+}*/
+
+.btns:hover {
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.btns {
+    border: 1px solid rgb(233, 231, 231);
+}
+
+.textarea {
+    border: 1px solid black;
+}
+
+.highlightimg {
+    width: 25px;
+}
+
+/*.multiselectcheckbox{
+    opacity: 0;
+}*/
+
+.pictures {
+    height: 350px;
+    border: 1px dashed rgb(194, 194, 194);
+    position: relative;
+}
+
+.imgbtn {
+    position: absolute;
+    top: 30px;
+}
+
+.photo {
+    margin-bottom: 8px;
+    width: 65px;
+}
+
+.photostexts {
+    margin-top: 15%;
+}
+
+.pointer:focus {
+    background-color: rgb(238, 236, 236) !important;
+    border: 2px solid black;
+}
+
+.select-loc {
+    height: 50px;
+    border: 1px solid black;
+    font-size: large;
+}
+
+.inputs {
+    border: 1px solid black;
+}
+
+.texts {
+    /font-weight: bold;
+    / font-size: large;
+    margin-bottom: 7px;
+    margin-top: 10px;
+}
+
+.submitbtn {
+    border: 2px solid;
+}
+
+.sel-label {
+    border: 2px solid black;
+    background-color: rgb(238, 236, 236);
+}
+/*.createbackground {
+    background-image: url("/Images/boat-house-2881457.jpg");*/
+/*height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;*/
+
+
+/*dohhaaaaaaaaaaaaaaaaaaaaaaa*/
+

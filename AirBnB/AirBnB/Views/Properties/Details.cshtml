@@ -2,6 +2,9 @@
 
 @{
     ViewData["Title"] = "Details";
+    var revew = Model.Reviews.ToList();
+    var imgs = Model.PropertyImgs.ToList();
+
 }
 
 
@@ -14,8 +17,22 @@
         <div class="row justify-content-between mb-3 w-100">
             <div class="col-8">
                 <i class="fa-solid fa-star"></i>
-                <span>4.81 ·</span>
-                <a class="mx-2 text-dark" href="#">21 reviews ·</a>
+
+
+                  @{int max = 0;}
+                @foreach (var r in ViewBag.reviews)
+                {
+                    max += r.ReviewRate;
+                }
+                @{
+                    int avregeview = max / Enumerable.Count(ViewBag.reviews);
+                }
+               
+
+
+
+                <span>@avregeview</span>
+                <a class="mx-2 text-dark" href="#">@Enumerable.Count(ViewBag.reviews) Reviews</a>
                 <a href="#" class="text-dark">@Model.Area.AreaName, @Model.Area.City.CityName, Egypt</a>
 
             </div>
@@ -27,22 +44,27 @@
 
         </div>
 
+        <div class="row imagedetails">
+            @for (int i = 0; i < 3; i++)
+            {
 
-        <div class="row ">
-            <div class="col-6 image ">
-                <img src="./imgs/Image.png" class="img-fluid rounded w-100 h-100 shadow-1" alt="...">
-
-            </div>
-            <div class="col-3  x">
-                <img src="./imgs/Image (1).png" class="img-fluid rounded w-100 h-50 p-1 shadow-1 " alt="...">
-                <img src="./imgs/Image (2).png" class="img-fluid rounded w-100 h-50 p-1 shadow-1" alt="...">
-            </div>
-            <div class="col-3  ">
-
-                <img src="./imgs/Image (3).png" class="img-fluid rounded w-100 h-50 p-1 shadow-1 " alt="...">
-                <img src="./imgs/Image (4).png" class="img-fluid rounded w-100 h-50 p-1 shadow-1 " alt="...">
-            </div>
-
+                @if (i == 0)
+                {
+                    <div class="col-6 imagedetails">
+                        <img src="~/Images/@imgs[0].ImgSrc" class="img-fluid rounded w-100 h-100 shadow-1" alt="..." />
+                    </div>
+                }
+                else
+                {
+                    <div class="col-3  x">
+                        <img src="~/Images/@imgs[i*2 - 1].ImgSrc" class="img-fluid rounded w-100 h-50 p-1 shadow-1" alt="..." />
+                        @if (i * 2  < imgs.Count())
+                        {
+                            <img src="~/Images/@imgs[i*2].ImgSrc" class="img-fluid rounded w-100 h-50 p-1 shadow-1 " alt="..." />
+                        }
+                    </div>
+                }
+            }
         </div>
      
 
@@ -67,45 +89,15 @@
 
                 <div class="row">
                     <div class="col-1  d-flex justify-content-center align-items-center fs-3">
-                        <i class="fa-sharp fa-solid fa-key"></i>
+                        <i class="fa-solid fa-feather-pointed"></i>
                     </div>
                     <div class="card col-11 border-0  ">
 
                         <div class="card-body">
-                            <h5 class="card-title">Great check-in experience</h5>
-                            <p class="card-text">94% of recent guests gave the check-in process a 5-star rating.</p>
+                            <h5 class="card-title">The Description of this property</h5>
+                            <p class="card-text">@Model.PropertyDescription</p>
                         </div>
-
                     </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-1  d-flex justify-content-center align-items-center fs-3">
-                        <i class="fa-solid fa-square-parking"></i>
-                    </div>
-                    <div class="card col-11 border-0 ">
-
-                        <div class="card-body">
-                            <h5 class="card-title">Park for free</h5>
-                            <p class="card-text">This is one of the few places in the area with free parking.</p>
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="row border-bottom ">
-                    <div class="col-1  d-flex justify-content-center align-items-center fs-3">
-                        <i class="fa-regular fa-message"></i>
-                    </div>
-                    <div class="card col-11 border-0  ">
-
-                        <div class="card-body">
-                            <h5 class="card-title">Great communication</h5>
-                            <p class="card-text">90% of recent guests rated Dina 5-star in communication.</p>
-                        </div>
-
-                    </div>
-
                 </div>
             </div>
 
@@ -160,15 +152,21 @@
     <div class="container ">
         <div class="row  ">
             <div class="col-8 ">
+               
+               
                 <div class=" border-bottom">
                     <div class="text mb-3  ">
-                        Apartement located in the Central of @Model.Area.City.CityName 
-
-                        ......
+                        <div class="col-1  d-flex justify-content-center align-items-center fs-3">
+                            <i class="fa-solid fa-earth-africa"></i>
+                        </div >
+                        <div class="card col-11 border-0  ">
+                            <div class="card-body">
+                                <p class="card-text">Apartement located in @Model.Area.AreaName at @Model.Area.City.CityName </p>
+                        </div>
+                        </div>
+                        
                     </div>
-                    <h6>
-                        <a class="text-dark " href="#">see more ></a>
-                    </h6>
+                
                 </div>
             </div>
 
@@ -245,7 +243,7 @@
 
 </section>
 <!-- celender -->
-<section class="celender mb-5">
+@*<section class="celender mb-5">
     <div class="container">
         <div class="row mb-5">
             <div class="text  col-8 ">
@@ -406,18 +404,26 @@
 
 
 
-</section>
+</section>*@
 <!-- Reviews -->
 <section class="reviews  ">
     <div class="container ">
         <div class="row mx-3">
             <div class="col-12 ">
+       
+                  <div class="d-flex mb-3">
+                        <div class="col-1  d-flex justify-content-center align-items-center fs-3">
+                        <i class="fa-solid fa-star h4"></i>
+                        </div>
+                    <h1>Rate of this property</h1>
+                     </div>
+                
                 <i class="fa-solid fa-star h4"></i>
-                <span class="h4">4.81 ·</span>
-                <a class="mx-2 text-dark " href="#">21 reviews </a>
-
+                <span class="h4">@avregeview</span>
+                <a class="mx-2 text-dark " href="#">@Enumerable.Count(ViewBag.reviews) Reviews</a>
+              
                 <!-- horizontal bars -->
-                <div class="row ">
+               @* <div class="row ">
                     <div class="col-6 ">
 
                         <div class="row rates ">
@@ -536,121 +542,37 @@
 
                     </div>
                 </div>
-
+*@
                 <!-- comments -->
 
                 <div class="row mt-5">
+                    <div class="d-flex mb-3">
+                        <div class="col-1  d-flex justify-content-center align-items-center fs-3">
+                            <i class="fa-solid fa-pen-clip"></i>
+                        </div>
+                         <h1>Comments on this property</h1>
+                     </div>
                     <!-- one comment -->
                     <div class="col-6 gx-1 ">
                         <div class="card border-0 ">
                             <div class="card-body">
                                 <div class="info d-flex mb-3">
                                     <img src="./imgs/Screenshot (90).png" alt="">
-
+                                   
+                                  
+                                
+                                    @foreach (var r in revew )
+                                    {
                                     <div class="name date mx-3">
-                                        <h5 class="card-title">Nermeen </h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">December 2022 </h6>
+                                        <h5 class="card-title">@Model.AppUser.Email</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">the rate is : @r.ReviewRate</h6>
                                     </div>
-                                </div>
+                               
                                 <p class="card-text">
-                                    Thank you for hosting us. The hosts were very responsive.
-                                    Check-in and check-out processes were very smooth. The apartment has a great sea
-                                    view and well furnished with
+                                  @r.ReviewComment
                                 </p>
 
-                            </div>
-                        </div>
-                        <div class="card border-0">
-                            <div class="card-body">
-                                <div class="info d-flex mb-3">
-                                    <img src="./imgs/Screenshot (90).png" alt="">
-
-                                    <div class="name date mx-3">
-                                        <h5 class="card-title">Malvika </h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">
-                                            October 2022 . Last minute trip
-                                        </h6>
-                                    </div>
-                                </div>
-                                <p class="card-text">
-                                    It was an amazing stay 🥰 perfect area and apartment, the host
-                                    was
-                                    wonderful
-                                </p>
-
-                            </div>
-                        </div>
-                        <div class="card border-0">
-                            <div class="card-body">
-                                <div class="info d-flex mb-3">
-                                    <img src="./imgs/Screenshot (90).png" alt="">
-
-                                    <div class="name date mx-3">
-                                        <h5 class="card-title">Mohamed </h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">December 2022 </h6>
-                                    </div>
-                                </div>
-                                <p class="card-text">
-                                    Beautiful apartment, clean rooms and bathroom. Amazing view and
-                                    very
-                                    good communication with Eslam. perfect place for families.
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- one comment -->
-                    <div class="col-6 gx-1 ">
-                        <div class="card border-0">
-                            <div class="card-body">
-                                <div class="info d-flex mb-3">
-                                    <img src="./imgs/Screenshot (90).png" alt="">
-
-                                    <div class="name date mx-3">
-                                        <h5 class="card-title">Wael </h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">
-                                            December 2022 . Last minute trip
-                                        </h6>
-                                    </div>
-                                </div>
-                                <p class="card-text">Thank you </p>
-
-                            </div>
-                        </div>
-                        <div class="card border-0">
-                            <div class="card-body">
-                                <div class="info d-flex mb-3">
-                                    <img src="./imgs/Screenshot (90).png" alt="">
-
-                                    <div class="name date mx-3">
-                                        <h5 class="card-title">Hesham</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">Septmeber 2022 </h6>
-                                    </div>
-                                </div>
-                                <p class="card-text">
-                                    Perfect view thru panoramic windows .. apartment is equipped
-                                    with
-                                    every you might need .. Mona is the perfect host you might meet in Egypt.
-                                </p>
-
-                            </div>
-                        </div>
-                        <div class="card border-0">
-                            <div class="card-body">
-                                <div class="info d-flex mb-3">
-                                    <img src="./imgs/Screenshot (90).png" alt="">
-
-                                    <div class="name date mx-3">
-                                        <h5 class="card-title">Alaa </h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">May 2022 . Last minute trip </h6>
-                                    </div>
-                                </div>
-                                <p class="card-text">
-                                    The host was very helpful and very easy to reach. The place was
-                                    amazing, exactly like the photos and everything was just perfect. I am looking
-                                    forward
-                                    to come back in the near future.
-                                </p>
+                            }
 
                             </div>
                         </div>
@@ -662,11 +584,11 @@
 
             <!-- see more butoon  -->
 
-            <div class="row mx-3 ">
+         @*   <div class="row mx-3 ">
                 <div class="col-4">
                     <button class="btn btn-white border border-dark px-3 fs-5 ">See All Reviews</button>
                 </div>
-            </div>
+            </div>*@
 
         </div>
     </div>
@@ -688,16 +610,11 @@
 
             <div class="col-6">
                 <h5>
-                    Sidi Gabir, Alexandria Governorate, Egypt
+                   @Model.Area.AreaName, @Model.Area.City.CityName Governorate, Egypt
                 </h5>
-                <div class="text">
-                    Alexandria bibliotheca 10 min walk
-                    Italian consulate .<br> And a lot more are close by
-                </div>
+              
             </div>
-            <h6>
-                <a class="text-dark " href="#">see more ></a>
-            </h6>
+           
 
 
 
@@ -719,7 +636,7 @@
 
                         <div class="name date mx-3">
                             <h5 class="card-title">
-                                Hosted by Dina
+                                Hosted by @Model.AppUser.Email
                             </h5>
                             <h6 class="card-subtitle mb-2 text-muted">
                                 Joined in October 2020
