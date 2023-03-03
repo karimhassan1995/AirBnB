@@ -40,9 +40,13 @@ namespace AirBnB.Controllers
             var @property = await _context.Properties
                 .Include(z => z.AppUser)
                 .Include(z => z.Categoray)
+                .Include(q => q.Reviews)
+                .Include(z => z.PropertyImgs)
                 .Include(z => z.Area)
                 .ThenInclude(z => z.City)
                 .FirstOrDefaultAsync(m => m.PropertyId == id);
+
+            ViewBag.reviews = _context.Reviews;
             if (@property == null)
             {
                 return NotFound();
