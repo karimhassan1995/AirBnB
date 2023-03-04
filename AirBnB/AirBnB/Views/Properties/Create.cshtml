@@ -4,235 +4,291 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+@*<h1>Create</h1>
 
-<h4>Property</h4>
+<h4>Property</h4>*@
 <hr />
-<div class="createbackground">
+@*<div class="createbackground">*@
+
+@*Neamaaaaaaaaaaaaaaaaaaaaaaa*@
+@*Start*@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-push-6">
+            <div class="start">
+                <h1 fw-bolder> It’s easy to get <br>started on Airbnb</h1>
+            </div>
+        </div>
+        <div class="col-md-6 col-md-push-5 ">
+            <div class=" mt-5">
+                <div class=" text-md-right pb-3">
+                    <h4 fw-bolder text-dark>
+                        1 Tell us about your place
+                    </h4>
+                    <div class="row">
+                        <h5 class="col-md-8 col-md-push-8 text-secondary ms-3">
+                            Share some basic info, like where it is and how many guests can stay.
+                        </h5>
+                        <img class="col-md-3 col-md-push-3" src="~/Images/bed.png" />
+                    </div>
+                </div>
+                <!-- 2 -->
+                <hr class="m-6">
+                <div class=" text-md-right pt-3">
+                    <h4 fw-bolder text-dark>
+                        2 Make it stand out
+                    </h4>
+                    <div class="row pb-3">
+                        <h5 class="col-md-8 col-md-push-8 text-secondary ms-3">
+                            Add 5 or more photos plus a title and description—we’ll help you out.
+                        </h5>
+                        <img class="col-md-3 col-md-push-3" src="~/Images/3.png" />
+                    </div>
+                    <!-- 3 -->
+                    <hr class="m-6">
+                    <div class=" text-md-right pt-3">
+                        <div class="row pb-2">
+                            <h4 fw-bolder text-dark>
+                                3 Finish up and publish
+                            </h4>
+                            <h5 class="col-md-8 col-md-push-8 text-secondary ms-3">
+                                Choose if you'd like to start with an experienced guest, set a starting price, and publish your listing.
+                            </h5>
+                            <img class="col-md-3 col-md-push-3 " src="~/Images/4.jpg" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*Start*@
+
+    <!-- slide 1 -->
+
+    <hr class="m-6">
 
     <div class="row">
-        <div class="col-6 offset-3">
-            <form asp-action="Create" enctype="multipart/form-data">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="PropertyTitle" class="control-label texts fw-bold"></label>
-                    <input asp-for="PropertyTitle" class="form-control inputs" />
-                    <span asp-validation-for="PropertyTitle" class="text-danger"></span>
-                </div>
+        <div class="col-md-6 col-md-push-7">
+            <div class="steps">
+                <p fw-bold>Step 1</p>
+                <h1>Tell us about your place</h1>
+                <p>
+                    In this step, we'll ask you which type of property you have and if guests will book the entire place or
+                    just a room. Then let us know the location and how many guests can stay.
+                </p>
+            </div>
+        </div>
 
-                @*eter your property description *@
+        <div class="col-md-6 col-md-push-5 ">
+            <div class=" mt-5">
+                <div class=" text-md-right">
+                    <img class="col-lg-12 col-lg-push-14" src="~/Images/1579168116719.gif">
+                </div>
+            </div>
+        </div>
+    </div>
 
-                <div class="form-group">
-                    <label asp-for="PropertyDescription" class="control-label texts headers mb-2 fw-bold">Create your description</label>
-                    <p class="text-dark">Share what makes your place special.</p>
-                  @**input asp-for="PropertyDescription" class="form-control inputs" /> *@
-                    <textarea rows="6" cols="55" class="form-control inputs rounded-3 textarea mt-3 p-3 fs-5 placeholder=" This place to stay is truly one of a kind.""
-                              asp-for="PropertyDescription"></textarea>
-                    <span asp-validation-for="PropertyDescription" class="text-danger"></span>
+    <hr class="m-6">
+<!--  /slide 1 -->
+@*Neamaaaaaaaaaaaaaaaaaaaaaaa*@
 
-                </div>
-                <div class="form-group">
-                    <label asp-for="PropertyCapacity" class="control-label texts fw-bold"></label>
-                    <input asp-for="PropertyCapacity" class="form-control inputs" />
-                    <span asp-validation-for="PropertyCapacity" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="PropertyBedsNum" class="control-label texts fw-bold"></label>
-                    <input asp-for="PropertyBedsNum" class="form-control inputs" />
-                    <span asp-validation-for="PropertyBedsNum" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="PropertyBedRooms" class="control-label texts fw-bold"></label>
-                    <input asp-for="PropertyBedRooms" class="form-control inputs" />
-                    <span asp-validation-for="PropertyBedRooms" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="PropertyBath" class="control-label texts fw-bold"></label>
-                    <input asp-for="PropertyBath" class="form-control inputs" />
-                    <span asp-validation-for="PropertyBath" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="PropertyPricePerNight" class="control-label texts fw-bold"></label>
-                    <input asp-for="PropertyPricePerNight" class="form-control inputs" />
-                    <span asp-validation-for="PropertyPricePerNight" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="PropertyHostInfo" class="control-label texts fw-bold"></label>
-                   @**input asp-for="PropertyHostInfo" class="form-control inputs" />*@
-                    <textarea rows="5" cols="80" class="form-control inputs fs-5"
-                              asp-for="PropertyHostInfo"></textarea>
-                    <span asp-validation-for="PropertyHostInfo" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="AppUserId" class="control-label texts fw-bold"></label>
-                    <select asp-for="AppUserId" class="form-control inputs" asp-items="ViewBag.AppUserId"></select>
-                </div>
-                <h2 class="headers mb-3">
-                    Where's your place located?
+
+
+<form asp-action="Create" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-9 offset-2">
+
+            <div class="form-group">
+                @* <!-- 2 --> *@
+                <h2 class="properties-headers">
+                    Which of these best describes your place?
                 </h2>
-                <div class="form-group">
-                    <select asp-for="AreaId" class="form-control select-loc " asp-items="ViewBag.AreaId"></select>
-                </div>
 
-
-                <div class="form-group">
-                    @* <!-- 2 --> *@
-                    <h2 class="head">
-                        Which of these best describes your place?
-                    </h2>
-
-                    <div class="row">
-
-                        @foreach (var cat in ViewBag.cat)
-                        {
-                            <label id="radbtn-@cat.CategorayId" class="col-3 m-2 p-3 rounded-3 text-start btns ">
-                                @**div class="p-2">*@
-                                <div><img class="image" src="~/Icons_Imgs/@cat.Categoryphotosrc" alt="option 1" /></div>
-                                <input type="radio" asp-for="CategorayId" value="@cat.CategorayId" onclick="myfunc('radbtn-'+@cat.CategorayId)" class="opacity-0 btns" />
-                                @cat.CategorayName
-                                @*div*@
-                            </label>
-
-                            @*ype="radio" name="sex" value="male" id="male-radio"*@
-                           @**label for="male-radio"><img src="male.gif"></label>*@
-                            @*<input type="radio" class="col-3 bg-white m-2 rounded-3 text-start btns" asp-for="CategorayId" />
-                        <div class="p-2">
-                        <div>
-                        <img class="image" src="~/Icons_Imgs/@cat.Categoryphotosrc" />
-
-                        </div>
-                        @cat.CategorayName
-                        </div>*@
-
-
-                        }
-
-                    </div>
-                </div>
-
-
-
-                @*<label asp-for="CategorayId" class="control-label"></label>
-                <select asp-for="CategorayId" class ="form-control" asp-items="ViewBag.CategorayId"></select>*@
-                <h2 class="headers mb-3">
-                    Add some photos of your boat
-                </h2>
-                <p class="text-dark">You'll need 5 photos to get started. You can add more or make changes later.</p>
-                <div class="pictures">
-                    <div class="text-center photostexts">
-                        <img src="/Icons_Imgs/photos.png" alt="photos" class="photo">
-                        <h3>Drag your photos here</h3>
-                        <h6 class="fw-normal fs-5 text-center">Choose at least 5 photos</h6>
-                        <input id="files" type="file" name="propImg" class="offset-2" multiple />
-                    
-                    </div>
-                </div>
-
-                <!-- <div class="btn-group" data-toggle="buttons"> -->
                 <div class="row">
-                    <!-- <div type="button" class="col-3 bg-white m-2 rounded-3 text-start btns"> -->
-                    <!-- <label class="btn col-3 bg-white m-2 rounded-3 text-start btns" id="l1">
-                            <div class="p-2">
-                                <input type="checkbox" name="var_id[]" autocomplete="off" value="" class="checkbox"
-                                    onclick="myfun()" />
-                                <div class="content">
-                                    <div>
-                                        <img src="./images/wifi.png" alt="wifi" class="image" />
-                                    </div>
-                                    Wifi
-                                </div>
-                            </div>
-                        </label> -->
-                    <!-- </div> -->
-                    @*  @foreach (var cat in ViewBag.cat)
+
+                    @foreach (var cat in ViewBag.cat)
                     {
-                    <label class="col-3 bg-white m-2 p-3 rounded-3 text-start btns pointer">
-                    <div><img class="image " src="~/Icons_Imgs/wifi.png" alt="option 1" /></div>
-                    <input type="checkbox" asp-for="CategorayId" value="@cat.AmenityId" class="opacity-0"/>
+                        <label id="radbtn-@cat.CategorayId" class="col-3 m-2 p-3 rounded-3 text-start btns ">
+                            @*<div class="p-2">*@
+                            <div><img class="icons-image" src="~/Icons_Imgs/@cat.Categoryphotosrc" alt="option 1" /></div>
+                            <input type="radio" asp-for="CategorayId" value="@cat.CategorayId" onclick="myfunc('radbtn-'+@cat.CategorayId)" class="opacity-0 btns" />
+                            @cat.CategorayName
+                            @*</div>*@
+                        </label>
+
+                        @*ype="radio" name="sex" value="male" id="male-radio"*@
+                        @**label for="male-radio"><img src="male.gif"></label>*@
+                        @*<input type="radio" class="col-3 bg-white m-2 rounded-3 text-start btns" asp-for="CategorayId" />
+                    <div class="p-2">
+                    <div>
+                    <img class="image" src="~/Icons_Imgs/@cat.Categoryphotosrc" />
+
+                    </div>
                     @cat.CategorayName
-                    </label>
-                    }*@
+                    </div>*@
 
 
-                    @*     Amenities     *@
-                    <h2 class="headers mb-3">
-                        Tell guests what your place has to offer
-                    </h2>
-                    <p class="text-dark">You can add more amenities after you publish your listing.</p>
-                    <button type="button" class="col-3 bg-white m-2 rounded-3 text-start btns pointer">
-                        <div class="p-2">
-                            <div>
-                                <img src="~/Icons_Imgs/wifi.png" alt="wifi" class="image" />
-                            </div>
-                            Wifi
-                        </div>
-                    </button>
+                    }
 
-                    <button type="button" class="col-3 bg-white m-2 rounded-3 text-start btns pointer">
-                        <div class="p-2">
-                            <div>
-                                <img src="~/Icons_Imgs/tv.png" alt="tv" class="image" />
-                            </div>
-                            TV
-                        </div>
-                    </button>
-
-                    <button type="button" class="col-3 bg-white m-2 rounded-3 text-start btns pointer">
-                        <div class="p-2">
-                            <div>
-                                <img src="~/Icons_Imgs/kitchen.png" alt="kitchen" class="image" />
-                            </div>
-                            Kitchen
-                        </div>
-                    </button>
-
-                    <button type="button" class="col-3 bg-white m-2 rounded-3 text-start btns pointer">
-                        <div class="p-2">
-                            <div>
-                                <img src="~/Icons_Imgs/washer.png" alt="washer" class="image" />
-                            </div>
-                            Washer
-                        </div>
-                    </button>
-
-                    <button type="button" class="col-3 bg-white m-2 rounded-3 text-start btns pointer">
-                        <div class="p-2">
-                            <div>
-                                <img src="~/Icons_Imgs/freeparking.png" alt="freeparking" class="image" />
-                            </div>
-                            Free parking on premsies
-                        </div>
-                    </button>
-
-                    <button type="button" class="col-3 bg-white m-2 rounded-3 text-start btns pointer">
-                        <div class="p-2">
-                            <div>
-                                <img src="~/Icons_Imgs/paidparking.png" alt="paidparking" class="image" />
-                            </div>
-                            Paid parking on premsies
-                        </div>
-                    </button>
-
-                    <button type="button" class="col-3 bg-white m-2 rounded-3 text-start btns pointer">
-                        <div class="p-2">
-                            <div>
-                                <img src="~/Icons_Imgs/airconditioning.png" alt="airconditioning" class="image" />
-                            </div>
-                            Air conditioning
-                        </div>
-                    </button>
-
-                    <button type="button" class="col-3 bg-white m-2 rounded-3 text-start btns pointer">
-                        <div class="p-2">
-                            <div>
-                                <img src="~/Icons_Imgs/dedicatedworkspace.png" alt="dedicatedworkspace" class="image" />
-                            </div>
-                            Dedicated workspace
-                        </div>
-                    </button>
                 </div>
+            </div>
 
-                <div class="form-group">
+
+            <h2 class="headers mb-3">
+                Where's your place located?
+            </h2>
+            <div class="form-group">
+                <select asp-for="AreaId" class="form-control select-loc " asp-items="ViewBag.AreaId"></select>
+            </div>
+        </div>
+    </div>
+
+
+    @*Dohaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*@
+
+
+    @*Neamaaaaaaaaaaaaaaaaaaaaaaa*@
+
+    <!-- slide2 -->
+    <hr class="m-3">
+    <div class="row">
+        <div class="col-md-6 col-md-push-7">
+            <div class="steps">
+                <p fw-bold>Step 2</p>
+                <h1>Make your place <br> stand out</h1>
+                <p>
+                    In this step, you’ll add some of the amenities your place offers, plus 5 or more photos. Then, you’ll
+                    create a title and description.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-md-push-5 ">
+            <div class=" mt-5">
+                <div class=" text-md-right">
+                    <img class="col-lg-12 col-lg-push-14" src="~/Images/7.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="mb-4">
+
+    <!-- /slide2 -->
+    @*Neamaaaaaaaaaaaaaaaaaaaaaaa*@
+
+
+
+    @*<label asp-for="CategorayId" class="control-label"></label>
+    <select asp-for="CategorayId" class ="form-control" asp-items="ViewBag.CategorayId"></select>*@
+
+
+    <!-- <div class="btn-group" data-toggle="buttons"> -->
+    <!-- <div type="button" class="col-3 bg-white m-2 rounded-3 text-start btns"> -->
+    <!-- <label class="btn col-3 bg-white m-2 rounded-3 text-start btns" id="l1">
+            <div class="p-2">
+                <input type="checkbox" name="var_id[]" autocomplete="off" value="" class="checkbox"
+                    onclick="myfun()" />
+                <div class="content">
+                    <div>
+                        <img src="./images/wifi.png" alt="wifi" class="image" />
+                    </div>
+                    Wifi
+                </div>
+            </div>
+        </label> -->
+    <!-- </div> -->
+    @*  @foreach (var cat in ViewBag.cat)
+    {
+    <label class="col-3 bg-white m-2 p-3 rounded-3 text-start btns pointer">
+    <div><img class="image " src="~/Icons_Imgs/wifi.png" alt="option 1" /></div>
+    <input type="checkbox" asp-for="CategorayId" value="@cat.AmenityId" class="opacity-0"/>
+    @cat.CategorayName
+    </label>
+    }*@
+
+        
+
+            @*     Amenities     *@
+            <div class="form-group">
+            <div class="col-8 offset-2">
+                <div class="row">
+                <h2 class="properties-headers mb-3">
+                    Tell guests what your place has to offer
+                </h2>
+                <p class="text-dark">You can add more amenities after you publish your listing.</p>
+                <button type="button" class="col-3 bg-white m-2 rounded-3 text-start btns pointer">
+                    <div class="p-2">
+                        <div>
+                            <img src="~/Icons_Imgs/wifi.png" alt="wifi" class="icons-image" />
+                        </div>
+                        Wifi
+                    </div>
+                </button>
+
+                <button type="button" class="col-3 bg-white m-2 rounded-3 text-start btns pointer">
+                    <div class="p-2">
+                        <div>
+                            <img src="~/Icons_Imgs/tv.png" alt="tv" class="icons-image" />
+                        </div>
+                        TV
+                    </div>
+                </button>
+
+                <button type="button" class="col-3 bg-white m-2 rounded-3 text-start btns pointer">
+                    <div class="p-2">
+                        <div>
+                            <img src="~/Icons_Imgs/kitchen.png" alt="kitchen" class="icons-image" />
+                        </div>
+                        Kitchen
+                    </div>
+                </button>
+
+                <button type="button" class="col-3 bg-white m-2 rounded-3 text-start btns pointer">
+                    <div class="p-2">
+                        <div>
+                            <img src="~/Icons_Imgs/washer.png" alt="washer" class="icons-image" />
+                        </div>
+                        Washer
+                    </div>
+                </button>
+
+                <button type="button" class="col-3 bg-white m-2 rounded-3 text-start btns pointer">
+                    <div class="p-2">
+                        <div>
+                            <img src="~/Icons_Imgs/freeparking.png" alt="freeparking" class="icons-image" />
+                        </div>
+                        Free parking on premsies
+                    </div>
+                </button>
+
+                <button type="button" class="col-3 bg-white m-2 rounded-3 text-start btns pointer">
+                    <div class="p-2">
+                        <div>
+                            <img src="~/Icons_Imgs/paidparking.png" alt="paidparking" class="icons-image" />
+                        </div>
+                        Paid parking on premsies
+                    </div>
+                </button>
+
+                <button type="button" class="col-3 bg-white m-2 rounded-3 text-start btns pointer">
+                    <div class="p-2">
+                        <div>
+                            <img src="~/Icons_Imgs/airconditioning.png" alt="airconditioning" class="icons-image" />
+                        </div>
+                        Air conditioning
+                    </div>
+                </button>
+
+                <button type="button" class="col-3 bg-white m-2 rounded-3 text-start btns pointer">
+                    <div class="p-2">
+                        <div>
+                            <img src="~/Icons_Imgs/dedicatedworkspace.png" alt="dedicatedworkspace" class="icons-image" />
+                        </div>
+                        Dedicated workspace
+                    </div>
+                </button>
                     <h5>Select Amenities</h5>
                     <select name="AmenityId" multiple>
                         @foreach (var item in ViewBag.Amenity as List<Amenity>)
@@ -241,16 +297,123 @@
                         }
                     </select>
                 </div>
-                @*<input type="file" name="propImg" multiple />*@
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-outline-info offset-4 mt-4 fs-5 fw-bold submitbtn" />
-                </div>
-            </form>
-        </div>
 
+
+            @*imageeeeeeeeeeeeeeeeeeeeeeeees*@
+
+            <h2 class="properties-headers mb-3">
+                Add some photos of your boat
+            </h2>
+            <p class="text-dark">You'll need 5 photos to get started. You can add more or make changes later.</p>
+            <div class="pictures">
+                <div class="text-center photostexts">
+                    <img src="/Icons_Imgs/photos.png" alt="photos" class="photo">
+                    <h3>Drag your photos here</h3>
+                    <h6 class="fw-normal fs-5 text-center">Choose at least 5 photos</h6>
+                    <input id="files" type="file" name="propImg" class="offset-2" multiple />
+
+                </div>
+            </div>
+
+            @*enter your property description *@
+
+            <div class="form-group">
+                <label asp-for="PropertyDescription" class="control-label texts properties-headers mb-2 fw-bold">Create your description</label>
+                <p class="text-dark">Share what makes your place special.</p>
+                @**input asp-for="PropertyDescription" class="form-control inputs" /> *@
+                <textarea rows="6" cols="55" class="form-control inputs rounded-3 textarea mt-3 p-3 fs-5 placeholder=" This place to stay is truly one of a kind.""
+                          asp-for="PropertyDescription"></textarea>
+                <span asp-validation-for="PropertyDescription" class="text-danger"></span>
+
+            </div>
+        </div>
     </div>
 
+
+    @*Neamaaaaaaaaaaaaaaaaaaaaaaa*@
+
+    <!-- slide3 -->
+    <hr class="mb-4">
+    <div class="row">
+        <div class="col-md-6 col-md-push-7 ">
+            <div class="steps">
+                <p>Step 3</p>
+                <h1>Finish up and publish</h1>
+                <p>
+                    Finally, you’ll choose if you'd like to start with an experienced guest, then you'll set your nightly
+                    price. Answer a few quick questions and publish when you're ready.
+                </p>
+
+            </div>
+        </div>
+
+        <div class="col-md-6 col-md-push-5 ">
+            <div class=" mt-5">
+                <div class=" text-md-right">
+                    <img class="col-lg-12 col-lg-push-14" src="~/Images/1.gif">
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="mb-4">
+
+    <!-- /slide3 -->
+    @*Neamaaaaaaaaaaaaaaaaaaaaaaa*@
+
+    <div class="row">
+        <div class="col-8 offset-2">
+    <div class="form-group">
+        <label asp-for="PropertyTitle" class="control-label texts fw-bold"></label>
+        <input asp-for="PropertyTitle" class="form-control inputs" />
+        <span asp-validation-for="PropertyTitle" class="text-danger"></span>
+    </div>
+            <div class="form-group">
+                <label asp-for="PropertyCapacity" class="control-label texts fw-bold"></label>
+                <input asp-for="PropertyCapacity" class="form-control inputs" />
+                <span asp-validation-for="PropertyCapacity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertyBedsNum" class="control-label texts fw-bold"></label>
+                <input asp-for="PropertyBedsNum" class="form-control inputs" />
+                <span asp-validation-for="PropertyBedsNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertyBedRooms" class="control-label texts fw-bold"></label>
+                <input asp-for="PropertyBedRooms" class="form-control inputs" />
+                <span asp-validation-for="PropertyBedRooms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertyBath" class="control-label texts fw-bold"></label>
+                <input asp-for="PropertyBath" class="form-control inputs" />
+                <span asp-validation-for="PropertyBath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertyPricePerNight" class="control-label texts fw-bold"></label>
+                <input asp-for="PropertyPricePerNight" class="form-control inputs" />
+                <span asp-validation-for="PropertyPricePerNight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertyHostInfo" class="control-label texts fw-bold"></label>
+                @**input asp-for="PropertyHostInfo" class="form-control inputs" />*@
+                <textarea rows="5" cols="80" class="form-control inputs fs-5"
+                          asp-for="PropertyHostInfo"></textarea>
+                <span asp-validation-for="PropertyHostInfo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AppUserId" class="control-label texts fw-bold"></label>
+                <select asp-for="AppUserId" class="form-control inputs" asp-items="ViewBag.AppUserId"></select>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-outline-info offset-4 mt-4 fs-5 fw-bold submitbtn" />
+            </div>
+        </div>
+    </div>
+</form>
 </div>
+
+
 
 <div>
     <a asp-action="Index">Back to List</a>
@@ -260,4 +423,4 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-}
+    }
