@@ -4,21 +4,17 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>City</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CityName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CityName)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.CityId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="info">
+    <div class="container">
+        <div class="row details">
+            <div class="col-8 image">
+                <img src="/CityImgs/@Model.CityImg" alt="">
+            </div>
+            <div class="col-4 text align-self-center">
+                <h1>@Model.CityName</h1>
+                <a asp-action="Index">Back To List</a>
+                <a asp-action="Edit" asp-route-id="@Model.CityId">Edit</a>
+            </div>
+        </div>
+    </div>
 </div>

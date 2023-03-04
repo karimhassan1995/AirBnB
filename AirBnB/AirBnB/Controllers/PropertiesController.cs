@@ -232,7 +232,7 @@ namespace AirBnB.Controllers
         public IActionResult ShowProp(int id)
         {
             var Props = _context.Properties.Select(a => a).Where(a=>a.AreaId==id);
-            return RedirectToAction("index",Props);
+            return View(Props);
         }
         private bool PropertyExists(int id)
         {

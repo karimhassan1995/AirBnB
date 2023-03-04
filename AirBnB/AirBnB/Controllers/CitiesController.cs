@@ -55,10 +55,16 @@ namespace AirBnB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CityId,CityName")] City city)
+        public async Task<IActionResult> Create([Bind("CityId,CityName")] City city, IFormFile imgFile)
         {
             if (ModelState.IsValid)
             {
+                string fileName = city.CityId.ToString() + "." + imgFile.FileName.Split(".").Last();
+                city.CityImg = fileName;
+                using (var fs = System.IO.File.Create("wwwroot/CityImgs/" + fileName))
+                {
+                    imgFile.CopyTo(fs);
+                }
                 _context.Add(city);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -87,7 +93,7 @@ namespace AirBnB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CityId,CityName")] City city)
+        public async Task<IActionResult> Edit(int id, [Bind("CityId,CityName")] City city,IFormFile imgFile)
         {
             if (id != city.CityId)
             {
@@ -98,6 +104,16 @@ namespace AirBnB.Controllers
             {
                 try
                 {
+                    string fileName = city.CityId.ToString() + "." + imgFile.FileName.Split(".").Last();
+                    if (System.IO.File.Exists("wwwroot/CityImgs/" + fileName))
+                    {
+                        System.IO.File.Delete("wwwroot/CityImgs/" + fileName);
+                    }
+                    city.CityImg = fileName;
+                    using (var fs = System.IO.File.Create("wwwroot/CityImgs/" + fileName))
+                    {
+                        imgFile.CopyTo(fs);
+                    }
                     _context.Update(city);
                     await _context.SaveChangesAsync();
                 }
@@ -147,6 +163,11 @@ namespace AirBnB.Controllers
             var city = await _context.Cities.FindAsync(id);
             if (city != null)
             {
+                string fileName = city.CityImg;
+                if (System.IO.File.Exists("wwwroot/CityImgs/" + fileName))
+                {
+                    System.IO.File.Delete("wwwroot/CityImgs/" + fileName);
+                }
                 _context.Cities.Remove(city);
             }
             

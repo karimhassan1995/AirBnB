@@ -4,19 +4,60 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<div class="edit">
+    <form asp-action="Edit" enctype="multipart/form-data">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="CityId" />
+        @*================================================================*@
+        <label class="lblName" for="Name">Update The City Name</label>
+        <br>
+        <input asp-for="CityName" type="text" id="Name">
+        <span asp-validation-for="CityName" class="text-danger"></span>
+        @*================================================================*@
+        <div class="upload-img">
+            <label class="lblImg">Update The City Image</label>
+            <br>
+            <input type="file" id="file-1" accept="image/*" name="imgFile">
+
+            <label for="file-1" id="file-1-preview">
+                <img src="/CityImgs/@Model.CityImg" alt="City Image">
+                <span>+</span>
+            </label>
+        </div>
+        @*================================================================*@
+        <input type="submit" value="Update">
+        @*================================================================*@
+        <a class="backLink" asp-action="Index">Back</a>
+    </form>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@*<h1>Edit</h1>
 
 <h4>City</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CityId" />
             <div class="form-group">
-                <label asp-for="CityName" class="control-label"></label>
+                <label class="control-label">City Name</label>
                 <input asp-for="CityName" class="form-control" />
                 <span asp-validation-for="CityName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <img src="/CityImgs/@Model.CityImg" width="100px"/>
+            </div>
+            <div class="form-group">
+                <label>Update your image</label>
+                <input name="imgFile" type="file" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -28,7 +69,4 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+*@

@@ -26,6 +26,8 @@ namespace AirBnB.Controllers
         [HttpPost]
         public IActionResult ShowArea(int cityid)
         {
+            City city = _context.Cities.FirstOrDefault(a => a.CityId == cityid);
+            ViewBag.CityName = city.CityName;
             List<Area>Areas=_context.Areas.Select(a=>a).Where(a=>a.CityId==cityid).ToList();
             return View(Areas);
         }
