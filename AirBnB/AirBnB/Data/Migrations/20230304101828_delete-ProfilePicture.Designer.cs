@@ -4,6 +4,7 @@ using AirBnB.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AirBnB.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230304101828_delete-ProfilePicture")]
+    partial class deleteProfilePicture
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,7 +40,7 @@ namespace AirBnB.Data.Migrations
 
                     b.HasKey("AmenityId");
 
-                    b.ToTable("Amenities", (string)null);
+                    b.ToTable("Amenities");
                 });
 
             modelBuilder.Entity("AirBnB.Models.AppUser", b =>
@@ -141,7 +143,7 @@ namespace AirBnB.Data.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.ToTable("Areas", (string)null);
+                    b.ToTable("Areas");
                 });
 
             modelBuilder.Entity("AirBnB.Models.Booking", b =>
@@ -173,7 +175,7 @@ namespace AirBnB.Data.Migrations
 
                     b.HasIndex("PropertyId");
 
-                    b.ToTable("Bookings", (string)null);
+                    b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("AirBnB.Models.Categoray", b =>
@@ -193,7 +195,7 @@ namespace AirBnB.Data.Migrations
 
                     b.HasKey("CategorayId");
 
-                    b.ToTable("Categoraies", (string)null);
+                    b.ToTable("Categoraies");
                 });
 
             modelBuilder.Entity("AirBnB.Models.City", b =>
@@ -213,7 +215,7 @@ namespace AirBnB.Data.Migrations
 
                     b.HasKey("CityId");
 
-                    b.ToTable("Cities", (string)null);
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("AirBnB.Models.Property", b =>
@@ -270,7 +272,7 @@ namespace AirBnB.Data.Migrations
 
                     b.HasIndex("CategorayId");
 
-                    b.ToTable("Properties", (string)null);
+                    b.ToTable("Properties");
                 });
 
             modelBuilder.Entity("AirBnB.Models.PropertyImg", b =>
@@ -283,7 +285,7 @@ namespace AirBnB.Data.Migrations
 
                     b.HasKey("PropertyId", "ImgSrc");
 
-                    b.ToTable("PropertyImgs", (string)null);
+                    b.ToTable("PropertyImgs");
                 });
 
             modelBuilder.Entity("AirBnB.Models.Review", b =>
@@ -312,7 +314,7 @@ namespace AirBnB.Data.Migrations
 
                     b.HasIndex("PropertyId");
 
-                    b.ToTable("Reviews", (string)null);
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("AmenityProperty", b =>
@@ -327,7 +329,7 @@ namespace AirBnB.Data.Migrations
 
                     b.HasIndex("PropertiesPropertyId");
 
-                    b.ToTable("AmenityProperty", (string)null);
+                    b.ToTable("AmenityProperty");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

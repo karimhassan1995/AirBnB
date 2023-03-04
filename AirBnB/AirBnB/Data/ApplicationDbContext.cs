@@ -35,6 +35,9 @@ namespace AirBnB.Data
             {
                 a.HasKey(a => new { a.PropertyId, a.AppUserId });
             });*/
+
+            
+            
         }
     }
 }

@@ -80,6 +80,20 @@ namespace AirBnB.Areas.Identity.Pages.Account
             [Display(Name = "Email")]
             public string Email { get; set; }
 
+            [Required, MaxLength(10)]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [Required, MaxLength(10)]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [Display(Name = "Your Age")]
+
+            [Required(ErrorMessage = "Age is required")]
+            [Range(18, 100, ErrorMessage = "You must be 18 years or older to register")]
+            public int userAge { get; set; }
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -113,7 +127,24 @@ namespace AirBnB.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
+                //var user = CreateUser();
+                var user = new AppUser
+                {
+                    FirstName = Input.FirstName,
+                    LastName = Input.LastName,
+                    userAge = Input.userAge,
+                };
+
+                //if (Request.Form.Files.Count > 0)
+                //{
+                //    var file=Request.Form.Files.FirstOrDefault();
+
+                //    using (var data = new MemoryStream())
+                //    {
+                //        await File.CopyToAsync(data);
+                //    }
+                //}
+                
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
