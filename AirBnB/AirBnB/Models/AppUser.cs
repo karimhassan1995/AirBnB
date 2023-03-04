@@ -5,6 +5,12 @@ namespace AirBnB.Models
 {
     public class AppUser : IdentityUser
     {
+        [Required ,MaxLength(10)]
+        public string FirstName { get; set; }
+
+        [Required, MaxLength(10)]
+        public string LastName { get; set; }
+
 
 
         [Required(ErrorMessage = "Age is required")]
