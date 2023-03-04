@@ -1,20 +1,20 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 
@@ -88,9 +88,9 @@ body {
 html {
     scroll-behavior: smooth;
 }
+
 body {
     font-family: 'Inter', sans-serif;
-    ;
 }
 
 ul {
@@ -134,14 +134,15 @@ ul {
 /*Amiraaaaaaaaaaaaaaaaaaa*/
 
 /*karimmmmmmmmmmmmmmm*/
-.backgroundimg{
+.backgroundimg {
     background-image: url("/backgroundimg/14.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     padding: 100px 200px
 }
+
 .formbackground {
-    background-color: rgb(238, 236, 236 , 0.5);
+    background-color: rgb(238, 236, 236, 0.5);
 }
 
 imagedetails {
@@ -153,7 +154,6 @@ imagedetails {
 
 body {
     font-family: 'Inter', sans-serif;
-    ;
 }
 
 ul {
@@ -197,26 +197,16 @@ ul {
 /*karimmmmmmmmmmmmmmmmmmmm*/
 
 
-
-
-
 /*dohaaaaaaaaaaaaaaaaaaaaaa*/
-.image {
+.icons-image {
     margin-bottom: 8px;
     width: 50px;
     cursor: pointer;
     padding-left: 15px;
 }
 
-
-
-.head {
+.properties-headers {
     margin-bottom: 30px;
-    margin-top: 30px;
-}
-
-.headers {
-    margin-bottom: 35px;
     margin-top: 30px;
 }
 
@@ -292,8 +282,8 @@ ul {
 }
 
 .texts {
-    /font-weight: bold;
-    / font-size: large;
+    /*font-weight: bold;*/
+    font-size: large;
     margin-bottom: 7px;
     margin-top: 10px;
 }
@@ -314,4 +304,145 @@ ul {
 
 
 /*dohhaaaaaaaaaaaaaaaaaaaaaaa*/
+
+
+/*Dohaaaaaaaaaaaaaaaaaaaaaa*/
+/*.icons-image {
+    margin-bottom: 8px;
+    width: 50px;
+    cursor: pointer;
+    padding-left: 15px;
+}
+
+.properties-headers {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.img {
+    width: 30px;
+    float: right;
+    margin-top: 20px;
+}*/
+
+/* #map {
+    height: 100%;
+} */
+
+/*.btns:focus {
+    background-color: rgb(238, 236, 236) !important;
+    border: 2px solid black;
+}*/
+
+/*.btns:hover {
+    border: 2px solid black;
+    cursor: pointer;
+}*/
+
+/*.btns {
+    border: 1px solid rgb(233, 231, 231);
+}*/
+
+/*.textarea {
+    border: 1px solid black;
+}
+
+.highlightimg {
+    width: 25px;
+}*/
+
+/*.multiselectcheckbox{
+    opacity: 0;
+}*/
+
+/*.pictures {
+    height: 350px;
+    border: 1px dashed rgb(194, 194, 194);
+    position: relative;
+}
+
+.imgbtn {
+    position: absolute;
+    top: 30px;
+}
+
+.photo {
+    margin-bottom: 8px;
+    width: 65px;
+}
+
+.photostexts {
+    margin-top: 15%;
+}
+
+.pointer:focus {
+    background-color: rgb(238, 236, 236) !important;
+    border: 2px solid black;
+}
+
+.select-loc {
+    height: 50px;
+    border: 1px solid black;
+    font-size: large;
+}
+
+.inputs {
+    border: 1px solid black;
+}
+
+.texts {*/
+    /*font-weight: bold;*/
+    /*font-size: large;
+    margin-bottom: 7px;
+    margin-top: 10px;
+}
+
+.submitbtn {
+    border: 2px solid;
+}
+
+.sel-label {
+    border: 2px solid black;
+    background-color: rgb(238, 236, 236);
+}*/
+/*.createbackground {
+    background-image: url("/Images/boat-house-2881457.jpg");*/
+/*height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;*/
+
+
+/*dohhaaaaaaaaaaaaaaaaaaaaaaa*/
+
+
+/*Neamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
+
+.start {
+    margin-top: 170px;
+    margin-bottom: 30px;
+    left: auto;
+}
+.start h1 {
+    font-size: 60px;
+    font-weight:500 ;
+    color: #222;
+}
+.steps p {
+    font-size: 20px;
+}
+
+.steps {
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
+
+.steps h1 {
+   font-size: 45px;
+   /*text-transform: uppercase;*/
+   font-weight: 600;
+   color: #222;
+}
+
+/*Neamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
+
 
