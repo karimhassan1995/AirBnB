@@ -57,10 +57,16 @@ namespace AirBnB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AreaId,AreaName,CityId")] Area area)
+        public async Task<IActionResult> Create([Bind("AreaId,AreaName,CityId")] Area area,IFormFile imgFile)
         {
             if (ModelState.IsValid)
             {
+                string fileName = area.AreaId.ToString() + "." + imgFile.FileName.Split(".").Last();
+                area.AreaImg = fileName;
+                using (var fs = System.IO.File.Create("wwwroot/AreaImgs/"+fileName))
+                {
+                    imgFile.CopyTo(fs);
+                }
                 _context.Add(area);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -91,7 +97,7 @@ namespace AirBnB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AreaId,AreaName,CityId")] Area area)
+        public async Task<IActionResult> Edit(int id, [Bind("AreaId,AreaName,CityId")] Area area,IFormFile imgFile)
         {
             if (id != area.AreaId)
             {
@@ -102,6 +108,16 @@ namespace AirBnB.Controllers
             {
                 try
                 {
+                    string fileName = area.AreaId.ToString() + "." + imgFile.FileName.Split(".").Last();
+                    if (System.IO.File.Exists("wwwroot/AreaImgs/" + fileName))
+                    {
+                        System.IO.File.Delete("wwwroot/AreaImgs/" + fileName);
+                    }
+                    area.AreaImg = fileName;
+                    using (var fs = System.IO.File.Create("wwwroot/AreaImgs/" + fileName))
+                    {
+                        imgFile.CopyTo(fs);
+                    }
                     _context.Update(area);
                     await _context.SaveChangesAsync();
                 }
@@ -153,6 +169,11 @@ namespace AirBnB.Controllers
             var area = await _context.Areas.FindAsync(id);
             if (area != null)
             {
+                string fileName = area.AreaImg;
+                if (System.IO.File.Exists("wwwroot/AreaImgs/" + fileName))
+                {
+                    System.IO.File.Delete("wwwroot/AreaImgs/" + fileName);
+                }
                 _context.Areas.Remove(area);
             }
             

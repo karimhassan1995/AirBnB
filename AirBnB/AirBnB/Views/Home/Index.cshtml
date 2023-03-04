@@ -5,8 +5,8 @@
 <!-- Start Landing -->
 <div class="landing">
     <div class="container">
-        <div class="text">
-            <h3>Welcome, Search For Your Destination...</h3>
+        <div class="selection">
+            <h3>Hello , Select Your Destination</h3>
             <form asp-action="ShowArea" method="post" >
                 <select name="cityid">
                 @foreach (var item in Model)
@@ -18,7 +18,7 @@
             </form>
         </div>
         <div class="image">
-            <img src="~/CityImgs/Airplane.png" alt="">
+            @*<img src="~/CityImgs/Airplane.png" alt="">*@
         </div>
     </div>
     <a href="#Details" class="go-down">

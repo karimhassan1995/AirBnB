@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Fraunces:opsz,wght@9..144,700&family=Montserrat:wght@500;700&family=Open+Sans:wght@300;400;500;600;700;800&family=Work+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Charm:wght@700&family=Cinzel:wght@500;600;700;800;900&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,1000;1,200;1,300;1,400;1,500&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
     @*normalize file*@
     <link rel="stylesheet" href="~/css/normalize.css">
     @*fonts awesome icons library*@
@@ -125,7 +126,7 @@
           <hr class="mb-4">
           <div class="row align-items-center">
             <div class="col-md-7 col-lg-8">
-              <span>© 2022 Airbnb, Inc. </span>
+              <span>© 2023 Airbnb, Inc. </span>
               <a href="#" class="text-dark" style="text-decoration:none">. Terms</a>
               <a href="#" class="text-dark" style="text-decoration:none">. Sitemap</a>
               <a href="#" class="text-dark" style="text-decoration:none">. Privacy</a>
@@ -151,6 +152,21 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        function previewBeforeUpload(id) {
+            document.querySelector("#" + id).addEventListener("change", function (e) {
+                if (e.target.files.length == 0) {
+                    return;
+                }
+                let file = e.target.files[0];
+                let url = URL.createObjectURL(file);
+                var img = document.querySelector("#" + id + "-preview img");
+                img.src = url;
+            });
+        }
+
+        previewBeforeUpload("file-1");
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
