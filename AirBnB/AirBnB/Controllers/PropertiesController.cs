@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AirBnB.Data;
 using AirBnB.Models;
+using System.Security.Claims;
 
 namespace AirBnB.Controllers
 {
@@ -36,6 +37,13 @@ namespace AirBnB.Controllers
             {
                 return NotFound();
             }
+
+            //code to get the selected property id
+            ViewData["SelectedPropertyId"] = id;
+            //code to get the current user id
+            ViewData["userid"] = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var SelectedProp = _context.Properties.FirstOrDefault(x => x.PropertyId == id);
+            ViewData["PropertyCapacity"] = SelectedProp.PropertyCapacity;
 
             var @property = await _context.Properties
                 .Include(z => z.AppUser)
