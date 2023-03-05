@@ -43,10 +43,10 @@
                 @Html.DisplayFor(modelItem => item.BookingCapacity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Property.AppUserId)
+                @Html.DisplayFor(modelItem => item.Property.PropertyTitle)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AppUser.Id)
+                @Html.DisplayFor(modelItem => item.AppUser.Email)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.BookingId">Edit</a> |
