@@ -10,6 +10,8 @@ namespace AirBnB.Models
 
         [Required, MaxLength(10)]
         public string LastName { get; set; }
+        public byte[] ProfilePicture { get; set; }
+
 
 
 

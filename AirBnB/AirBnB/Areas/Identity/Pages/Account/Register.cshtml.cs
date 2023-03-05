@@ -80,11 +80,15 @@ namespace AirBnB.Areas.Identity.Pages.Account
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-            [Required, MaxLength(10)]
+            [Required]
+            [StringLength(10)]
+
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
 
-            [Required, MaxLength(10)]
+            [Required]
+            [StringLength(10)]
+
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
 
@@ -128,26 +132,19 @@ namespace AirBnB.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 //var user = CreateUser();
-                var user = new AppUser
+                var user = new AppUser()
                 {
+                    UserName=Input.Email,
+                    Email=Input.Email,
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
                     userAge = Input.userAge,
                 };
 
-                //if (Request.Form.Files.Count > 0)
-                //{
-                //    var file=Request.Form.Files.FirstOrDefault();
-
-                //    using (var data = new MemoryStream())
-                //    {
-                //        await File.CopyToAsync(data);
-                //    }
-                //}
                 
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                //await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                //await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
