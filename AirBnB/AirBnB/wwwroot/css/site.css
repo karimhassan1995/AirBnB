@@ -400,6 +400,15 @@ ul {
 .submitbtn {
     border: 2px solid;
 }
+.sel-label {
+    border: 2px solid black;
+    background-color: rgb(238, 236, 236);
+}
+/*.createbackground {
+    background-image: url("/Images/boat-house-2881457.jpg");*/
+    /*height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;*/
 
 .sel-label {
     border: 2px solid black;
