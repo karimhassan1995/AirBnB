@@ -57,19 +57,36 @@ namespace AirBnB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AreaId,AreaName,CityId")] Area area,IFormFile imgFile)
+        public async Task<IActionResult> Create([Bind("AreaName,CityId")] Area area,IFormFile imgFile )
         {
             if (ModelState.IsValid)
             {
-                string fileName = area.AreaId.ToString() + "." + imgFile.FileName.Split(".").Last();
-                area.AreaImg = fileName;
-                using (var fs = System.IO.File.Create("wwwroot/AreaImgs/"+fileName))
+                var lastrow = _context.Areas.OrderByDescending(u => u.AreaId).FirstOrDefault();
+                if (lastrow != null)
                 {
-                    imgFile.CopyTo(fs);
+                    int lastid = lastrow.AreaId;
+                    string fileName = (lastid + 1).ToString() + "." + imgFile.FileName.Split(".").Last();
+                    area.AreaImg = fileName;
+                    using (var fs = System.IO.File.Create("wwwroot/AreaImgs/" + fileName))
+                    {
+                        imgFile.CopyTo(fs);
+                    }
+                    _context.Add(area);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                _context.Add(area);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                else
+                {
+                    string fileName = area.AreaId.ToString() + "." + imgFile.FileName.Split(".").Last();
+                    area.AreaImg = fileName;
+                    using (var fs = System.IO.File.Create("wwwroot/AreaImgs/" + fileName))
+                    {
+                        imgFile.CopyTo(fs);
+                    }
+                    _context.Add(area);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
             ViewData["CityId"] = new SelectList(_context.Cities, "CityId", "CityName", area.CityId);
             return View(area);

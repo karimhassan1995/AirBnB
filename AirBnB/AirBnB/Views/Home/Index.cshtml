@@ -8,7 +8,7 @@
         <div class="selection">
             <h3>Hello , Select Your Destination</h3>
             <form asp-action="ShowArea" method="post" >
-                <select name="cityid">
+                <select name="cityid" >
                 @foreach (var item in Model)
                 {
                    <option  value="@item.CityId">@item.CityName</option> 

@@ -156,6 +156,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/zego-zim-web/index.js" asp-append-version="true"></script>
     <script>
         function previewBeforeUpload(id) {
             document.querySelector("#" + id).addEventListener("change", function (e) {
@@ -172,5 +173,6 @@
         previewBeforeUpload("file-1");
     </script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

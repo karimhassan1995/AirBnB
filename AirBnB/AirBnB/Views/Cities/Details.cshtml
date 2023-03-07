@@ -3,18 +3,32 @@
 @{
     ViewData["Title"] = "Details";
 }
-
-<div class="info">
-    <div class="container">
-        <div class="row details">
-            <div class="col-8 image">
-                <img src="/CityImgs/@Model.CityImg" alt="">
-            </div>
-            <div class="col-4 text align-self-center">
-                <h1>@Model.CityName</h1>
-                <a asp-action="Index">Back To List</a>
-                <a asp-action="Edit" asp-route-id="@Model.CityId">Edit</a>
+<div class="Details" id="Details">
+    <div class="info">
+        <div class="container">
+            <div class="row details">
+                <div class="col-8 image">
+                    <img src="/CityImgs/@Model.CityImg" alt="">
+                </div>
+                <div class="col-4 text align-self-center">
+                    <h1>@Model.CityName</h1>
+                    <a asp-action="Index">Back To List</a>
+                    <a asp-action="Edit" asp-route-id="@Model.CityId">Edit</a>
+                </div>
             </div>
         </div>
+    </div>
+
+     <div class="imgs-container">
+        @foreach (var item in Model.Areas.ToList())
+        {
+                    <div class="box">
+                        <img src="~/AreaImgs/@item.AreaImg" alt="@item.AreaName" class="h-100">
+                        <div class="caption">
+                            <h4>@item.AreaName</h4>
+                            <p><a asp-controller="Properties" asp-action="ShowProp" asp-route-id="@item.AreaId">Properties...</a></p>
+                        </div>
+                    </div>
+        }
     </div>
 </div>

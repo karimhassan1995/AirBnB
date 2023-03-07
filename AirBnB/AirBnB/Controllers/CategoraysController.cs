@@ -56,13 +56,37 @@ namespace AirBnB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategorayId,CategorayName")] Categoray categoray)
+        public async Task<IActionResult> Create([Bind("CategorayId,CategorayName")] Categoray categoray, IFormFile imgFile)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(categoray);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                
+                var lastrow = _context.Categoraies.OrderByDescending(u => u.CategorayId).FirstOrDefault();
+                if (lastrow != null)
+                {
+                    int lastid = lastrow.CategorayId;
+                    string fileName = (lastid + 1).ToString() + "." + imgFile.FileName.Split(".").Last();
+                    categoray.Categoryphotosrc = fileName;
+                    using (var fs = System.IO.File.Create("wwwroot/CategoryImgs/" + fileName))
+                    {
+                        imgFile.CopyTo(fs);
+                    }
+                    _context.Add(categoray);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    string fileName = categoray.CategorayId.ToString() + "." + imgFile.FileName.Split(".").Last();
+                    categoray.Categoryphotosrc = fileName;
+                    using (var fs = System.IO.File.Create("wwwroot/CategoryImgs/" + fileName))
+                    {
+                        imgFile.CopyTo(fs);
+                    }
+                    _context.Add(categoray);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
             return View(categoray);
         }
@@ -88,7 +112,7 @@ namespace AirBnB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategorayId,CategorayName")] Categoray categoray)
+        public async Task<IActionResult> Edit(int id, [Bind("CategorayId,CategorayName")] Categoray categoray, IFormFile imgFile)
         {
             if (id != categoray.CategorayId)
             {
@@ -99,6 +123,16 @@ namespace AirBnB.Controllers
             {
                 try
                 {
+                    string fileName = categoray.CategorayId.ToString() + "." + imgFile.FileName.Split(".").Last();
+                    if (System.IO.File.Exists("wwwroot/CategoryImgs/" + fileName))
+                    {
+                        System.IO.File.Delete("wwwroot/CategoryImgs/" + fileName);
+                    }
+                    categoray.Categoryphotosrc = fileName;
+                    using (var fs = System.IO.File.Create("wwwroot/CategoryImgs/" + fileName))
+                    {
+                        imgFile.CopyTo(fs);
+                    }
                     _context.Update(categoray);
                     await _context.SaveChangesAsync();
                 }

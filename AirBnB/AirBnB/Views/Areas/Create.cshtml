@@ -8,9 +8,11 @@
     <form asp-action="Create" enctype="multipart/form-data">
 
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+       
         @*================================================================*@
         <label class="lblNameArea" for="Name">Add The Area Name</label>
         <br>
+        
         <input asp-for="AreaName" type="text" id="Name">
         <span asp-validation-for="AreaName" class="text-danger"></span>
         @*================================================================*@
