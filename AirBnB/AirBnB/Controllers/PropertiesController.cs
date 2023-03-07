@@ -25,8 +25,8 @@ namespace AirBnB.Controllers
         {
             var PropList = _context.Properties.Include(z => z.AppUser).Include(z => z.Area).ThenInclude(z => z.City).Include(z => z.Categoray).Include(z => z.PropertyImgs);
          
-            //var categories = _context.Categoraies;
-            //ViewBag.cat = categories;
+            var categories = _context.Categoraies;
+            ViewBag.cat = categories;
             return View(await PropList.ToListAsync());
         }
 

@@ -34,7 +34,7 @@ namespace AirBnB.Controllers
                 return NotFound();
             }
 
-            var city = await _context.Cities
+            var city = await _context.Cities.Include(z => z.Areas)
                 .FirstOrDefaultAsync(m => m.CityId == id);
             if (city == null)
             {
@@ -59,15 +59,32 @@ namespace AirBnB.Controllers
         {
             if (ModelState.IsValid)
             {
-                string fileName = city.CityId.ToString() + "." + imgFile.FileName.Split(".").Last();
-                city.CityImg = fileName;
-                using (var fs = System.IO.File.Create("wwwroot/CityImgs/" + fileName))
+                var lastrow = _context.Cities.OrderByDescending(u => u.CityId).FirstOrDefault();
+                if (lastrow != null)
                 {
-                    imgFile.CopyTo(fs);
+                    int lastid = lastrow.CityId;
+                    string fileName = (lastid + 1).ToString() + "." + imgFile.FileName.Split(".").Last();
+                    city.CityImg = fileName;
+                    using (var fs = System.IO.File.Create("wwwroot/CityImgs/" + fileName))
+                    {
+                        imgFile.CopyTo(fs);
+                    }
+                    _context.Add(city);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                _context.Add(city);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                else
+                {
+                    string fileName = city.CityId.ToString() + "." + imgFile.FileName.Split(".").Last();
+                    city.CityImg = fileName;
+                    using (var fs = System.IO.File.Create("wwwroot/CityImgs/" + fileName))
+                    {
+                        imgFile.CopyTo(fs);
+                    }
+                    _context.Add(city);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
             return View(city);
         }

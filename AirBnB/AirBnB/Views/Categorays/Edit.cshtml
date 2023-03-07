@@ -4,25 +4,32 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<div class="edit">
+    <form asp-action="Edit" enctype="multipart/form-data">
 
-<h4>Categoray</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="CategorayId" />
-            <div class="form-group">
-                <label asp-for="CategorayName" class="control-label"></label>
-                <input asp-for="CategorayName" class="form-control" />
-                <span asp-validation-for="CategorayName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="CategorayId" />
+        @*================================================================*@
+        <label class="lblName" for="Name">Update The Categoray Name</label>
+        <br>
+        <input asp-for="CategorayName" type="text" id="Name">
+        <span asp-validation-for="CategorayName" class="text-danger"></span>
+        @*================================================================*@
+        <div class="upload-img">
+            <label class="lblImg">Update The Categoray Image</label>
+            <br>
+            <input type="file" id="file-1" accept="image/*" name="imgFile">
+
+            <label for="file-1" id="file-1-preview" class="AmenityImg">
+                <img src="/CategoryImgs/@Model.Categoryphotosrc" alt="City Image">
+                <span>+</span>
+            </label>
+        </div>
+        @*================================================================*@
+        <input type="submit" value="Update">
+        @*================================================================*@
+        <a class="backLink" asp-action="Index">Back</a>
+    </form>
 </div>
 
 <div>

@@ -4,33 +4,36 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div class="edit">
+    <form asp-action="Create" enctype="multipart/form-data">
 
-<h4>Amenity</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="AmenityName" class="control-label"></label>
-                <input asp-for="AmenityName" class="form-control" />
-                <span asp-validation-for="AmenityName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AmenityType" class="control-label"></label>
-                <input asp-for="AmenityType" class="form-control" />
-                <span asp-validation-for="AmenityType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @*================================================================*@
+        <label class="lblName" for="Name">Add The Amenity Name</label>
+        <br>
+        <input asp-for="AmenityName" type="text" id="Name">
+        <span asp-validation-for="AmenityName" class="text-danger"></span>
+        @*================================================================*@
+        <label class="lblName" for="Name">Add The Amenity Type</label>
+        <br>
+        <input asp-for="AmenityType" type="text" id="Name">
+        <span asp-validation-for="AmenityType" class="text-danger"></span>
+        @*================================================================*@
+        <div class="upload-img">
+            <label class="lblImg">Add The Amenity Image</label>
+            <br>
+            <input type="file" id="file-1" accept="image/*" name="imgFile">
 
-<div>
-    <a asp-action="Index">Back to List</a>
+            <label for="file-1" id="file-1-preview">
+                <img src="https://bit.ly/3ubuq5o" alt="Amenity Image">
+                <span>+</span>
+            </label>
+        </div>
+        @*================================================================*@
+        <input type="submit" value="Add">
+        @*================================================================*@
+        <a class="backLink" asp-action="Index">Back</a>
+    </form>
 </div>
 
 @section Scripts {
