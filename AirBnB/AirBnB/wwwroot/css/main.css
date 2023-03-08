@@ -213,7 +213,8 @@ a {
 }
 
 .header .mega-menu .image img {
-    max-width: 100%;
+    width: 70%;
+    padding-left:76px;
 }
 
 @media(max-width:991px) {

@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AirBnB.Data;
 using AirBnB.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace AirBnB.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AreasController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -125,17 +128,25 @@ namespace AirBnB.Controllers
             {
                 try
                 {
-                    string fileName = area.AreaId.ToString() + "." + imgFile.FileName.Split(".").Last();
-                    if (System.IO.File.Exists("wwwroot/AreaImgs/" + fileName))
+                    Area area2 = _context.Areas.Find(id);
+                    string fileName = area2.AreaImg;
+                    if (imgFile != null)
                     {
-                        System.IO.File.Delete("wwwroot/AreaImgs/" + fileName);
+                        //string fileName = area.AreaId.ToString() + "." + imgFile.FileName.Split(".").Last();
+                        if (System.IO.File.Exists("wwwroot/AreaImgs/" + fileName))
+                        {
+                            System.IO.File.Delete("wwwroot/AreaImgs/" + fileName);
+                        }
+                        using (var fs = System.IO.File.Create("wwwroot/AreaImgs/" + fileName))
+                        {
+                            imgFile.CopyTo(fs);
+                        }
                     }
-                    area.AreaImg = fileName;
-                    using (var fs = System.IO.File.Create("wwwroot/AreaImgs/" + fileName))
-                    {
-                        imgFile.CopyTo(fs);
-                    }
-                    _context.Update(area);
+                    area2.AreaId = area.AreaId;
+                    area2.AreaImg = fileName;
+                    area2.AreaName = area.AreaName;
+
+                    _context.Update(area2);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
