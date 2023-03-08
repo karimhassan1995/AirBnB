@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AirBnB.Data;
 using AirBnB.Models;
-
+using System.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AirBnB.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoraysController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -123,17 +125,24 @@ namespace AirBnB.Controllers
             {
                 try
                 {
-                    string fileName = categoray.CategorayId.ToString() + "." + imgFile.FileName.Split(".").Last();
-                    if (System.IO.File.Exists("wwwroot/CategoryImgs/" + fileName))
+                    Categoray categoray2 = _context.Categoraies.Find(id);
+                    string fileName = categoray2.Categoryphotosrc;
+                    if (imgFile != null)
                     {
-                        System.IO.File.Delete("wwwroot/CategoryImgs/" + fileName);
+                        //string fileName = categoray.CategorayId.ToString() + "." + imgFile.FileName.Split(".").Last();
+                        if (System.IO.File.Exists("wwwroot/CategoryImgs/" + fileName))
+                        {
+                            System.IO.File.Delete("wwwroot/CategoryImgs/" + fileName);
+                        }
+                        using (var fs = System.IO.File.Create("wwwroot/CategoryImgs/" + fileName))
+                        {
+                            imgFile.CopyTo(fs);
+                        }
                     }
-                    categoray.Categoryphotosrc = fileName;
-                    using (var fs = System.IO.File.Create("wwwroot/CategoryImgs/" + fileName))
-                    {
-                        imgFile.CopyTo(fs);
-                    }
-                    _context.Update(categoray);
+                    categoray2.CategorayId = categoray.CategorayId;
+                    categoray2.Categoryphotosrc = fileName;
+                    categoray2.CategorayName = categoray.CategorayName;
+                    _context.Update(categoray2);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -182,6 +191,11 @@ namespace AirBnB.Controllers
             var categoray = await _context.Categoraies.FindAsync(id);
             if (categoray != null)
             {
+                string fileName = categoray.Categoryphotosrc;
+                if (System.IO.File.Exists("wwwroot/CategorayImgs/" + fileName))
+                {
+                    System.IO.File.Delete("wwwroot/CategorayImgs/" + fileName);
+                }
                 _context.Categoraies.Remove(categoray);
             }
             
