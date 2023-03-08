@@ -30,6 +30,9 @@ namespace AirBnB.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AmenityId"), 1L, 1);
 
+                    b.Property<string>("AmenityImgSrc")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("AmenityName")
                         .HasColumnType("nvarchar(max)");
 

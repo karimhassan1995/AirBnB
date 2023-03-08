@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AirBnB.Data;
 using AirBnB.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace AirBnB.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AreasController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -57,19 +60,36 @@ namespace AirBnB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AreaId,AreaName,CityId")] Area area,IFormFile imgFile)
+        public async Task<IActionResult> Create([Bind("AreaName,CityId")] Area area,IFormFile imgFile )
         {
             if (ModelState.IsValid)
             {
-                string fileName = area.AreaId.ToString() + "." + imgFile.FileName.Split(".").Last();
-                area.AreaImg = fileName;
-                using (var fs = System.IO.File.Create("wwwroot/AreaImgs/"+fileName))
+                var lastrow = _context.Areas.OrderByDescending(u => u.AreaId).FirstOrDefault();
+                if (lastrow != null)
                 {
-                    imgFile.CopyTo(fs);
+                    int lastid = lastrow.AreaId;
+                    string fileName = (lastid + 1).ToString() + "." + imgFile.FileName.Split(".").Last();
+                    area.AreaImg = fileName;
+                    using (var fs = System.IO.File.Create("wwwroot/AreaImgs/" + fileName))
+                    {
+                        imgFile.CopyTo(fs);
+                    }
+                    _context.Add(area);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                _context.Add(area);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                else
+                {
+                    string fileName = area.AreaId.ToString() + "." + imgFile.FileName.Split(".").Last();
+                    area.AreaImg = fileName;
+                    using (var fs = System.IO.File.Create("wwwroot/AreaImgs/" + fileName))
+                    {
+                        imgFile.CopyTo(fs);
+                    }
+                    _context.Add(area);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
             ViewData["CityId"] = new SelectList(_context.Cities, "CityId", "CityName", area.CityId);
             return View(area);
@@ -108,17 +128,25 @@ namespace AirBnB.Controllers
             {
                 try
                 {
-                    string fileName = area.AreaId.ToString() + "." + imgFile.FileName.Split(".").Last();
-                    if (System.IO.File.Exists("wwwroot/AreaImgs/" + fileName))
+                    Area area2 = _context.Areas.Find(id);
+                    string fileName = area2.AreaImg;
+                    if (imgFile != null)
                     {
-                        System.IO.File.Delete("wwwroot/AreaImgs/" + fileName);
+                        //string fileName = area.AreaId.ToString() + "." + imgFile.FileName.Split(".").Last();
+                        if (System.IO.File.Exists("wwwroot/AreaImgs/" + fileName))
+                        {
+                            System.IO.File.Delete("wwwroot/AreaImgs/" + fileName);
+                        }
+                        using (var fs = System.IO.File.Create("wwwroot/AreaImgs/" + fileName))
+                        {
+                            imgFile.CopyTo(fs);
+                        }
                     }
-                    area.AreaImg = fileName;
-                    using (var fs = System.IO.File.Create("wwwroot/AreaImgs/" + fileName))
-                    {
-                        imgFile.CopyTo(fs);
-                    }
-                    _context.Update(area);
+                    area2.AreaId = area.AreaId;
+                    area2.AreaImg = fileName;
+                    area2.AreaName = area.AreaName;
+
+                    _context.Update(area2);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

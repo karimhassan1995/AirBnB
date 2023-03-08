@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AirBnB.Data;
 using AirBnB.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 // Changes by ahmed
 namespace AirBnB.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CitiesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -34,7 +37,7 @@ namespace AirBnB.Controllers
                 return NotFound();
             }
 
-            var city = await _context.Cities
+            var city = await _context.Cities.Include(z => z.Areas)
                 .FirstOrDefaultAsync(m => m.CityId == id);
             if (city == null)
             {
@@ -59,15 +62,32 @@ namespace AirBnB.Controllers
         {
             if (ModelState.IsValid)
             {
-                string fileName = city.CityId.ToString() + "." + imgFile.FileName.Split(".").Last();
-                city.CityImg = fileName;
-                using (var fs = System.IO.File.Create("wwwroot/CityImgs/" + fileName))
+                var lastrow = _context.Cities.OrderByDescending(u => u.CityId).FirstOrDefault();
+                if (lastrow != null)
                 {
-                    imgFile.CopyTo(fs);
+                    int lastid = lastrow.CityId;
+                    string fileName = (lastid+1).ToString() + "." + imgFile.FileName.Split(".").Last();
+                    city.CityImg = fileName;
+                    using (var fs = System.IO.File.Create("wwwroot/CityImgs/" + fileName))
+                    {
+                        imgFile.CopyTo(fs);
+                    }
+                    _context.Add(city);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                _context.Add(city);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                else
+                {
+                    string fileName = city.CityId.ToString() + "." + imgFile.FileName.Split(".").Last();
+                    city.CityImg = fileName;
+                    using (var fs = System.IO.File.Create("wwwroot/CityImgs/" + fileName))
+                    {
+                        imgFile.CopyTo(fs);
+                    }
+                    _context.Add(city);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
             return View(city);
         }
@@ -99,22 +119,32 @@ namespace AirBnB.Controllers
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    string fileName = city.CityId.ToString() + "." + imgFile.FileName.Split(".").Last();
-                    if (System.IO.File.Exists("wwwroot/CityImgs/" + fileName))
+                    City city2 = _context.Cities.Find(id);
+                    string fileName = city2.CityImg;
+                    if (imgFile != null)
                     {
-                        System.IO.File.Delete("wwwroot/CityImgs/" + fileName);
+                        //string fileName = city.CityId.ToString() + "." + imgFile.FileName.Split(".").Last();
+                        if (System.IO.File.Exists("wwwroot/CityImgs/" + fileName))
+                        {
+                            System.IO.File.Delete("wwwroot/CityImgs/" + fileName);
+                        }
+                        using (var fs = System.IO.File.Create("wwwroot/CityImgs/" + fileName))
+                        {
+                            imgFile.CopyTo(fs);
+                        }
                     }
-                    city.CityImg = fileName;
-                    using (var fs = System.IO.File.Create("wwwroot/CityImgs/" + fileName))
-                    {
-                        imgFile.CopyTo(fs);
-                    }
-                    _context.Update(city);
+                    //else
+                    //{
+                    //    city.CityImg = fileName;
+                    //}
+                    city2.CityId = city.CityId;
+                    city2.CityImg = fileName;
+                    city2.CityName = city.CityName;
+                    _context.Update(city2);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

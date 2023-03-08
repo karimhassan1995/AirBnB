@@ -6,20 +6,20 @@
 <div class="bodyofbooking row">
    @* <div class="col-md-7">
     </div>*@
-    <div class="col-4">
-        <h1 class="stylefont">
-            Create memories that you will cherish for a lifetime while enjoying a world of
-            unmatched luxury, serenity and exclusivity await you at our outstanding resorts
-        </h1>
-    </div>
     <!-- Reservationform -->
     <div class="col-8" >
+        @if (ViewBag.flag == false)
+        {
+            <div class="alert alert-danger" role="alert">
+                <h3>wrong</h3>
+            </div>
+        }
         <form asp-action="Create">
             <div class="container stylefont">
                 <div class="col-md-5  border rounded  shadow-lg p-3 mb-5 row    ">
 
                     <div class="col-md-6">
-                        <h3>Reservationform</h3>
+                        <h4>Reservation form</h4>
                     </div>
                     <div class="col-md-6">
                         <i class="fa-solid fa-pencil"></i>
@@ -38,8 +38,8 @@
                         <label>CHECK OUT</label><br>
                     </div>
                     <div class="input-group">
-                        <input class="form-control" asp-for="CheckInDate" type="date" placeholder="dd-mm-yyyy" name="checkin" />
-                        <input class="form-control" asp-for="CheckOutDate" type="date" placeholder="dd-mm-yyyy" name="checkout" />
+                        <input class="form-control" asp-for="CheckInDate" type="date" placeholder="dd-mm-yyyy"  />
+                        <input class="form-control" asp-for="CheckOutDate" type="date" placeholder="dd-mm-yyyy" />
                     </div>
                     <br>
                     <div class="form-group ">
@@ -56,12 +56,12 @@
                     </div>
                 </div>
         </form>
+       
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

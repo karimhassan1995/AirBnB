@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AirBnB.Data;
 using AirBnB.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace AirBnB.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AmenitiesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -54,13 +57,36 @@ namespace AirBnB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AmenityId,AmenityName,AmenityType")] Amenity amenity)
+        public async Task<IActionResult> Create([Bind("AmenityId,AmenityName,AmenityType")] Amenity amenity , IFormFile imgFile)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(amenity);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var lastrow = _context.Amenities.OrderByDescending(u => u.AmenityId).FirstOrDefault();
+                if (lastrow != null )
+                {
+                    int lastid = lastrow.AmenityId;
+                    string fileName = (lastid + 1).ToString() + "." + imgFile.FileName.Split(".").Last();
+                    amenity.AmenityImgSrc = fileName;
+                    using (var fs = System.IO.File.Create("wwwroot/AmenityImg/" + fileName))
+                    {
+                        imgFile.CopyTo(fs);
+                    }
+                    _context.Add(amenity);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    string fileName = amenity.AmenityId.ToString() + "." + imgFile.FileName.Split(".").Last();
+                    amenity.AmenityImgSrc = fileName;
+                    using (var fs = System.IO.File.Create("wwwroot/AmenityImg/" + fileName))
+                    {
+                        imgFile.CopyTo(fs);
+                    }
+                    _context.Add(amenity);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
             return View(amenity);
         }
@@ -86,7 +112,7 @@ namespace AirBnB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AmenityId,AmenityName,AmenityType")] Amenity amenity)
+        public async Task<IActionResult> Edit(int id, [Bind("AmenityId,AmenityName,AmenityType")] Amenity amenity, IFormFile imgFile)
         {
             if (id != amenity.AmenityId)
             {
@@ -97,7 +123,24 @@ namespace AirBnB.Controllers
             {
                 try
                 {
-                    _context.Update(amenity);
+                    Amenity amenity2 = _context.Amenities.Find(id);
+                    string fileName = amenity2.AmenityImgSrc;
+                    if (imgFile != null)
+                    {
+                        //string fileName = amenity.AmenityId.ToString() + "." + imgFile.FileName.Split(".").Last();
+                        if (System.IO.File.Exists("wwwroot/AmenityImg/" + fileName))
+                        {
+                            System.IO.File.Delete("wwwroot/AmenityImg/" + fileName);
+                        }
+                        using (var fs = System.IO.File.Create("wwwroot/AmenityImg/" + fileName))
+                        {
+                            imgFile.CopyTo(fs);
+                        }
+                    }
+                    amenity2.AmenityId = amenity.AmenityId;
+                    amenity2.AmenityImgSrc = fileName;
+                    amenity2.AmenityName = amenity.AmenityName;
+                    _context.Update(amenity2);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -146,6 +189,11 @@ namespace AirBnB.Controllers
             var amenity = await _context.Amenities.FindAsync(id);
             if (amenity != null)
             {
+                string fileName = amenity.AmenityImgSrc;
+                if (System.IO.File.Exists("wwwroot/AmenityImg/" + fileName))
+                {
+                    System.IO.File.Delete("wwwroot/AmenityImg/" + fileName);
+                }
                 _context.Amenities.Remove(amenity);
             }
             

@@ -38,35 +38,4 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 
-@*<h1>Edit</h1>
 
-<h4>City</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="CityId" />
-            <div class="form-group">
-                <label class="control-label">City Name</label>
-                <input asp-for="CityName" class="form-control" />
-                <span asp-validation-for="CityName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <img src="/CityImgs/@Model.CityImg" width="100px"/>
-            </div>
-            <div class="form-group">
-                <label>Update your image</label>
-                <input name="imgFile" type="file" />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-*@
