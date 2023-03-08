@@ -50,6 +50,7 @@ namespace AirBnB.Controllers
                 .Include(z => z.Categoray)
                 .Include(q => q.Reviews)
                 .Include(z => z.PropertyImgs)
+                .Include(a => a.Amenities)
                 .Include(z => z.Area)
                 .ThenInclude(z => z.City)
                 .FirstOrDefaultAsync(m => m.PropertyId == id);
