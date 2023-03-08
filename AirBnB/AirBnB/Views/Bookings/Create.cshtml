@@ -14,6 +14,12 @@
     </div>
     <!-- Reservationform -->
     <div class="col-8" >
+        @if (ViewBag.flag == false)
+        {
+            <div class="alert alert-danger" role="alert">
+                <h3>wrong</h3>
+            </div>
+        }
         <form asp-action="Create">
             <div class="container stylefont">
                 <div class="col-md-5  border rounded  shadow-lg p-3 mb-5 row    ">
@@ -38,8 +44,8 @@
                         <label>CHECK OUT</label><br>
                     </div>
                     <div class="input-group">
-                        <input class="form-control" asp-for="CheckInDate" type="date" placeholder="dd-mm-yyyy" name="checkin" />
-                        <input class="form-control" asp-for="CheckOutDate" type="date" placeholder="dd-mm-yyyy" name="checkout" />
+                        <input class="form-control" asp-for="CheckInDate" type="date" placeholder="dd-mm-yyyy"  />
+                        <input class="form-control" asp-for="CheckOutDate" type="date" placeholder="dd-mm-yyyy" />
                     </div>
                     <br>
                     <div class="form-group ">
@@ -56,6 +62,7 @@
                     </div>
                 </div>
         </form>
+       
     </div>
 </div>
 

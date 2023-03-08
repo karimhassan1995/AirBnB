@@ -51,8 +51,16 @@ namespace AirBnB.Controllers
         // GET: Bookings/Create
         public IActionResult Create(int? id)
         {
+            ViewBag.flag = true;
             //code to get the selected property id
             ViewData["SelectedPropertyId"] = id;
+            if (TempData.ContainsKey("propid"))
+            {
+                ViewBag.flag = false;
+                ViewData["SelectedPropertyId"] = TempData["propid"];
+            }
+              
+               
             //code to get the current user id
             ViewData["userid"] =  this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var SelectedProp = _context.Properties.FirstOrDefault(x => x.PropertyId == id);
@@ -69,12 +77,27 @@ namespace AirBnB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BookingId,AppUserId,PropertyId,CheckInDate,CheckOutDate,BookingCapacity")] Booking booking)
         {
-            if (ModelState.IsValid)
+           bool NotAvalible = _context.Bookings.Where(a => a.PropertyId == booking.PropertyId).Select(a => (a.CheckInDate < booking.CheckInDate && a.CheckOutDate > booking.CheckInDate)).FirstOrDefault();
+           
+            if (ModelState.IsValid  )
             {
-                _context.Add(booking);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (!NotAvalible)
+                {
+
+                    _context.Add(booking);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                else {
+                   
+                    int id = booking.PropertyId;
+                    var SelectedProp = _context.Properties.FirstOrDefault(x => x.PropertyId == id);
+                    ViewData["PropertyCapacity"] = SelectedProp.PropertyCapacity;
+                    TempData["propid"] = id;
+                    return RedirectToAction(nameof(Create));
+                }
             }
+            
             ViewData["AppUserId"] = new SelectList(_context.Users, "Id", "Id", booking.AppUserId);
             ViewData["PropertyId"] = new SelectList(_context.Properties, "PropertyId", "AppUserId", booking.PropertyId);
             return View(booking);

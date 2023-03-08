@@ -59,7 +59,7 @@ namespace AirBnB.Controllers
             if (ModelState.IsValid)
             {
                 var lastrow = _context.Amenities.OrderByDescending(u => u.AmenityId).FirstOrDefault();
-                if (lastrow != null)
+                if (lastrow != null )
                 {
                     int lastid = lastrow.AmenityId;
                     string fileName = (lastid + 1).ToString() + "." + imgFile.FileName.Split(".").Last();
