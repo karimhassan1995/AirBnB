@@ -33,9 +33,9 @@ body {
     justify-content: space-around;
 }
 
-/*.carousel {
-    margin: 10 , 10 ;
-}*/
+.carousel {
+    margin: 5px ;
+}
 
 .we {
     margin: 10px 10px;
@@ -202,14 +202,14 @@ ul {
 
 
 /*dohaaaaaaaaaaaaaaaaaaaaaa*/
-.icons-image {
+.icons-image{
     margin-bottom: 8px;
     width: 50px;
     cursor: pointer;
     padding-left: 15px;
 }
 
-.properties-headers {
+.properties-headers{
     margin-bottom: 30px;
     margin-top: 30px;
 }
@@ -235,7 +235,7 @@ ul {
 }
 
 .btns {
-    border: 1px solid rgb(233, 231, 231);
+    border: 1px solid grey;
 }
 
 .textarea {
@@ -252,7 +252,7 @@ ul {
 
 .pictures {
     height: 350px;
-    border: 1px dashed rgb(194, 194, 194);
+    border: 1px dashed grey;
     position: relative;
 }
 
@@ -286,7 +286,7 @@ ul {
 }
 
 .texts {
-    /*font-weight: bold;*/
+    font-weight: bold;
     font-size: large;
     margin-bottom: 7px;
     margin-top: 10px;
@@ -301,126 +301,33 @@ ul {
     background-color: rgb(238, 236, 236);
 }
 /*.createbackground {
-    background-image: url("/Images/boat-house-2881457.jpg");*/
-/*height: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;*/
-
-
-/*dohhaaaaaaaaaaaaaaaaaaaaaaa*/
-
-
-/*Dohaaaaaaaaaaaaaaaaaaaaaa*/
-/*.icons-image {
-    margin-bottom: 8px;
-    width: 50px;
-    cursor: pointer;
-    padding-left: 15px;
-}
-
-.properties-headers {
-    margin-bottom: 30px;
-    margin-top: 30px;
-}
-
-.img {
-    width: 30px;
-    float: right;
-    margin-top: 20px;
-}*/
-
-/* #map {
+    background-image: url("/Images/babyblue white.jpeg");
     height: 100%;
-} */
-
-/*.btns:focus {
-    background-color: rgb(238, 236, 236) !important;
-    border: 2px solid black;
-}*/
-
-/*.btns:hover {
-    border: 2px solid black;
-    cursor: pointer;
-}*/
-
-/*.btns {
-    border: 1px solid rgb(233, 231, 231);
-}*/
-
-/*.textarea {
-    border: 1px solid black;
-}
-
-.highlightimg {
-    width: 25px;
-}*/
-
-/*.multiselectcheckbox{
-    opacity: 0;
-}*/
-
-/*.pictures {
-    height: 350px;
-    border: 1px dashed rgb(194, 194, 194);
-    position: relative;
-}
-
-.imgbtn {
-    position: absolute;
-    top: 30px;
-}
-
-.photo {
-    margin-bottom: 8px;
-    width: 65px;
-}
-
-.photostexts {
-    margin-top: 15%;
-}
-
-.pointer:focus {
-    background-color: rgb(238, 236, 236) !important;
-    border: 2px solid black;
-}
-
-.select-loc {
-    height: 50px;
-    border: 1px solid black;
-    font-size: large;
-}
-
-.inputs {
-    border: 1px solid black;
-}
-
-.texts {*/
-    /*font-weight: bold;*/
-    /*font-size: large;
-    margin-bottom: 7px;
-    margin-top: 10px;
-}
-
-.submitbtn {
-    border: 2px solid;
-}
-
-.sel-label {
-    border: 2px solid black;
-    background-color: rgb(238, 236, 236);
-}*/
-/*.createbackground {
-    background-image: url("/Images/boat-house-2881457.jpg");*/
-/*height: 100%;
     background-repeat: no-repeat;
-    background-size: cover;*/
-
-
+    background-size: cover;
+}*/
+.login-background {
+    background-image: url("/Images/maldives-3220702.jpg");
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.register-background {
+    background-image: url("/Images/manor-house-2359884.jpg");
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.begin {
+    text-shadow: 1px 1px 1px blue,0 0 2em white,0 0 0.2em grey;
+}
+.shadow {
+    box-shadow: #DE3151 20px 20px inset;
+}
 /*dohhaaaaaaaaaaaaaaaaaaaaaaa*/
-
-
 /*Neamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
-
 .start {
     margin-top: 170px;
     margin-bottom: 30px;
@@ -432,11 +339,11 @@ ul {
     color: #222;
 }
 .steps p {
-    font-size: 20px;
+    font-size:20px;
 }
 
 .steps {
-    margin-top: 100px;
+    margin-top: 90px;
     margin-bottom: 20px;
 }
 
@@ -450,3 +357,8 @@ ul {
 /*Neamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
 
 
+/*index*/
+.card{
+    height:400px; 
+    margin-bottom:20px;
+}
