@@ -77,7 +77,7 @@ namespace AirBnB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BookingId,AppUserId,PropertyId,CheckInDate,CheckOutDate,BookingCapacity")] Booking booking)
         {
-           bool NotAvalible = _context.Bookings.Where(a => a.PropertyId == booking.PropertyId).Select(a => (a.CheckInDate < booking.CheckInDate && a.CheckOutDate > booking.CheckInDate)).FirstOrDefault();
+           bool NotAvalible = _context.Bookings.Where(a => a.PropertyId == booking.PropertyId).Select(a => (a.CheckInDate <= booking.CheckInDate && a.CheckOutDate >= booking.CheckInDate)).FirstOrDefault();
            
             if (ModelState.IsValid  )
             {

@@ -3,9 +3,9 @@
     position:relative;
     background-image: url("../Bookingimgs/14.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
-/*    height:100vh;*/
-   /* padding: 100px 200px*/
+    background-size:cover;
+    height:100%;
+    padding: 100px 200px;
 }
     .bodyofbooking::before {
         content: '';
@@ -43,7 +43,7 @@
 }
 
 .fa-pencil {
-    font-size: 32px;
+    font-size: 30px;
     color: brown;
     float: right;
 }
