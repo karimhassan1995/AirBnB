@@ -308,20 +308,24 @@ ul {
 }*/
 .login-background {
     background-image: url("/Images/maldives-3220702.jpg");
-    width: 100%;
+    width: 70%;
     height: 100%;
+    margin-left: 5%;
+    margin-top: 2.5%;
     background-repeat: no-repeat;
     background-size: contain;
 }
 .register-background {
     background-image: url("/Images/manor-house-2359884.jpg");
-    width: 100%;
+    width: 90%;
     height: 100%;
+    margin-left: 2.5%;
+    margin-top: 1.5%;
     background-repeat: no-repeat;
     background-size: contain;
 }
 .begin {
-    text-shadow: 1px 1px 1px blue,0 0 2em white,0 0 0.2em grey;
+    text-shadow: 1px 2px 1px white,0 0 2em white,0 0 0.2em white;
 }
 .shadow {
     box-shadow: #DE3151 20px 20px inset;
