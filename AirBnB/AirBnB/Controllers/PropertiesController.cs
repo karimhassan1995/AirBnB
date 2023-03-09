@@ -10,6 +10,7 @@ using AirBnB.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 
+
 namespace AirBnB.Controllers
 {
     public class PropertiesController : Controller
@@ -73,7 +74,7 @@ namespace AirBnB.Controllers
             ViewData["AppUserId"] = new SelectList(_context.Users, "Id", "Id");
             ViewData["AreaId"] = new SelectList(_context.Areas, "AreaId", "AreaName");
             ViewData["CategorayId"] = new SelectList(_context.Categoraies, "CategorayId", "CategorayName");
-            /*ViewData["AmenityId"] = new SelectList(_context.Amenities, "AmenityId", "AmenityId");*/
+            ViewData["AmenityId"] = new SelectList(_context.Amenities, "AmenityId", "AmenityId");
             ViewBag.Amenity = _context.Amenities.ToList();
             return View();
         }
@@ -83,13 +84,17 @@ namespace AirBnB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PropertyId,PropertyTitle,PropertyDescription,PropertyCapacity,PropertyBedsNum,PropertyBedRooms,PropertyBath,PropertyPricePerNight,PropertyHostInfo,AppUserId,AreaId,CategorayId")] Property @property , IFormFile[] propImg)
+        public async Task<IActionResult> Create([Bind("PropertyId,PropertyTitle,PropertyDescription,PropertyCapacity,PropertyBedsNum,PropertyBedRooms,PropertyBath,PropertyPricePerNight,PropertyHostInfo,AppUserId,AreaId,CategorayId")] Property @property , IFormFile[] propImg , int[] amenity)
         {
             if (ModelState.IsValid)
             {
+                for (int i = 0; i < amenity.Length; i++)
+                {
+                    var x = _context.Amenities.Find(amenity[i]);
+                    @property.Amenities.Add(x);
+                }
                 _context.Add(@property);
                 await _context.SaveChangesAsync();
-
             }
             if (propImg == null)
             {
