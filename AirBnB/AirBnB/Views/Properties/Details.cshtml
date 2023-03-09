@@ -24,15 +24,19 @@
                 @{
                     int max = 0;
                 }
-                @foreach (var r in ViewBag.reviews)
+                @foreach (var r in revew)
                 {
                     max += r.ReviewRate;
                 }
                 @{
-                    int avregeview = max / Enumerable.Count(ViewBag.reviews);
+                    int avregeview = 0 ;
+                    if (Enumerable.Count(revew) > 0)
+                    {
+                        avregeview = max / Enumerable.Count(revew);
+                    }
                 }
                 <span>@avregeview</span>
-                <a class="mx-2 text-dark" href="#">@Enumerable.Count(ViewBag.reviews) Reviews ·</a>
+                <a class="mx-2 text-dark" href="#">@Enumerable.Count(revew) Reviews ·</a>
                 <a asp-action="ShowProp" asp-route-id="@Model.AreaId" class="text-dark">@Model.Area.AreaName,</a>
                                 <a asp-action="Index" asp-route-id="@Model.Area.CityId" class="text-dark"> @Model.Area.City.CityName Governorate, Egypt</a>
 
@@ -199,12 +203,45 @@
                 <i class="fa-solid fa-star h5" ></i>
             
                 <span class="h5">@avregeview ·</span>
-                <a class="mx-2 text-dark " href="#">@Enumerable.Count(ViewBag.reviews) reviews </a>
+                <a class="mx-2 text-dark " href="#">@Enumerable.Count(revew ) reviews </a>
             </div>
         </div>
 
-                <!-- horizontal bars -->
-                <!-- comments -->
+                <!--inset review -->
+        @if (SignInManager.IsSignedIn(User) && (bool)ViewData["r"] == true)
+        {
+            <div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" asp-controller="Reviews">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                
+           <input asp-for="AppUserId" class="form-control" value="@ViewData["userid"]" type="hidden"/>
+            </div>
+            <div class="form-group">
+               
+                <input asp-for="PropertyId" class="form-control" value='@ViewData["SelectedPropertyId"]' type="hidden" />
+            </div>
+            <div class="form-group">
+                            <label name="ReviewRate" class="control-label">ReviewRate</label>
+                <input name="ReviewRate" class="form-control" />
+               <span name="ReviewRate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                            <label name="ReviewComment" class="control-label">ReviewComment</label>
+                <input name="ReviewComment" class="form-control" />
+              <span name="ReviewComment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Review" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+            
+        
+        }
+        <!-- comments -->
 
                 <div class="row mt-5 ">
                     <!-- one comment -->
@@ -225,7 +262,7 @@
                             <div class="card border-0   mb-3 ">
                                 <div class="card-body">
                                     <div class="d-flex mb-3">
-                                        <img src="data:image/png;base64,@base64Strimg" alt="notfound" style="width:70px;height:70px">
+                                <img src="data:image/png;base64,@base64Strimg" alt="notfound" style="width:50px;height:5`0px" class="rounded-circle">
                                         <div class="name date mx-3">
                                             <h5 class="card-title"> @User.FirstName</h5>
                                         </div>
@@ -272,11 +309,14 @@
             <div class="card border-0">
                 <div class="card-body">
                     <div class=" d-flex mb-3">
+
                         @{
+
                             byte[] byteArray2 = Model.AppUser.ProfilePicture;
                             string base64Strimg2 = Convert.ToBase64String(byteArray2);
+
                         }
-                        <img src="data:image /png;base64,@base64Strimg2" alt="" style="width:70px;height:70px">
+                        <img src="data:image /png;base64,@base64Strimg2" alt="" style="width:70px;height:70px " >
 
                         <div class="name date mx-3">
                             <h5 class="card-title">

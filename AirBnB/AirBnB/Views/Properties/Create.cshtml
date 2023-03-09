@@ -453,8 +453,8 @@
                     <span asp-validation-for="PropertyHostInfo" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="AppUserId" class="control-label texts fw-bold"></label>
-                    <select asp-for="AppUserId" class="form-control inputs" asp-items="ViewBag.AppUserId"></select>
+                   
+                    <input asp-for="AppUserId" class="form-control" value='@ViewData["userid"]' type="hidden" />
                 </div>
 
 
