@@ -44,6 +44,20 @@ namespace AirBnB.Controllers
             ViewData["SelectedPropertyId"] = id;
             //code to get the current user id
             ViewData["userid"] = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewData["r"] = false;
+            Booking z = null;
+            var b = _context.Bookings.ToArray();
+            for(int i = 0; i < b.Length; i++)
+            {
+                if (b[i].AppUserId == (string)ViewData["userid"] && b[i].PropertyId == (int)ViewData["SelectedPropertyId"] && DateTime.Today > b[i].CheckOutDate)
+                {
+                    ViewData["r"] = true;
+                    z = b[i];
+                }
+            }
+            ViewData["z"] = z;
+
+
             var SelectedProp = _context.Properties.FirstOrDefault(x => x.PropertyId == id);
             ViewData["PropertyCapacity"] = SelectedProp.PropertyCapacity;
 
@@ -71,6 +85,7 @@ namespace AirBnB.Controllers
         public IActionResult Create()
         {
             ViewBag.cat = _context.Categoraies;
+            ViewData["userid"] = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewData["AppUserId"] = new SelectList(_context.Users, "Id", "Id");
             ViewData["AreaId"] = new SelectList(_context.Areas, "AreaId", "AreaName");
             ViewData["CategorayId"] = new SelectList(_context.Categoraies, "CategorayId", "CategorayName");
@@ -111,7 +126,7 @@ namespace AirBnB.Controllers
 
                     if (x != null)
                     {
-                        filename = (x.PropertyId +count).ToString() + "." + propImg[i].FileName.Split(".").Last();
+                        filename = @property.PropertyTitle + (x.PropertyId +count).ToString() + "." + propImg[i].FileName.Split(".").Last();
 
                         p.ImgSrc = filename;
                         p.PropertyId = @property.PropertyId;
@@ -141,7 +156,7 @@ namespace AirBnB.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-
+            
             ViewData["AppUserId"] = new SelectList(_context.Users, "Id", "Id", @property.AppUserId);
             ViewData["AreaId"] = new SelectList(_context.Areas, "AreaId", "AreaName", @property.AreaId);
             ViewData["CategorayId"] = new SelectList(_context.Categoraies, "CategorayId", "CategorayName", @property.CategorayId);
