@@ -32,6 +32,7 @@ namespace AirBnB.Models
         [ForeignKey("Categoray")]
         [Required]
         public int CategorayId { get; set; }
+        public bool Accepted { get; set; } = false;
         //NP
         public AppUser AppUser { get; set; }
         public Area Area { get; set; }

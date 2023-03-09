@@ -27,11 +27,14 @@ namespace AirBnB.Controllers
         {
               return View(await _context.Categoraies.ToListAsync());
         }
-        /*public async Task<IActionResult> ShowProp(int id)
+
+        public async Task<IActionResult> ShowProp(int id)
         {
-            var PropList = _context.Properties.Include(z => z.AppUser).Include(z => z.Area).ThenInclude(z => z.City).Include(z => z.Categoray).Include(z => z.PropertyImgs).Where(a=>a.CategorayId==id);
-            return View(await PropList.ToListAsync());
-        }*/
+            var PropList = _context.Properties.Include(z => z.AppUser).Include(z => z.Area).ThenInclude(z => z.City).Include(z => z.Categoray).Include(z => z.PropertyImgs).Where(a => a.CategorayId == id &&a.Accepted==true);
+            var categories = _context.Categoraies;
+            ViewBag.cat = categories;
+            return View(PropList);
+        }
 
         // GET: Categorays/Details/5
         public async Task<IActionResult> Details(int? id)

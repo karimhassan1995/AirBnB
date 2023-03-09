@@ -139,6 +139,7 @@ namespace AirBnB.Controllers
                     }
                     amenity2.AmenityId = amenity.AmenityId;
                     amenity2.AmenityImgSrc = fileName;
+                    amenity2.AmenityType = amenity.AmenityType;
                     amenity2.AmenityName = amenity.AmenityName;
                     _context.Update(amenity2);
                     await _context.SaveChangesAsync();
