@@ -19,12 +19,8 @@
                     User
                 </th>
                 <th>
-                    Area
+                    Manage
                 </th>
-                <th>
-                    Categoray
-                </th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -42,14 +38,9 @@
                         @user.Email
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Area.AreaName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Categoray.CategorayName)
-                    </td>
-                    <td>
                         <a asp-action="AdminDetails" asp-route-id="@item.PropertyId">All Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.PropertyId">Delete</a>
+                        <a class="btn btn-info" asp-controller="Properties" asp-action="Confirm" asp-route-id="@item.PropertyId">Confirm</a>|
+                        <a class="btn btn-danger" asp-controller="Properties" asp-action="Reject" asp-route-id="@item.PropertyId">Reject</a>
                     </td>
                 </tr>
             }

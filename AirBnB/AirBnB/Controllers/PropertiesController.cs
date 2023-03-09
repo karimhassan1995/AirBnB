@@ -25,7 +25,7 @@ namespace AirBnB.Controllers
         // GET: Properties
         public async Task<IActionResult> Index()
         {
-            var PropList = _context.Properties.Include(z => z.AppUser).Include(z => z.Area).ThenInclude(z => z.City).Include(z => z.Categoray).Include(z => z.PropertyImgs);
+            var PropList = _context.Properties.Include(z => z.AppUser).Include(z => z.Area).ThenInclude(z => z.City).Include(z => z.Categoray).Include(z => z.PropertyImgs).Where(a=>a.Accepted==true);
          
             var categories = _context.Categoraies;
             ViewBag.cat = categories;
@@ -269,9 +269,10 @@ namespace AirBnB.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //to show prop in area
         public IActionResult ShowProp(int id)
         {
-            var PropList = _context.Properties.Include(z => z.AppUser).Include(z => z.Area).ThenInclude(z => z.City).Include(z => z.Categoray).Include(z => z.PropertyImgs).Where(a=>a.AreaId==id);
+            var PropList = _context.Properties.Include(z => z.AppUser).Include(z => z.Area).ThenInclude(z => z.City).Include(z => z.Categoray).Include(z => z.PropertyImgs).Where(a=>a.AreaId==id && a.Accepted==true);
 
             var categories = _context.Categoraies;
             ViewBag.cat = categories;
@@ -285,7 +286,7 @@ namespace AirBnB.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AdminIndex()
         {
-            var applicationDbContext = _context.Properties.Include(a => a.AppUser).Include(a => a.Area).Include(a => a.Categoray);
+            var applicationDbContext = _context.Properties.Include(a => a.AppUser).Include(a => a.Area).Include(a => a.Categoray).Where(a=>a.Accepted==false);
             return View(await applicationDbContext.ToListAsync());
         }
         [Authorize (Roles ="Admin")]
@@ -307,6 +308,21 @@ namespace AirBnB.Controllers
             }
 
             return View(@property);
+        }
+
+        public IActionResult Confirm(int id)
+        {
+            var prop = _context.Properties.Find(id);
+            prop.Accepted = true;
+            _context.SaveChanges();
+            return RedirectToAction(nameof(AdminIndex));
+        }
+        public IActionResult Reject(int id)
+        {
+            var prop = _context.Properties.Find(id);
+            _context.Properties.Remove(prop);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(AdminIndex));
         }
     }
 }
