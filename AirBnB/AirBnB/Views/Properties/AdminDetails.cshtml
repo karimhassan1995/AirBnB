@@ -1,0 +1,89 @@
+﻿@model AirBnB.Models.Property
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="container" style="text-align:center">
+    <h1>Details</h1>
+    <div>
+        <a asp-action="Delete">Delete</a>
+    </div>
+    <div>
+        <h4>Property</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PropertyTitle)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PropertyTitle)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PropertyDescription)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PropertyDescription)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PropertyCapacity)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PropertyCapacity)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PropertyBedsNum)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PropertyBedsNum)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PropertyBedRooms)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PropertyBedRooms)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PropertyBath)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PropertyBath)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PropertyPricePerNight)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PropertyPricePerNight)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PropertyHostInfo)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PropertyHostInfo)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.AppUser)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.AppUser.Id)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Area)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Area.AreaName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Categoray)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Categoray.CategorayName)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="AdminIndex">Back to List</a>
+    </div>
+</div>
+
+
+

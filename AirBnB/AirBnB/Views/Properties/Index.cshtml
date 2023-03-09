@@ -3,10 +3,9 @@
 @{
     ViewData["Title"] = "Index";
 }
+
+
 <style>
-
-
-
     .aa {
         height: 27rem;
         margin-bottom: 15px;
@@ -22,8 +21,6 @@
         height: 18rem;
     }
 </style>
-
-
 
 <div class="container">
     <div class="row bg">
@@ -41,9 +38,7 @@
                     
                 }
             </div>
-
         </div>
-
         @foreach (var item in Model)
         {
             var photos = item.PropertyImgs.ToList();
@@ -53,17 +48,6 @@
                         <div class="carousel-inner bb">
                             @for (int i = 0; i < photos.Count(); i++)
                             {
-
-
-                                @*  <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExample_@item.PropertyId" data-bs-slide-to="@i" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        </div>*@
-
-                                @*  <div class="carousel-item active">
-                        <img src="~/Images/@photos[i].ImgSrc" class="d-block w-100 h-100" alt="...">
-                        </div>*@
-
-
                                 if (i == 0)
                                 {
                                     <div class="carousel-item active">
@@ -76,7 +60,6 @@
                                         <img src="~/Images/@photos[i].ImgSrc" style="width:20rem; height:20rem;border-radius:0.8rem" class="d-block w-100" />
                                     </div>
                                 }
-
                             }
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample_@item.PropertyId" data-bs-slide="prev">
@@ -108,16 +91,6 @@
                       
                   </div>
                   </div>
-
-
-
-
-
-
-
-
         }
-
-
     </div>
 </div>

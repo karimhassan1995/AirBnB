@@ -1,0 +1,62 @@
+﻿@inject UserManager<AppUser> UserManager
+@model IEnumerable<AirBnB.Models.Property>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container" style="text-align:center">
+    <h1>Properties</h1>
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Price Per Night
+                </th>
+                <th>
+                    User
+                </th>
+                <th>
+                    Area
+                </th>
+                <th>
+                    Categoray
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                var user = UserManager.Users.FirstOrDefault(a => a.Id == item.AppUserId);
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PropertyTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PropertyPricePerNight)
+                    </td>
+                    <td>
+                        @user.Email
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area.AreaName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Categoray.CategorayName)
+                    </td>
+                    <td>
+                        <a asp-action="AdminDetails" asp-route-id="@item.PropertyId">All Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.PropertyId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+

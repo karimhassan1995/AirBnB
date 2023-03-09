@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AirBnB.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     public class CategoraysController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -27,6 +27,11 @@ namespace AirBnB.Controllers
         {
               return View(await _context.Categoraies.ToListAsync());
         }
+        /*public async Task<IActionResult> ShowProp(int id)
+        {
+            var PropList = _context.Properties.Include(z => z.AppUser).Include(z => z.Area).ThenInclude(z => z.City).Include(z => z.Categoray).Include(z => z.PropertyImgs).Where(a=>a.CategorayId==id);
+            return View(await PropList.ToListAsync());
+        }*/
 
         // GET: Categorays/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -48,16 +53,20 @@ namespace AirBnB.Controllers
         }
 
         // GET: Categorays/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
+
+
 
         // POST: Categorays/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("CategorayId,CategorayName")] Categoray categoray, IFormFile imgFile)
         {
             if (ModelState.IsValid)
@@ -93,7 +102,9 @@ namespace AirBnB.Controllers
             return View(categoray);
         }
 
+
         // GET: Categorays/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Categoraies == null)
@@ -114,6 +125,7 @@ namespace AirBnB.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("CategorayId,CategorayName")] Categoray categoray, IFormFile imgFile)
         {
             if (id != categoray.CategorayId)
@@ -162,6 +174,7 @@ namespace AirBnB.Controllers
         }
 
         // GET: Categorays/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Categoraies == null)
@@ -182,6 +195,7 @@ namespace AirBnB.Controllers
         // POST: Categorays/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Categoraies == null)
