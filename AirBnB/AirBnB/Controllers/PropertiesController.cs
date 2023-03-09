@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AirBnB.Data;
 using AirBnB.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AirBnB.Controllers
 {
@@ -220,7 +221,7 @@ namespace AirBnB.Controllers
             return View(@property);
         }
 
-        // POST: Properties/Delete/5
+        // POST: AdminProperties/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -230,23 +231,62 @@ namespace AirBnB.Controllers
                 return Problem("Entity set 'ApplicationDbContext.Properties'  is null.");
             }
             var @property = await _context.Properties.FindAsync(id);
-            if (@property != null)
+            var propImgs = _context.PropertyImgs.Select(a => a).Where(a => a.PropertyId == id);
+            if (@property != null && propImgs != null)
             {
+                foreach (var item in propImgs)
+                {
+                    if (System.IO.File.Exists("wwwroot/Images/" + item.ImgSrc))
+                    {
+                        System.IO.File.Delete("wwwroot/Images/" + item.ImgSrc);
+                    }
+                    _context.PropertyImgs.Remove(item);
+                }
                 _context.Properties.Remove(@property);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult ShowProp(int id)
         {
-            var Props = _context.Properties.Select(a => a).Where(a=>a.AreaId==id);
-            return View(Props);
+            var PropList = _context.Properties.Include(z => z.AppUser).Include(z => z.Area).ThenInclude(z => z.City).Include(z => z.Categoray).Include(z => z.PropertyImgs).Where(a=>a.AreaId==id);
+
+            var categories = _context.Categoraies;
+            ViewBag.cat = categories;
+            return View(PropList.ToList());
         }
         private bool PropertyExists(int id)
         {
           return _context.Properties.Any(e => e.PropertyId == id);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AdminIndex()
+        {
+            var applicationDbContext = _context.Properties.Include(a => a.AppUser).Include(a => a.Area).Include(a => a.Categoray);
+            return View(await applicationDbContext.ToListAsync());
+        }
+        [Authorize (Roles ="Admin")]
+        public async Task<IActionResult> AdminDetails(int? id)
+        {
+            if (id == null || _context.Properties == null)
+            {
+                return NotFound();
+            }
+
+            var @property = await _context.Properties
+                .Include(a => a.AppUser)
+                .Include(a => a.Area)
+                .Include(a => a.Categoray)
+                .FirstOrDefaultAsync(m => m.PropertyId == id);
+            if (@property == null)
+            {
+                return NotFound();
+            }
+
+            return View(@property);
         }
     }
 }
