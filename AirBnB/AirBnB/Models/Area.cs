@@ -14,6 +14,10 @@ namespace AirBnB.Models
 
         [ForeignKey("City")]
         public int CityId { get; set; }
+
+        public double lat { get; set; }
+
+        public double log { get; set; }
         //NP
         public City City { get; set; }
 

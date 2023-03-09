@@ -13,6 +13,53 @@
 
 
 }
+
+@*start scripts for maps*@
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6v5-2uaq_wusHDktM9ILcqIrlPtnZgEk&sensor=false">
+</script>
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places">
+</script>
+
+<script type="text/javascript">
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success);
+    } else {
+        alert("There is Some Problem on your current browser to get Geo Location!");
+    }
+
+    function success(position) {
+        //var lat = position.coords.latitude;
+        //var long = position.coords.longitude;
+
+        var lat = 31.2001;
+        var long = 29.9187;
+
+        var city = position.coords.locality;
+        var LatLng = new google.maps.LatLng(lat, long);
+        var mapOptions = {
+            center: LatLng,
+            zoom: 8,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        var map = new google.maps.Map(document.getElementById("MyMapLOC"), mapOptions);
+        var marker = new google.maps.Marker({
+            position: LatLng,
+            title: "<div style = 'height:60px;width:200px'><b>Your location:</b><br />Latitude: "
+                + lat + +"<br />Longitude: " + long
+        });
+
+        marker.setMap(map);
+        var getInfoWindow = new google.maps.InfoWindow({
+            content: "<b>Your Current Location</b><br/> Latitude:" +
+                lat + "<br /> Longitude:" + long + ""
+        });
+        getInfoWindow.open(map, marker);
+    }
+</script>
+@*End scripts for maps*@
+
 <section class="first mb-5 mt-5">
     <div class="container mt-5  ">
         <h2 class="heading ">
@@ -295,8 +342,15 @@
 
 <!-- map -->
 <section class="map mt-5 mx-5 mb-5">
-   
+    <div class="heading">Where You Will Be</div>
+    @*maps from here*@
 
+    <form id="form1" runat="server" class="map">
+        <div id="MyMapLOC" style="width: 550px; height: 470px" class="map">
+        </div>
+    </form>
+
+   @*to here*@
 
 
 </section>
