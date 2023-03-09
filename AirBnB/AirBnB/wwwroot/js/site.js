@@ -21,3 +21,18 @@ function myfunc(id) {
         currentLabel.className += ` ${selectedLabel}`
     }
 }
+
+//multiselectedClass 
+const multiselectedClass = "sel-label";
+const multiselected = "sel-label";
+function multiplefunction(id) {
+    const currentLabel = document.getElementById(id);
+    const currentLabelClass = currentLabel.className;
+    const selectedLabels = document.getElementsByClassName(multiselected);  
+    if (!currentLabelClass.includes(multiselected)) {
+        currentLabel.className += ` ${multiselected}`
+    }
+    else {
+    currentLabel.classList.remove(multiselected);
+    }
+}
