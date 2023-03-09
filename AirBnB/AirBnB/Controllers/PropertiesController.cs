@@ -56,6 +56,7 @@ namespace AirBnB.Controllers
                 .FirstOrDefaultAsync(m => m.PropertyId == id);
 
             ViewBag.reviews = _context.Reviews;
+            ViewBag.areas = _context.Areas;
             if (@property == null)
             {
                 return NotFound();

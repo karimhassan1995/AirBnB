@@ -1,15 +1,20 @@
 ﻿@inject UserManager<AppUser> UserManager
 @model AirBnB.Models.Property
 
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
 @{
     ViewData["Title"] = "Details";
     var revew = Model.Reviews.ToList();
     var imgs = Model.PropertyImgs.ToList();
-    var amenities = Model.Amenities.ToList();
+    
+
 
 }
-<section class="first mb-5 ">
-    <div class="container  ">
+<section class="first mb-5 mt-5">
+    <div class="container mt-5  ">
         <h2 class="heading ">
             @Model.PropertyDescription
         </h2>
@@ -28,12 +33,20 @@
                 }
                 <span>@avregeview</span>
                 <a class="mx-2 text-dark" href="#">@Enumerable.Count(ViewBag.reviews) Reviews ·</a>
-                <a href="#" class="text-dark">@Model.Area.AreaName, @Model.Area.City.CityName Governorate, Egypt</a>
+                <a asp-action="ShowProp" asp-route-id="@Model.AreaId" class="text-dark">@Model.Area.AreaName,</a>
+                                <a asp-action="Index" asp-route-id="@Model.Area.CityId" class="text-dark"> @Model.Area.City.CityName Governorate, Egypt</a>
+
 
             </div>
 
-            <div class="col-lg-2  col-sm-6 d-flex justify-content-end y  ">
-                <button type="submit" class="btn btn-danger btn-lg mt-3 w-100">Book it Now</button>
+            <div class="col-lg-2  col-12 d-flex justify-content-end   ">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <a asp-controller="Bookings" asp-action="Create" asp-route-id="@Model.PropertyId" class="btn btn-danger btn-lg mt-3 w-100">Book it Now</a>
+
+                    
+                }
+
 
             </div>
 
@@ -46,7 +59,7 @@
                 @if (i == 0)
                 {
                     <div class="col-lg-6 image col-sm-12">
-                        <img src="./imgs/Image.png" class="img-fluid rounded w-100 h-100 shadow-1 " alt="...">
+                        <img src="~/Images/@imgs[i].ImgSrc" class="img-fluid rounded w-100 h-100 shadow-1 " alt="...">
 
                     </div>
 
@@ -82,7 +95,7 @@
         <div class="row ">
             <div class="col-lg-8 border-bottom  col-sm-12 ">
                 <div class=" border-bottom ">
-                    <h3>Entire @Model.PropertyTitle hosted by @Model.AppUser.Email.Split("@").First()</h3>
+                    <h3 class="heading">Entire @Model.PropertyTitle hosted by @Model.AppUser.Email.Split("@").First()</h3>
                     <div class="mb-4">
                         <span>@Model.PropertyCapacity guests.</span>
                         <span>@Model.PropertyBedRooms bedrooms.</span>
@@ -145,11 +158,11 @@
 <!-- property details section -->
 <!-- Amenities -->
 
-<section class="Amenities">
+<section class="Amenities mt-5">
     <div class="container">
         <div class="row  ">
             <div class="col-lg-8 mb-4 border-bottom col-sm-12">
-                <div class="heading h2 mb-4 mx-3">
+                <div class="heading h2 mb-4 ">
                     What this place offers
                 </div>
                 <div class="row  justify-content-between">
@@ -157,7 +170,7 @@
                     @foreach (var i in Model.Amenities)
                     {
                         <div class=" col-6  d-flex ">
-                            <div class="d-flex  ">
+                            <div class="d-flex mb-4 ">
                                 <img src="~/AmenityImg/@i.AmenityImgSrc" style="width:25px; height20px; margin-right:10px;" />
                                 <p>@i.AmenityName</p>
                             </div>
@@ -177,29 +190,42 @@
 <!-- Reviews -->
 <section class="reviews  ">
     <div class="container ">
-        <div class="row mx-3">
+        <div class="row ">
             <div class="col-12 ">
-                <i class="fa-solid fa-star h4"></i>
-                <span class="h4"> ·</span>
-                <a class="mx-2 text-dark " href="#">21 reviews </a>
+                <div class="heading mb-3">
+                    Reviews 
+                </div>
+
+                <i class="fa-solid fa-star h5" ></i>
+            
+                <span class="h5">@avregeview ·</span>
+                <a class="mx-2 text-dark " href="#">@Enumerable.Count(ViewBag.reviews) reviews </a>
+            </div>
+        </div>
 
                 <!-- horizontal bars -->
                 <!-- comments -->
 
-                <div class="row mt-5">
+                <div class="row mt-5 ">
                     <!-- one comment -->
+          
 
 
-                    <div class="col-lg-6 gx-1 col-12 ">
+
                         @foreach (var i in Model.Reviews)
-                        {
-                            var User = UserManager.Users.FirstOrDefault(a => a.Id == i.AppUserId);
-                            byte[] byteArray = User.ProfilePicture;
-                            string base64Strimg = Convert.ToBase64String(byteArray);
-                            <div class="card border-0 ">
+                {
+                    var User = UserManager.Users.FirstOrDefault(a => a.Id == i.AppUserId);
+                    byte[] byteArray = User.ProfilePicture;
+                    string base64Strimg = Convert.ToBase64String(byteArray);
+
+                    <div class="col-lg-6 gx-1 col-12  ">
+                                
+
+                          
+                            <div class="card border-0   mb-3 ">
                                 <div class="card-body">
-                                    <div class="info d-flex mb-3">
-                                        <img src="data:image/png;base64,base64Strimg" alt="notfound" style="width:50px;height:50px">
+                                    <div class="d-flex mb-3">
+                                        <img src="data:image/png;base64,@base64Strimg" alt="notfound" style="width:70px;height:70px">
                                         <div class="name date mx-3">
                                             <h5 class="card-title"> @User.FirstName</h5>
                                         </div>
@@ -210,50 +236,30 @@
 
                                 </div>
                             </div>
+
+
+                             </div>
                         }
-                    </div>
+               
 
 
 
 
 
-                    <!-- see more butoon  -->
-                    <!-- <div class="row mx-3 ">
-                        <div class="col-4">
-                            <button class="btn btn-white border border-dark px-3 fs-5 ">See All Reviews</button>
-                        </div>
-                    </div> -->
 
-                </div>
-            </div>
+
         </div>
+
+
+          
+      
     </div>
 </section>
 
 <!-- map -->
 <section class="map mt-5 mx-5 mb-5">
-    <div class="container">
-        <div class="row">
-            <div class=" col-12 heading h2 mb-5 ">
-                Where you’ll be
+   
 
-            </div>
-            <div class="col-12">
-                <img src="./imgs/Screenshot (92).png" alt="" style="max-width: 100%;">
-            </div>
-
-            <div class="col-lg-6 col-12">
-                <h5>
-                    Sidi Gabir, Alexandria Governorate, Egypt
-                </h5>
-
-            </div>
-
-
-
-
-        </div>
-    </div>
 
 
 </section>
@@ -265,50 +271,35 @@
         <div class="row">
             <div class="card border-0">
                 <div class="card-body">
-                    <div class="info d-flex mb-3">
-                        <img src="./imgs/Screenshot (90).png" alt="">
+                    <div class=" d-flex mb-3">
+                        @{
+                            byte[] byteArray2 = Model.AppUser.ProfilePicture;
+                            string base64Strimg2 = Convert.ToBase64String(byteArray2);
+                        }
+                        <img src="data:image /png;base64,@base64Strimg2" alt="" style="width:70px;height:70px">
 
                         <div class="name date mx-3">
                             <h5 class="card-title">
-                                Hosted by Dina
+                                Hosted by @Model.AppUser.FirstName
                             </h5>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                Joined in October 2020
-                            </h6>
+                            
                         </div>
                     </div>
 
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item  border-0 ">
-
-                            <i class="fa-solid fa-star"></i>
-                            <span class="p-2">84 Reviews </span>
-
-
-                            <i class="fa-regular fa-circle-check p"></i>
-                            <span>Identity verified</span>
-
-
-
-
-                        </li>
-                        <li class="list-group-item  border-0 h6">
-                            During your stay
+                   
+                        <li class="list-group-item  border-0 h5 ">
+                            @Model.PropertyHostInfo
 
                         </li>
 
 
 
-                        <li class="list-group-item border-0">
-                            I will be always available through messages and calls till 22:00
-                        </li>
-                        <li class="list-group-item  border-0">
-                            Response rate: 100%
-                        </li>
-                        <li class="list-group-item border-0">A third item</li>
+                        
+                      
                     </ul>
 
-                    <div class="card-footert ">
+                    <div class="card-footert mt-3 border p-1">
                         <div class="row">
                         </div>
 
@@ -409,6 +400,7 @@
 
 </section>
 <!-- footer -->
+
 <section class="areas mt-5 bg-light">
     <div class="container">
         <!-- first sec -->
@@ -419,7 +411,19 @@
 
             </div>
             <!-- first col -->
-            <div class="col-lg-3 col-6">
+            @foreach (var i in ViewBag.areas)
+            {
+
+                <div class="col-lg-3 col-6">
+                    <ul class="list-group list-group-flush border-0 ">
+                        <li class="list-group-item border-0 bg-light"><a asp-action="ShowProp" asp-route-id="@i.AreaId" class="text-dark text-decoration-none ">@i.AreaName</a></li>
+
+                    </ul>
+
+                </div>
+                
+            }
+     @*       <div class="col-lg-3 col-6">
                 <ul class="list-group list-group-flush border-0 ">
                     <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none ">El-Agamy</a></li>
                     <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">San Stifano</a></li>
@@ -457,7 +461,7 @@
 
                 </ul>
 
-            </div>
+            </div>*@
             <!-- links -->
 
 
