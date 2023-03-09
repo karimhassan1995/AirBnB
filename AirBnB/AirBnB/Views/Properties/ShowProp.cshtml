@@ -5,43 +5,61 @@
 }
 
 
+<style>
+    .aa {
+        height: 27rem;
+        margin-bottom: 15px;
+        border-radius: 15px;
+    }
 
+    .bb {
+        height: 14rem;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .cc {
+        height: 18rem;
+    }
+</style>
 
 <div class="container">
     <div class="row bg">
+        <div>
+            <div class="d-flex my-2 border d-flex justify-content-center mb-4">
+                @foreach (var item1 in ViewBag.cat)
+                {
+                    <div class=" d-flex flex-column mx-4 ">
+
+                        <a asp-controller="Categorays" asp-action="Details" asp-route-id="@item1.CategorayId"><img class="icons-image" src="/CategoryImgs/@item1.Categoryphotosrc" alt="Categoray Image" style="width:60px;height:60px;margin-bottom:-15px" /></a>
+                        <a class="text-dark" asp-controller="Categorays" asp-action="Details" asp-route-id="@item1.CategorayId">@item1.CategorayName</a>
+                    </div>
+
+
+
+                }
+            </div>
+        </div>
         @foreach (var item in Model)
         {
             var photos = item.PropertyImgs.ToList();
-            <div class="col-4">
-                <div class="card ">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card aa ">
                     <div id="carouselExample_@item.PropertyId" class="carousel slide h-100">
-                        <div class="carousel-inner">
+                        <div class="carousel-inner bb">
                             @for (int i = 0; i < photos.Count(); i++)
                             {
-
-
-                                @*  <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExample_@item.PropertyId" data-bs-slide-to="@i" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        </div>*@
-
-                                @*  <div class="carousel-item active">
-                        <img src="~/Images/@photos[i].ImgSrc" class="d-block w-100 h-100" alt="...">
-                        </div>*@
-
-
                                 if (i == 0)
                                 {
                                     <div class="carousel-item active">
-                                        <img src="~/Images/@photos[i].ImgSrc" width="300" height="300" class="d-block w-100 rounded" />
+                                        <img src="~/Images/@photos[i].ImgSrc" style="width:15rem; height:15rem;border-radius:0.8rem" class="d-block w-100 " />
                                     </div>
                                 }
                                 else
                                 {
                                     <div class="carousel-item">
-                                        <img src="~/Images/@photos[i].ImgSrc" width="330" height="330" class="d-block w-100" />
+                                        <img src="~/Images/@photos[i].ImgSrc" style="width:20rem; height:20rem;border-radius:0.8rem" class="d-block w-100" />
                                     </div>
                                 }
-
                             }
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample_@item.PropertyId" data-bs-slide="prev">
@@ -53,11 +71,7 @@
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
-
-
-
-
-                    <div class="card-body">
+                    <div class=" cc card-body">
                         <h5 class="card-title">@item.PropertyTitle</h5>
                         <p class="card-text">
                             <small class="text-muted">@item.PropertyDescription</small>
@@ -66,25 +80,22 @@
                             <small class="text-muted">@item.PropertyBedsNum beds</small>
                         </p>
                     </div>
-                    <div class="card-footer border-0 bg-transparent ">
-                        <small class="text-muted"><span>@item.PropertyPricePerNight</span>$ per night</small>
+                    <div class="card-footer border-0 bg-transparent  ">
+                        <small><span class="h6 ">@item.PropertyPricePerNight$</span> <span class="text-muted">per night</span></small>
+                    </div>
+                    <div class="m-auto">
+                        <a  asp-controller="Properites" asp-action="Details" asp-route-id="@item.PropertyId" class="btn btn-primary h-50 px-5 m-1 " style="padding-bottom:25px ">Details</a>
+
+                        @*                        <a asp-controller="Bookings" asp-action="Create" asp-route-id="@item.PropertyId">Book</a>
+                    *@
                     </div>
 
                 </div>
             </div>
-
-
-
-
-
-
-
-
         }
-
-
     </div>
 </div>
+
 
 
 
