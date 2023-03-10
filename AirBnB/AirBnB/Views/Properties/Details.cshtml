@@ -9,7 +9,7 @@
     ViewData["Title"] = "Details";
     var revew = Model.Reviews.ToList();
     var imgs = Model.PropertyImgs.ToList();
-    
+
 
 
 }
@@ -76,7 +76,7 @@
                     max += r.ReviewRate;
                 }
                 @{
-                    int avregeview = 0 ;
+                    int avregeview = 0;
                     if (Enumerable.Count(revew) > 0)
                     {
                         avregeview = max / Enumerable.Count(revew);
@@ -85,7 +85,7 @@
                 <span>@avregeview</span>
                 <a class="mx-2 text-dark" href="#">@Enumerable.Count(revew) Reviews ·</a>
                 <a asp-action="ShowProp" asp-route-id="@Model.AreaId" class="text-dark">@Model.Area.AreaName,</a>
-                                <a asp-action="Index" asp-route-id="@Model.Area.CityId" class="text-dark"> @Model.Area.City.CityName Governorate, Egypt</a>
+                <a asp-action="Index" asp-route-id="@Model.Area.CityId" class="text-dark"> @Model.Area.City.CityName Governorate, Egypt</a>
 
 
             </div>
@@ -96,7 +96,7 @@
                     <a asp-action="Delete" asp-route-id="@Model.PropertyId" class="btn btn-danger btn-lg mt-3 w-100">Delete This Property</a>
 
 
-                    
+
                 }
                 else if (SignInManager.IsSignedIn(User))
                 {
@@ -166,11 +166,11 @@
                 </div>
 
 
-                <div class="row " >
+                <div class="row ">
                     <div class="col-1  d-flex justify-content-center align-items-center fs-3">
                         <i class="fa-sharp fa-solid fa-key"></i>
                     </div>
-                    <div class="card col-11 border-0  " >
+                    <div class="card col-11 border-0  ">
 
                         <div class="card-body">
                             <h5 class="card-title">Great check-in experience</h5>
@@ -254,117 +254,99 @@
         <div class="row ">
             <div class="col-12 ">
                 <div class="heading mb-3">
-                    Reviews 
+                    Reviews
                 </div>
 
-                <i class="fa-solid fa-star h5" ></i>
-            
+                <i class="fa-solid fa-star h5"></i>
+
                 <span class="h5">@avregeview ·</span>
                 <a class="mx-2 text-dark " href="#">@Enumerable.Count(revew ) reviews </a>
             </div>
         </div>
 
-                <!--inset review -->
+        <!--inset review -->
         @if (SignInManager.IsSignedIn(User) && (bool)ViewData["r"] == true)
         {
             <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" asp-controller="Reviews">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                
-           <input asp-for="AppUserId" class="form-control" value="@ViewData["userid"]" type="hidden"/>
+                <div class="col-md-4">
+                    <form asp-action="Create" asp-controller="Reviews">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+
+                            <input asp-for="AppUserId" class="form-control" value="@ViewData["userid"]" type="hidden" />
+                        </div>
+                        <div class="form-group">
+
+                            <input asp-for="PropertyId" class="form-control" value='@ViewData["SelectedPropertyId"]' type="hidden" />
+                        </div>
+                        <div class="form-group">
+                            <h5 name="ReviewRate" class="control-label">Rate your experience</h5>
+                            <div class="text-warning fs-6">Insert from 1 to 5</div>
+                            <input name="ReviewRate" class="form-control" />
+                            <span name="ReviewRate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <h5 name="ReviewComment" class="control-label mb-2 mt-2">Write your comment</h5>
+                            <textarea name="ReviewComment" rows="5" cols="60" class="form-control rounded-3 textarea fs-5 p-3"></textarea>
+                            <span name="ReviewComment" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Submit" class="btn btn-warning mt-3" />
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-               
-                <input asp-for="PropertyId" class="form-control" value='@ViewData["SelectedPropertyId"]' type="hidden" />
-            </div>
-            <div class="form-group">
-                            <label name="ReviewRate" class="control-label">ReviewRate</label>
-                <input name="ReviewRate" class="form-control" />
-               <span name="ReviewRate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                            <label name="ReviewComment" class="control-label">ReviewComment</label>
-                <input name="ReviewComment" class="form-control" />
-              <span name="ReviewComment" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Review" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-            
-        
+
+
         }
         <!-- comments -->
 
-                <div class="row mt-5 ">
-                    <!-- one comment -->
-          
-
-
-
-                        @foreach (var i in Model.Reviews)
-                {
-                    var User = UserManager.Users.FirstOrDefault(a => a.Id == i.AppUserId);
-                    byte[] byteArray = User.ProfilePicture;
+        <div class="row mt-5 ">
+            <!-- one comment -->
+            @foreach (var i in Model.Reviews)
+            {
+                var User = UserManager.Users.FirstOrDefault(a => a.Id == i.AppUserId);
+                byte[] byteArray = User.ProfilePicture;
                 string base64Strimg = null;
-                @if(byteArray != null)
+                @if (byteArray != null)
                 {
                     base64Strimg = Convert.ToBase64String(byteArray);
                 }
 
-                    <div class="col-lg-6 gx-1 col-12  ">
-                                
-
-                          
-                            <div class="card border-0   mb-3 ">
-                                <div class="card-body">
-                                    <div class="d-flex mb-3">
+                <div class="col-lg-6 gx-1 col-12  ">
+                    <div class="card border-0   mb-3 ">
+                        <div class="card-body">
+                            <div class="d-flex mb-3">
                                 <img src="data:image/png;base64,@base64Strimg" alt="notfound" style="width:50px;height:50px" class="rounded-circle">
-                                        <div class="name date mx-3">
-                                            <h5 class="card-title"> @User.FirstName</h5>
-                                        </div>
-                                    </div>
-                                    <p class="card-text">
-                                        @i.ReviewComment
-                                    </p>
-
+                                <div class="name date mx-3">
+                                    <h5 class="card-title"> @User.FirstName</h5>
                                 </div>
                             </div>
+                            <p class="card-text">
+                                @i.ReviewComment
+                            </p>
+
+                        </div>
+                    </div>
 
 
-                             </div>
-                        }
-               
-
-
-
-
-
-
-
+                </div>
+            }
         </div>
-
-
-          
-      
     </div>
 </section>
 
 <!-- map -->
-<section class="map mt-5 mx-5 mb-5">
+<section class="mt-5 mx-5 mb-5">
     <div class="heading">Where You Will Be</div>
     @*maps from here*@
 
     <form id="form1" runat="server" class="map">
-        <div id="MyMapLOC" style="width: 550px; height: 470px" class="map">
+        <div id="MyMapLOC" style="width: 550px; height: 470px" class="map offset-3">
         </div>
     </form>
 
-   @*to here*@
+    @*to here*@
 
 
 </section>
@@ -389,38 +371,29 @@
 
                         }
                         <a href="/profile/showprofile/@Model.PropertyId">
-                            <img src="data:image /png;base64,@base64Strimg2" alt="" style="width:70px;height:70px " >
+                            <img src="data:image /png;base64,@base64Strimg2" alt="" style="width:70px;height:70px " class="rounded-circle">
                         </a>
 
                         <div class="name date mx-3">
                             <h5 class="card-title">
                                 Hosted by @Model.AppUser.FirstName
                             </h5>
-                            
+
                         </div>
                     </div>
 
                     <ul class="list-group list-group-flush">
-                   
+
                         <li class="list-group-item  border-0 h5 ">
                             @Model.PropertyHostInfo
-
                         </li>
-
-
-
-                        
-                      
                     </ul>
 
                     <div class="card-footert mt-3 border p-1">
                         <div class="row">
                         </div>
-
-                        <div class="col-lg-3 d-flex col-12">
+                        <div class="col-lg-3 d-flex col-10">
                             <i class="fa-solid fa-shield  mx-3 align-self-center"></i>
-
-
                             <p>
                                 To protect your payment, never transfer money or communicate outside of the Airbnb website or app.
                             </p>
@@ -428,10 +401,7 @@
                         </div>
                     </div>
                 </div>
-
-
-
-            </div>
+           </div>
 
         </div>
 
@@ -535,45 +505,45 @@
                     </ul>
 
                 </div>
-                
-            }
-     @*       <div class="col-lg-3 col-6">
-                <ul class="list-group list-group-flush border-0 ">
-                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none ">El-Agamy</a></li>
-                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">San Stifano</a></li>
-                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Sidi bishr</a></li>
 
-                </ul>
+            }
+            @*       <div class="col-lg-3 col-6">
+            <ul class="list-group list-group-flush border-0 ">
+            <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none ">El-Agamy</a></li>
+            <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">San Stifano</a></li>
+            <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Sidi bishr</a></li>
+
+            </ul>
 
             </div>
             <!-- second col -->
             <div class="col-lg-3 col-6">
-                <ul class="list-group list-group-flush border-0">
-                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none ">Bahary</a></li>
-                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Roshdy</a></li>
-                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Asafra</a></li>
+            <ul class="list-group list-group-flush border-0">
+            <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none ">Bahary</a></li>
+            <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Roshdy</a></li>
+            <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Asafra</a></li>
 
-                </ul>
+            </ul>
 
             </div>
             <!-- third col -->
             <div class="col-lg-3 col-6">
-                <ul class="list-group list-group-flush border-0">
-                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none ">Kafr Abdu</a></li>
-                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Glim</a></li>
-                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Louran</a></li>
+            <ul class="list-group list-group-flush border-0">
+            <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none ">Kafr Abdu</a></li>
+            <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Glim</a></li>
+            <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Louran</a></li>
 
-                </ul>
+            </ul>
 
             </div>
             <!-- fourth col -->
             <div class="col-lg-3 col-6">
-                <ul class="list-group list-group-flush border-0">
-                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none ">Zezenia</a></li>
-                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Mahatet El Raml</a></li>
-                    <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Smouha</a></li>
+            <ul class="list-group list-group-flush border-0">
+            <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none ">Zezenia</a></li>
+            <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Mahatet El Raml</a></li>
+            <li class="list-group-item border-0 bg-light"><a href="#" class="text-dark text-decoration-none">Smouha</a></li>
 
-                </ul>
+            </ul>
 
             </div>*@
             <!-- links -->
