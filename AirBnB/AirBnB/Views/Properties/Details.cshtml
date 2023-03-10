@@ -32,14 +32,14 @@
         //var lat = position.coords.latitude;
         //var long = position.coords.longitude;
 
-        var lat = 31.2001;
-        var long = 29.9187;
+        var lat = @Model.Area.lat;
+        var long = @Model.Area.log;
 
         var city = position.coords.locality;
         var LatLng = new google.maps.LatLng(lat, long);
         var mapOptions = {
             center: LatLng,
-            zoom: 8,
+            zoom: 15,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
@@ -387,7 +387,9 @@
                             }
 
                         }
-                        <img src="data:image /png;base64,@base64Strimg2" alt="no-photo" style="width:70px;height:70px " class="rounded-circle">
+                        <a href="/profile/showprofile/@Model.PropertyId">
+                            <img src="data:image /png;base64,@base64Strimg2" alt="" style="width:70px;height:70px " >
+                        </a>
 
                         <div class="name date mx-3">
                             <h5 class="card-title">
@@ -595,6 +597,7 @@
 </section>
 
 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuHK4vUVWB0LI15XwIbtvUTFkvop134Uo&callback=initMap" async defer></script>
 
 
 
