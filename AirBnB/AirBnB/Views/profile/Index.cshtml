@@ -57,16 +57,16 @@
 
                                         <h6 class="card-subtitle mb-2 text-muted">(not now)Joined in 2020</h6>
                                     </div>
-                                    
-                                <li list-group-item> <img src="data:image/png;base64,@ViewBag.proImg" alt="Not found" class="mx-5 w-50"> </li>
+
+                                <li class="list-group-item bg-danger"> <img src="data:image/png;base64,@ViewBag.proImg" alt="Not found" class="mx-5 w-25"> </li>
                         </div>
 
-                        <li list-group-item class="mb-2  ">
+                        <li class="list-group-item mb-2">
                             <i class="fa-solid fa-star"></i>
                             <span class="p-2">84 Reviews </span>
                         </li>
 
-                        <li list-group-item border-0 class="mb-4">
+                        <li class="list-group-item border-0 mb-4">
                             <i class="fa-regular fa-circle-check p"></i>
                             <span class="p-2">Identity verified </span>
                         </li>
@@ -77,18 +77,18 @@
                             <span>Lives in Alexandria, Egypt</span>
                         </div>
 
-                        <li list-group-item border-0 class="h5 mb-3">
-                            @Model.AppUser.FirstName Confirmed
+                        <li class="list-group-item border-0 h5 mb-3">
+                                    @Model.AppUser.FirstName Confirmed
                         </li>
 
-                        
-                        <li list-group-item border-0 class="mb-2 mt-2">
+
+                        <li class="list-group-item border-0 mb-2 mt-2">
                             <i class="fa-solid fa-check"></i>
                             <span class="p-2 ">Email address</span>
 
 
                         </li>
-                        <li list-group-item border-0>
+                        <li class="list-group-item border-0" ">
                             <i class="fa-solid fa-check"></i>
                             <span class="p-2">Phone number </span>
 
@@ -97,18 +97,19 @@
                         </ul>
 
                         <!-- carousel -->
-                            
-                            <div id="carouselExampleControls" class="owl-carousel owl-theme carousel-dark slide w-80  d-flex justify-content-center   " data-ride="carousel">
+
+                        <div id="carouselExampleControls" class="owl-carousel owl-theme carousel-dark slide w-80  d-flex justify-content-center   " data-ride="carousel">
                             @foreach (var item in (List<Property>)ViewData["propList"])
                             {
-                                    var photos = item.PropertyImgs.ToList();
+                            var photos = item.PropertyImgs.ToList();
 
-                                <div class="item mb-4 ">
+                            <div class="item mb-4 ">
                                 <div class="card mx-2  ">
-                                            @*@for (int i = 0; i < photos.Count(); i++)
-                                            {*@
-                                                <img src="./propImgs/@photos[0].ImgSrc" class="card-img-top " alt="...">
-                                            @*}*@
+                                    @for (int i = 0; i < 1 @*photos.Count()*@; i++)
+                                    {
+                                    @*image removed*@
+                                    <img src="./propImgs/@photos[0].ImgSrc" class="card-img-top " alt="...">
+                                    }
                                     <div class="card-body">
                                         <h6 class="card-title">
                                             <i class="fa-solid fa-star"></i>
@@ -118,21 +119,21 @@
 
                                     </div>
                                 </div>
-                                    
+
                             </div>
 
-                                }
+                            }
                         </div>
-                            
-                    </div>
-
 
                     </div>
 
 
                 </div>
 
+
             </div>
+
+        </div>
 
 
 
