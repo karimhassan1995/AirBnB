@@ -116,29 +116,30 @@
         <div class="row ">
             @for (int i = 0; i < 3; i++)
             {
-                @if (i == 0)
-                {
-                    <div class="col-lg-6 image col-sm-12">
-                        <img src="~/Images/@imgs[i].ImgSrc" class="img-fluid rounded w-100 h-100 shadow-1 " alt="...">
+                
+                    @if (i == 0)
+                    {
+                        <div class="col-lg-6 image col-sm-12">
 
-                    </div>
+                            <img src="~/Images/@imgs[i].ImgSrc" class="img-fluid rounded w-100 h-100 shadow-1 " alt="...">
 
-                }
-                else
-                {
-                    <div class="col-lg-3   col-6" style="margin-right:-10px ;">
-                        <img src="~/Images/@imgs[i*2 - 1].ImgSrc" class="img-fluid rounded w-100 h-50 p-1 shadow-1 " alt="...">
-                        @if (i * 2 < imgs.Count())
-                        {
-                            <img src="~/Images/@imgs[i*2].ImgSrc" class="img-fluid rounded w-100 h-50 p-1 shadow-1" alt="...">
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-lg-3   col-6" style="margin-right:-10px ;">
+                            <img src="~/Images/@imgs[i*2 - 1].ImgSrc" class="img-fluid rounded w-100 h-50 p-1 shadow-1 " alt="...">
+                            @if (i * 2 < imgs.Count())
+                            {
+                                <img src="~/Images/@imgs[i*2].ImgSrc" class="img-fluid rounded w-100 h-50 p-1 shadow-1" alt="...">
 
 
-                        }
+                            }
 
-                    </div>
+                        </div>
 
-                }
-
+                    }
+                
             }
 
 
