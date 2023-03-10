@@ -309,7 +309,11 @@
                 {
                     var User = UserManager.Users.FirstOrDefault(a => a.Id == i.AppUserId);
                     byte[] byteArray = User.ProfilePicture;
-                    string base64Strimg = Convert.ToBase64String(byteArray);
+                string base64Strimg = null;
+                @if(byteArray != null)
+                {
+                    base64Strimg = Convert.ToBase64String(byteArray);
+                }
 
                     <div class="col-lg-6 gx-1 col-12  ">
                                 
@@ -376,10 +380,14 @@
                         @{
 
                             byte[] byteArray2 = Model.AppUser.ProfilePicture;
-                            string base64Strimg2 = Convert.ToBase64String(byteArray2);
+                            string base64Strimg2 = null;
+                            @if (byteArray2 != null)
+                            {
+                                base64Strimg2 = Convert.ToBase64String(byteArray2);
+                            }
 
                         }
-                        <img src="data:image /png;base64,@base64Strimg2" alt="" style="width:70px;height:70px " class="rounded-circle">
+                        <img src="data:image /png;base64,@base64Strimg2" alt="no-photo" style="width:70px;height:70px " class="rounded-circle">
 
                         <div class="name date mx-3">
                             <h5 class="card-title">
