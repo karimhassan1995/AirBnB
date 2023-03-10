@@ -84,7 +84,9 @@
                         <small><span class="h6 ">@item.PropertyPricePerNight$</span> <span class="text-muted">per night</span></small>
                     </div>
                     <div class="m-auto">
-                        <a  asp-controller="Properites" asp-action="Details" asp-route-id="@item.PropertyId" class="btn btn-primary h-50 px-5 m-1 " style="padding-bottom:25px ">Details</a>
+@*                        <a  asp-controller="Properites" asp-action="Details" asp-route-id="@item.PropertyId" class="btn btn-primary h-50 px-5 m-1 " style="padding-bottom:25px ">Details</a>
+*@                        <a asp-action="Details" asp-route-id="@item.PropertyId" class="btn btn-primary h-50 px-5 m-1 " style="padding-bottom:25px ">Details</a>
+
 
                         @*                        <a asp-controller="Bookings" asp-action="Create" asp-route-id="@item.PropertyId">Book</a>
                     *@

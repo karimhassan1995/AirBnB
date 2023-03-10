@@ -40,6 +40,9 @@ namespace AirBnB.Controllers
                 return NotFound();
             }
 
+            //code to get the current user id
+            ViewData["userid"] = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             //code to get the selected property id
             ViewData["SelectedPropertyId"] = id;
             //code to get the current user id
