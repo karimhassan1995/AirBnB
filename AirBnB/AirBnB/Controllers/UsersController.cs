@@ -1,4 +1,5 @@
-﻿using AirBnB.Models;
+﻿using AirBnB.Data;
+using AirBnB.Models;
 using AirBnB.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -96,5 +97,6 @@ namespace AirBnB.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+        
     }
 }
