@@ -79,11 +79,22 @@ namespace AirBnB.Controllers
         {
             //var idtest = _context.Bookings.FirstOrDefault(a => a.PropertyId == booking.PropertyId);
 
-           var NotAvalible = _context.Bookings.Where(a => a.PropertyId == booking.PropertyId).Select(a => (a.CheckInDate <= booking.CheckInDate && a.CheckOutDate >= booking.CheckInDate)|| (a.CheckInDate <= booking.CheckOutDate && a.CheckOutDate >= booking.CheckOutDate)).FirstOrDefault();
+            //var NotAvalible = _context.Bookings.Where(a => a.PropertyId == booking.PropertyId).Select(a => (a.CheckInDate <= booking.CheckInDate && a.CheckOutDate >= booking.CheckInDate) && (a.CheckInDate <= booking.CheckOutDate && a.CheckOutDate >= booking.CheckOutDate)).FirstOrDefault();
+            var valid=_context.Bookings.ToArray();
+            Booking book = null;
+            for(int i = 0; i < valid.Length ; i++)
+            {
+                if (booking.PropertyId  == valid[i].PropertyId  && ((booking.CheckInDate >= valid[i].CheckInDate && booking.CheckOutDate <= valid[i].CheckOutDate )|| ( booking.CheckInDate <= valid[i].CheckInDate && booking.CheckOutDate  >= valid[i].CheckInDate && booking.CheckOutDate <= valid[i].CheckOutDate) ||(booking.CheckInDate >= valid[i].CheckInDate && booking.CheckInDate <= valid[i].CheckOutDate && booking.CheckOutDate >= valid[i].CheckOutDate) || (booking.CheckInDate <= valid[i].CheckInDate && booking.CheckOutDate >= valid[i].CheckOutDate) ))
+                {
+                    book = valid[i];
+                    break;
+                }
+
+            }
           
             if (ModelState.IsValid  )
             {
-                if (!NotAvalible)
+                if (book == null)
                 {
 
                     _context.Add(booking);
