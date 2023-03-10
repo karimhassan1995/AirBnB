@@ -25,7 +25,7 @@
                         <h5 class="col-md-8 col-md-push-8 text-secondary ms-3">
                             Share some basic info, like where it is and how many guests can stay.
                         </h5>
-                        <img class="col-md-3 col-md-push-3" src="~/createimgs/$RL20YJP.png" />
+                        <img class="col-md-3 col-md-push-3" src="~/createimgs/$RL20YJP.png" style="background-color:darkgrey"/>
                     </div>
                 </div>
                 <!-- 2 -->
@@ -79,7 +79,7 @@
         <div class="col-md-6 col-md-push-5 ">
             <div class=" mt-2">
                 <div class=" text-md-right">
-                    <img class="col-lg-12 col-lg-push-14" src="~/createimgs/$RPIW7AV.gif">
+                    <img class="col-lg-12 col-lg-push-14" src="~/createimgs/$RGZEF4E.gif">
                 </div>
             </div>
         </div>
@@ -106,13 +106,13 @@
                             <label id="radbtn-@cat.CategorayId" class="col-3 m-2 p-3 rounded-3 text-start btns">
                                 <div class="p-2">
                                     <div>
-                                <img class="icons-image" src="~/CategoryImgs/@cat.Categoryphotosrc" alt="option 1" />
-                                </div>
-                                <input type="radio" asp-for="CategorayId" value="@cat.CategorayId" onclick="myfunc('radbtn-'+@cat.CategorayId)" class="opacity-0 btns" />
-                                @cat.CategorayName
+                                        <img class="icons-image" src="~/CategoryImgs/@cat.Categoryphotosrc" alt="option 1" />
+                                    </div>
+                                    <input type="radio" asp-for="CategorayId" value="@cat.CategorayId" onclick="myfunc('radbtn-'+@cat.CategorayId)" class="opacity-0 btns" />
+                                    @cat.CategorayName
                                 </div>
                             </label>
-                        }                     
+                        }
                     </div>
                 </div>
 
@@ -133,7 +133,8 @@
             @*Neamaaaaaaaaaaaaaaaaaaaaaaa*@
 
             <!-- slide2 -->
-            <hr class="m-2">
+
+            <hr class="mt-4" style="width:96%;margin-left:6px">
             <div class="row">
                 <div class="col-md-6 col-md-push-7">
                     <div class="steps">
@@ -149,15 +150,15 @@
                 <div class="col-md-6 col-md-push-5 ">
                     <div class=" mt-5">
                         <div class=" text-md-right">
-                            <img class="col-lg-12 col-lg-push-14" src="~/createimgs/$RGZEF4E.gif">
+                            <img class="col-lg-12 col-lg-push-14" src="~/createimgs/$RV1554R.jpg">
                         </div>
                     </div>
                 </div>
             </div>
-            <hr class="mb-4">
+            <hr class="mt-4" style="width:96%;margin-left:6px">
 
             <!-- /slide2 -->
-            @*Neamaaaaaaaaaaaaaaaaaaaaaaa*@           
+            @*Neamaaaaaaaaaaaaaaaaaaaaaaa*@
             @*     Amenities     *@
             <div class="form-group">
                 <div class="col-9 offset-2">
@@ -165,22 +166,24 @@
                         <h2 class="properties-headers mb-3">
                             Tell guests what your place has to offer
                         </h2>
-                        <p class="text-secondary">You can add more amenities after you publish your listing.</p>           
+                        <p class="text-secondary">You can add more amenities after you publish your listing.</p>
                         @foreach (var item in ViewBag.Amenity as List<Amenity>)
                         {
                             @*<div class="p-2">*@
                             <label id="radbtnamenity-@item.AmenityId" class="col-3 m-2 p-3 rounded-3 text-start btns">
                                 <div>
-                                <img class="icons-image" src="~/AmenityImg/@item.AmenityImgSrc" alt="option 1" />
+                                    <img class="icons-image" src="~/AmenityImg/@item.AmenityImgSrc" alt="option 1" />
                                 </div>
                                 <input type="checkbox" name="amenity" value="@item.AmenityId" class="opacity-0 btns" onclick="multiplefunction('radbtnamenity-'+@item.AmenityId)" autocomplete="off">
-                                @item.AmenityName                               
+                                @item.AmenityName
                             </label>
                             @*</div>*@
                         }
                     </div>
+                </div>
 
-                    @*imageeeeeeeeeeeeeeeeeeeeeeeees*@
+                @*imageeeeeeeeeeeeeeeeeeeeeeeees*@
+                <div class="col-7 offset-2">
 
                     <h2 class="properties-headers mb-3">
                         Add some photos of your boat
@@ -239,7 +242,7 @@
             <div class="col-md-6 col-md-push-5 ">
                 <div class=" mt-2">
                     <div class=" text-md-right">
-                        <img class="col-lg-12 col-lg-push-14" src="~/Images/1.gif">
+                        <img class="col-lg-12 col-lg-push-14" src="~/createimgs/$RPIW7AV.gif">
                     </div>
                 </div>
             </div>
@@ -279,14 +282,15 @@
                 <div class="form-group">
                     <label asp-for="PropertyHostInfo" class="control-label texts fw-bold"></label>
                     @**input asp-for="PropertyHostInfo" class="form-control inputs" />*@
-                    <textarea rows="5" cols="80" class="form-control inputs fs-5"
+                    <textarea rows="4" cols="80" class="form-control inputs fs-5"
                               asp-for="PropertyHostInfo"></textarea>
                     <span asp-validation-for="PropertyHostInfo" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                   
+
                     <input asp-for="AppUserId" class="form-control" value='@ViewData["userid"]' type="hidden" />
                 </div>
+
 
 
                 <div class="form-group">
