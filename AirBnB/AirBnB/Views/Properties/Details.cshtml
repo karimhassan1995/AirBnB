@@ -156,7 +156,7 @@
         <div class="row ">
             <div class="col-lg-8 border-bottom  col-sm-12 ">
                 <div class=" border-bottom ">
-                    <h3 class="heading">Entire @Model.PropertyTitle hosted by @Model.AppUser.Email.Split("@").First()</h3>
+                    <h3 class="heading">Entire @Model.PropertyTitle hosted by @Model.AppUser.FirstName</h3>
                     <div class="mb-4">
                         <span>@Model.PropertyCapacity guests.</span>
                         <span>@Model.PropertyBedRooms bedrooms.</span>
@@ -269,6 +269,12 @@
         {
             <div class="row">
                 <div class="col-md-4">
+                    @if (ViewBag.flag == false)
+                    {
+                        <div class="alert alert-danger" style="width:100%;text-align:center;margin-left:2px" role="alert">
+                            <h3>You Must Enter A Number Between 1 to 5 </h3>
+                        </div>
+                    }
                     <form asp-action="Create" asp-controller="Reviews">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group">

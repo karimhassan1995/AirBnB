@@ -35,11 +35,16 @@ namespace AirBnB.Controllers
         // GET: Properties/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+
             if (id == null || _context.Properties == null)
             {
                 return NotFound();
             }
-
+            ViewBag.flag = true;
+            if (TempData["x"]!=null)
+            {
+                ViewBag.flag = false;
+            }
             //code to get the current user id
             ViewData["userid"] = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
