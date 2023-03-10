@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AirBnB.Data;
 using AirBnB.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AirBnB.Controllers
 {
@@ -18,6 +19,7 @@ namespace AirBnB.Controllers
         {
             _context = context;
         }
+        [Authorize(Roles ="Admin")]
 
         // GET: Reviews
         public async Task<IActionResult> Index()
@@ -61,15 +63,17 @@ namespace AirBnB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ReviewId,AppUserId,PropertyId,ReviewRate,ReviewComment")] Review review)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && review.ReviewRate<=5)
             {
                 _context.Add(review);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Properties", new { Id = review.PropertyId});
             }
+            TempData["x"] = true;
+           
             ViewData["AppUserId"] = new SelectList(_context.Users, "Id", "Id", review.AppUserId);
             ViewData["PropertyId"] = new SelectList(_context.Properties, "PropertyId", "AppUserId", review.PropertyId);
-            return View(review);
+            return RedirectToAction("Details", "Properties", new { Id = review.PropertyId });
         }
 
         // GET: Reviews/Edit/5

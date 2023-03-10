@@ -22,6 +22,7 @@ namespace AirBnB.Controllers
         }
 
         // GET: Bookings
+
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Bookings.Include(b => b.AppUser).Include(b => b.Property);
@@ -51,7 +52,11 @@ namespace AirBnB.Controllers
         // GET: Bookings/Create
         public IActionResult Create(int? id)
         {
-            ViewBag.flag = true;
+            ViewBag.flag = null;
+            if (TempData.ContainsKey("f")){
+                ViewBag.flag = true;
+            }
+           
             //code to get the selected property id
             ViewData["SelectedPropertyId"] = id;
             if (TempData.ContainsKey("propid"))
@@ -77,10 +82,12 @@ namespace AirBnB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BookingId,AppUserId,PropertyId,CheckInDate,CheckOutDate,BookingCapacity")] Booking booking)
         {
+
             //var idtest = _context.Bookings.FirstOrDefault(a => a.PropertyId == booking.PropertyId);
 
             //var NotAvalible = _context.Bookings.Where(a => a.PropertyId == booking.PropertyId).Select(a => (a.CheckInDate <= booking.CheckInDate && a.CheckOutDate >= booking.CheckInDate) && (a.CheckInDate <= booking.CheckOutDate && a.CheckOutDate >= booking.CheckOutDate)).FirstOrDefault();
             var valid=_context.Bookings.ToArray();
+            
             Booking book = null;
             for(int i = 0; i < valid.Length ; i++)
             {
@@ -96,10 +103,10 @@ namespace AirBnB.Controllers
             {
                 if (book == null)
                 {
-
+                    TempData["f"] = true;
                     _context.Add(booking);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(Create));
                 }
                 else {
                    
