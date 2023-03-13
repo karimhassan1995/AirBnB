@@ -128,11 +128,9 @@ namespace AirBnB.Controllers
             {
                 try
                 {
-                    Area area2 = _context.Areas.Find(id);
-                    string fileName = area2.AreaImg;
                     if (imgFile != null)
                     {
-                        //string fileName = area.AreaId.ToString() + "." + imgFile.FileName.Split(".").Last();
+                        string fileName = area.AreaId.ToString() + "." + imgFile.FileName.Split(".").Last();
                         if (System.IO.File.Exists("wwwroot/AreaImgs/" + fileName))
                         {
                             System.IO.File.Delete("wwwroot/AreaImgs/" + fileName);
@@ -141,12 +139,9 @@ namespace AirBnB.Controllers
                         {
                             imgFile.CopyTo(fs);
                         }
+                        area.AreaImg = fileName;
                     }
-                    area2.AreaId = area.AreaId;
-                    area2.AreaImg = fileName;
-                    area2.AreaName = area.AreaName;
-
-                    _context.Update(area2);
+                    _context.Update(area);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

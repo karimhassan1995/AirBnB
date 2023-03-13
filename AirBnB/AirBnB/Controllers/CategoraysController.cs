@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AirBnB.Controllers
 {
-    
     public class CategoraysController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -140,11 +139,9 @@ namespace AirBnB.Controllers
             {
                 try
                 {
-                    Categoray categoray2 = _context.Categoraies.Find(id);
-                    string fileName = categoray2.Categoryphotosrc;
                     if (imgFile != null)
                     {
-                        //string fileName = categoray.CategorayId.ToString() + "." + imgFile.FileName.Split(".").Last();
+                        string fileName = categoray.CategorayId.ToString() + "." + imgFile.FileName.Split(".").Last();
                         if (System.IO.File.Exists("wwwroot/CategoryImgs/" + fileName))
                         {
                             System.IO.File.Delete("wwwroot/CategoryImgs/" + fileName);
@@ -153,11 +150,9 @@ namespace AirBnB.Controllers
                         {
                             imgFile.CopyTo(fs);
                         }
+                        categoray.Categoryphotosrc = fileName;
                     }
-                    categoray2.CategorayId = categoray.CategorayId;
-                    categoray2.Categoryphotosrc = fileName;
-                    categoray2.CategorayName = categoray.CategorayName;
-                    _context.Update(categoray2);
+                    _context.Update(categoray);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
